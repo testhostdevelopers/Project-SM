@@ -172,7 +172,7 @@ export const ArtMinting = ({ id, onMint }: ArtMintingProps) => {
                 paddingTop: 30,
                 marginBottom: 4,
               }}
-              label={<h3 style={{ color: 'white' }}>Mint to</h3>}
+              label={<h3 style={{ color: 'black' }}>Mint to</h3>}
               labelAlign="left"
               colon={false}
               validateStatus={mintingDestinationErr ? 'error' : 'success'}
@@ -194,7 +194,7 @@ export const ArtMinting = ({ id, onMint }: ArtMintingProps) => {
                 paddingTop: 30,
               }}
               label={
-                <h3 style={{ color: 'white' }}>Number of editions to mint</h3>
+                <h3 style={{ color: 'black' }}>Number of editions to mint</h3>
               }
               labelAlign="left"
               colon={false}
@@ -217,7 +217,7 @@ export const ArtMinting = ({ id, onMint }: ArtMintingProps) => {
                 paddingTop: 30,
               }}
               label={
-                <h3 style={{ color: 'white' }}>Edition Number (Optional)</h3>
+                <h3 style={{ color: 'black' }}>Edition Number (Optional)</h3>
               }
               labelAlign="left"
               colon={false}
@@ -249,7 +249,7 @@ export const ArtMinting = ({ id, onMint }: ArtMintingProps) => {
             </h1>
             <p
               style={{
-                color: 'white',
+                color: 'black',
                 textAlign: 'center',
                 fontSize: '2rem',
               }}

@@ -27,7 +27,7 @@ export function notify({
     ),
     placement,
     style: {
-      backgroundColor: 'white',
+      backgroundcolor: 'black',
     },
   });
 }

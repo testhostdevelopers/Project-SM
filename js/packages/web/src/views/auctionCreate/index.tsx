@@ -664,9 +664,12 @@ export const AuctionCreateView = () => {
 
   return (
     <>
-      <Row className="creator-base-page" style={{ paddingTop: 50 }}>
+      <Row className="creator-base-page creat-new-nft sell">
+        <div className='main-title'>
+          <h1>List an item</h1>
+        </div>
         {stepsVisible && (
-          <Col span={24} md={4}>
+          <Col className='pt-5' span={24} md={4}>
             <Steps
               progressDot
               direction={width < 768 ? 'horizontal' : 'vertical'}
@@ -686,10 +689,13 @@ export const AuctionCreateView = () => {
             </Steps>
           </Col>
         )}
-        <Col span={24} {...(stepsVisible ? { md: 20 } : { md: 24 })}>
+        <Col className='pt-5' span={24} {...(stepsVisible ? { md: 20 } : { md: 24 })}>
           {stepsByCategory[attributes.category][step][1]}
           {0 < step && stepsVisible && (
-            <div style={{ margin: 'auto', width: 'fit-content' }}>
+            <div className='back-btn'>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.33366H2.55333L6.28 1.60699L5.33333 0.666992L0 6.00033L5.33333 11.3337L6.27333 10.3937L2.55333 6.66699H12V5.33366Z" fill="#141414"/>
+              </svg>
               <Button onClick={() => gotoNextStep(step - 1)}>Back</Button>
             </div>
           )}
@@ -705,12 +711,12 @@ const CategoryStep = (props: {
   const { width } = useWindowDimensions();
   return (
     <>
-      <Row className="call-to-action">
-        <h2>List an item</h2>
+      {/* <Row className="call-to-action change-title-position">
+        <h2 className='change-title'>List an item</h2>
         <p>
           First time listing on Metaplex? <a>Read our sellers&apos; guide.</a>
         </p>
-      </Row>
+      </Row> */}
       <Row justify={width < 768 ? 'center' : 'start'}>
         <Col>
           <Row>
@@ -1001,11 +1007,9 @@ const CopiesStep = (props: {
 
   return (
     <>
-      <Row className="call-to-action" style={{ marginBottom: 0 }}>
+      <Row className="call-to-action" style={{ marginBottom: 30 }}>
         <h2>Select which item to sell</h2>
-        <p style={{ fontSize: '1.2rem' }}>
-          Select the item(s) that you want to list.
-        </p>
+        <p>Select the item(s) that you want to list.</p>
       </Row>
       <Row className="content-action">
         <Col xl={24}>
@@ -1229,7 +1233,7 @@ const PriceAuction = (props: {
             </label>
           )}
           {props.attributes.category !== AuctionCategory.Open && (
-            <label className="action-field">
+            <label className="action-field not-bold">
               <span className="field-title">Price Floor</span>
               <span className="field-info">
                 This is the starting bid price for your auction.
@@ -1505,7 +1509,7 @@ const EndingPhaseAuction = (props: {
               }
               autoFocus
               type="number"
-              className="input"
+              className=""
               placeholder="Set the auction duration"
               onChange={info =>
                 props.setAttributes({
@@ -1540,7 +1544,7 @@ const EndingPhaseAuction = (props: {
                 </Select>
               }
               type="number"
-              className="input"
+              className=""
               placeholder="Set the gap time"
               onChange={info =>
                 props.setAttributes({
@@ -2016,9 +2020,9 @@ const ReviewStep = (props: {
         </Col>
       </Row>
       <Row style={{ display: 'block' }}>
-        <Divider />
+        {/* <Divider /> */}
         <Statistic
-          className="create-statistic"
+          className="create-statistic mt-3"
           title="Start date"
           value={
             props.attributes.startSaleTS
@@ -2028,7 +2032,7 @@ const ReviewStep = (props: {
               : 'Right after successfully published'
           }
         />
-        <br />
+        {/* <br /> */}
         {props.attributes.startListTS && (
           <Statistic
             className="create-statistic"
@@ -2038,7 +2042,7 @@ const ReviewStep = (props: {
               .format('dddd, MMMM Do YYYY, h:mm a')}
           />
         )}
-        <Divider />
+        {/* <Divider /> */}
         <Statistic
           className="create-statistic"
           title="Sale ends"

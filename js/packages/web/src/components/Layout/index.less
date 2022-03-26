@@ -6,22 +6,65 @@
 }
 
 .app-left {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	margin-left: 0;
+	max-width: calc(100% - 230px);
+	width: 100%;
+}
+.app-left > div{
+  max-width: calc(100% - 230px);
+  width: 100%;
+  justify-content: center;
   align-items: center;
-  display: flex;
-  flex-direction: row;
-  margin-left: 15px;
+}
+.app-left > a{
+  max-width: 230px;
+  width: 100%;
 }
 
 .app-right {
   align-items: center;
   display: flex;
   flex-direction: row;
-  margin-right: 15px;
+  margin-right: 0;
+  max-width: 250px;
+  width: 100%;
+  justify-content: flex-end;
 }
-
+.app-right .ant-dropdown-button .ant-dropdown-trigger {
+	display: none;
+}
+.app-right .ant-badge img {
+	filter: invert(1);
+}
+.app-right button.ant-btn,
+.app-right button.connector {
+	box-shadow: none;
+	border: 1px solid #6300FF;
+	border-radius: 50px;
+	min-width: 95px;
+	padding: 10px 20px;
+  &.no-border{
+    border: none;
+  }
+}
+.app-right button.ant-btn:hover,
+.app-right button.connector:hover{
+  background-color: #6300FF !important;
+  color: #fff;
+}
+.app-right button.ant-btn.wallet-key:hover {
+	color: #000;
+}
 #desktop-navbar {
   display: flex;
   width: 100%;
+  justify-content: space-between;
+  max-width: 1395px;
+  margin: 0 auto;
+  padding: 0 48px;
   justify-content: space-between;
   @media (max-width: @screen-sm-min) {
     display: none;
@@ -34,12 +77,12 @@ section.ant-layout {
   position: relative;
 
   #width-layout {
-    max-width: 1440px;
+    max-width: 1327px;
   }
 }
 
 section#main-layout.ant-layout {
-  background-color: @bg-color !important;
+  background-color: #FCFCFC !important;
   min-height: 100vh;
 
   span#static-header-gradient {
@@ -67,7 +110,7 @@ section#main-layout.ant-layout {
     left: 0;
     top: 510px;
     background: linear-gradient(180deg, rgba(18, 18, 18, 0) 0%, @black-100 100%);
-    display: none;
+    display: none !important;
   }
 
   span#main-bg {
@@ -81,6 +124,7 @@ section#main-layout.ant-layout {
     background-position: top left !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
+    display: none !important;
     filter: blur(220px);
     clip-path: inset(0 0 0 0);
   }
@@ -88,6 +132,6 @@ section#main-layout.ant-layout {
 
 .ant-tabs-mobile {
   @media (max-width: @screen-sm-min) {
-    padding: 20px;
+    padding: 15px 0 0px 0; 
   }
 }

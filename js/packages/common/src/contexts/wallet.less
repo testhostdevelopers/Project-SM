@@ -1,16 +1,23 @@
 p {
   color: #6d6d6d;
-  font-family: Inter, sans-serif;
   font-style: normal;
   font-size: 0.9rem;
 }
 
 .ant-collapse-ghost > .ant-collapse-item > .ant-collapse-content > .ant-collapse-content-box {
-  padding: 0 8px;
+  padding:0;
 }
 .ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
   vertical-align: middle !important;
+  transform: rotate(-90deg);
+  transition: all 0.5s ease;
 }
+
+.ant-collapse > .ant-collapse-item.ant-collapse-item-active > .ant-collapse-header .ant-collapse-arrow {
+  transform: rotate(0);
+  transition: all 0.5s ease;
+}
+
 .ant-collapse > .ant-collapse-item > .ant-collapse-header {
   padding: 36px 8px 20px;
 }
@@ -18,6 +25,18 @@ p {
   border-radius: 12px;
 }
 .phantom-button {
-  background: white !important;
-  color: black !important;
+  background: #6300FF !important;
+  color: #fff !important;
+   span{
+     margin:0 4px;
+   }
+}
+
+.recommended{
+  font-family: AvertaStd-Regular;
+  font-size: 18px;
+  line-height: 10px;
+  color: #000000;
+  display: block;
+  margin-bottom: 20px;
 }

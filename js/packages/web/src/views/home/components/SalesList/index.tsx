@@ -30,65 +30,191 @@ export const SalesListView = () => {
 
   return (
     <>
+    
       <Banner
-        src="/main-banner.svg"
-        headingText="The amazing world of Metaplex."
-        subHeadingText="Buy exclusive Metaplex NFTs."
-        actionComponent={<HowToBuyModal buttonClassName="secondary-btn" />}
+        src="/RectangleBanner.jpg"
+        headingText="Name of Collection"
+        byText="By Lorem Ipsum"
+        subHeadingText="Lorem Ipsum is simply dummy text of the printing
+        and typesetting industry. Lorem Ipsum has been the 
+        industry's standard dummy text ever since the 1500s, 
+        when an unknown printer took a galley of type and 
+        scrambled it to make a type specimen book."
+        actionComponent={<HowToBuyModal buttonClassName="Explore Collection" />}
         useBannerBg
       />
+
+      <Layout>
+        <Content style={{ display: 'flex', flexWrap: 'wrap' }}>
+          <Col style={{ width: '100%' }}>
+            <div className='featured-creators' >
+              <h2>Featured Creators</h2>
+              <ul>
+                <li>
+                    <Link to={'#0'}>
+                      <div className='featuere-img'>
+                          
+                      </div>
+                      <div className='feature-content'>
+                        <h5>Lorem Ipsum</h5>
+                      </div>
+                    </Link>
+                </li>
+                <li>
+                    <Link to={'#0'}>
+                      <div className='featuere-img'>
+                          
+                      </div>
+                      <div className='feature-content'>
+                        <h5>Lorem Ipsum</h5>
+                      </div>
+                    </Link>
+                </li>
+                <li>
+                    <Link to={'#0'}>
+                      <div className='featuere-img'>
+                          
+                      </div>
+                      <div className='feature-content'>
+                        <h5>Lorem Ipsum</h5>
+                      </div>
+                    </Link>
+                </li>
+                <li>
+                    <Link to={'#0'}>
+                      <div className='featuere-img'>
+                          
+                      </div>
+                      <div className='feature-content'>
+                        <h5>Lorem Ipsum</h5>
+                      </div>
+                    </Link>
+                </li>
+                <li>
+                    <Link to={'#0'}>
+                      <div className='featuere-img'>
+                          
+                      </div>
+                      <div className='feature-content'>
+                        <h5>Lorem Ipsum</h5>
+                      </div>
+                    </Link>
+                </li>
+                <li>
+                    <Link to={'#0'}>
+                      <div className='featuere-img'>
+                          
+                      </div>
+                      <div className='feature-content'>
+                        <h5>Lorem Ipsum</h5>
+                      </div>
+                    </Link>
+                </li>
+                <li>
+                    <Link to={'#0'}>
+                      <div className='featuere-img'>
+                          
+                      </div>
+                      <div className='feature-content'>
+                        <h5>Lorem Ipsum</h5>
+                      </div>
+                    </Link>
+                </li>
+                <li>
+                    <Link to={'#0'}>
+                      <div className='featuere-img'>
+                          
+                      </div>
+                      <div className='feature-content'>
+                        <h5>Lorem Ipsum</h5>
+                      </div>
+                    </Link>
+                </li>
+                <li>
+                    <Link to={'#0'}>
+                      <div className='featuere-img'>
+                          
+                      </div>
+                      <div className='feature-content'>
+                        <h5>Lorem Ipsum</h5>
+                      </div>
+                    </Link>
+                </li>
+                <li>
+                    <Link to={'#0'}>
+                      <div className='featuere-img'>
+                          
+                      </div>
+                      <div className='feature-content'>
+                        <h5>Lorem Ipsum</h5>
+                      </div>
+                    </Link>
+                </li>
+              </ul>
+            </div>
+          </Col>
+        </Content>
+      </Layout>
+
       <Layout>
         <Content style={{ display: 'flex', flexWrap: 'wrap' }}>
           <Col style={{ width: '100%', marginTop: 32 }}>
-            <Row>
-              <Tabs
-                activeKey={activeKey}
-                onTabClick={key => setActiveKey(key as LiveAuctionViewState)}
-              >
-                <TabPane
-                  tab={
-                    <>
-                      <span className="live"></span> Live
-                    </>
-                  }
-                  key={LiveAuctionViewState.All}
-                ></TabPane>
-                {hasResaleAuctions && (
+            <div className='home-tab' >
+            <h2>Explore</h2>
+              <Row>
+                <Tabs
+                  activeKey={activeKey}
+                  onTabClick={key => setActiveKey(key as LiveAuctionViewState)}
+                >
                   <TabPane
-                    tab="Secondary Marketplace"
-                    key={LiveAuctionViewState.Resale}
+                    tab={
+                      <>
+                        <span className="live"></span> Live
+                      </>
+                    }
+                    key={LiveAuctionViewState.All}
                   ></TabPane>
-                )}
-                <TabPane tab="Ended" key={LiveAuctionViewState.Ended}></TabPane>
-                {connected && (
-                  <TabPane
-                    tab="Participated"
-                    key={LiveAuctionViewState.Participated}
-                  ></TabPane>
-                )}
-                {connected && (
-                  <TabPane
-                    tab="My Live Auctions"
-                    key={LiveAuctionViewState.Own}
-                  ></TabPane>
-                )}
-              </Tabs>
-            </Row>
-            <Row>
-              <div className="artwork-grid">
-                {isLoading &&
-                  [...Array(10)].map((_, idx) => <CardLoader key={idx} />)}
-                {!isLoading &&
-                  auctions.map(auction => (
-                    <Link
-                      key={auction.auction.pubkey}
-                      to={`/auction/${auction.auction.pubkey}`}
-                    >
-                      <AuctionRenderCard auctionView={auction} />
-                    </Link>
-                  ))}
-              </div>
-            </Row>
+                  {hasResaleAuctions && (
+                    <TabPane
+                      tab="Secondary Marketplace"
+                      key={LiveAuctionViewState.Resale}
+                    ></TabPane>
+                  )}
+                  <TabPane tab="Ended" key={LiveAuctionViewState.Ended}></TabPane>
+                  {connected && (
+                    <TabPane
+                      tab="Pacrticipated"
+                      key={LiveAuctionViewState.Participated}
+                    ></TabPane>
+                  )}
+                  {connected && (
+                    <TabPane
+                      tab="My Live Auctions"
+                      key={LiveAuctionViewState.Own}
+                    ></TabPane>
+                  )}
+                </Tabs>
+              </Row>
+            </div>
+
+            <div className='explore-tab'>
+              <Row>
+                <div className="artwork-grid">
+                  {isLoading &&
+                    [...Array(10)].map((_, idx) => <CardLoader key={idx} />)}
+                  {!isLoading &&
+                    auctions.map(auction => (
+                      <Link
+                        key={auction.auction.pubkey}
+                        to={`/auction/${auction.auction.pubkey}`}
+                      >
+                        <AuctionRenderCard auctionView={auction} />
+                      </Link>
+                    ))}
+                </div>
+              </Row>
+            </div>   
+
           </Col>
         </Content>
       </Layout>

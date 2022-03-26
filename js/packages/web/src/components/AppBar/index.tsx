@@ -19,12 +19,22 @@ const getDefaultLinkActions = (connected: boolean) => {
     <Link to={`/`} key={'explore'}>
       <Button className="app-btn">Explore</Button>
     </Link>,
-    <Link to={`/artworks`} key={'artwork'}>
-      <Button className="app-btn">{connected ? 'My Items' : 'Artwork'}</Button>
-    </Link>,
     <Link to={`/artists`} key={'artists'}>
       <Button className="app-btn">Creators</Button>
     </Link>,
+    <Link to={`/Upcoming`} key={'Upcoming'}>
+      <Button className="app-btn">Upcoming</Button>
+    </Link>,
+    <Link to={`/Howitworks`} key={'Howitworks'}>
+      <Button className="app-btn">How it works</Button>
+    </Link>,
+
+
+
+    // <Link to={`/artworks`} key={'artwork'}>
+    //   <Button className="app-btn">{connected ? 'My Items' : 'Artwork'}</Button>
+    // </Link>,
+    
   ];
 };
 
@@ -128,10 +138,10 @@ export const AppBar = () => {
         </div>
         <div className="app-right">
           {!connected && (
-            <HowToBuyModal buttonClassName="modal-button-default" />
+            <HowToBuyModal buttonClassName="modal-button-default no-border" />
           )}
           {!connected && (
-            <ConnectButton style={{ height: 48 }} allowWalletChange />
+            <ConnectButton allowWalletChange />
           )}
           {connected && (
             <>

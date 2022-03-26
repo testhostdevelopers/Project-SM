@@ -129,7 +129,7 @@ const resendOnlyRender = ({ show, onSubmit, onDismiss }) => {
     <DefaultModal visible={show} onCancel={onDismiss} width="70ch">
       <p
         style={{
-          color: 'white',
+          color: 'black',
           fontSize: '0.9rem',
           marginTop: 8,
           width: '90%',
@@ -146,7 +146,7 @@ const resendOnlyRender = ({ show, onSubmit, onDismiss }) => {
               key={opt.name}
               style={{
                 width: '100%',
-                color: 'white',
+                color: 'black',
                 marginBottom: 8,
               }}
               variant="outlined"
@@ -185,7 +185,7 @@ const shouldSendRender = (
       <DefaultModal visible={show} onCancel={onDismiss} width="70ch">
         <h2
           style={{
-            color: 'white',
+            color: 'black',
             fontWeight: 'bold',
             fontSize: '1.2rem',
           }}
@@ -193,13 +193,13 @@ const shouldSendRender = (
           Claim Distribution Preview
           {claimants.length > limit ? ` (First ${limit})` : ''}
         </h2>
-        <p style={{ color: 'white', fontSize: '1rem', textAlign: 'center' }}>
+        <p style={{ color: 'black', fontSize: '1rem', textAlign: 'center' }}>
           Approving will save the keypair authority generated for gumdrop state.
           This keypair is necessary to close the gumdrop later!
         </p>
         <TableContainer
           sx={{
-            'td, th': { color: 'white' },
+            'td, th': { color: 'black' },
             backgroundColor: '#444444',
             borderRadius: '5px',
             maxHeight: '30ch',
@@ -239,7 +239,7 @@ const shouldSendRender = (
           <Button
             style={{
               width: '100%',
-              color: 'white',
+              color: 'black',
               marginBottom: 8,
             }}
             variant="outlined"
@@ -256,7 +256,7 @@ const shouldSendRender = (
             <Button
               style={{
                 width: '100%',
-                color: 'white',
+                color: 'black',
                 marginBottom: 8,
               }}
               variant="outlined"

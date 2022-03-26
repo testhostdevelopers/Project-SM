@@ -18,25 +18,37 @@
   border: none;
   border-radius: 48px;
   padding: 18px 8px;
-
+  > img{
+    filter: invert(1);
+  }
   &:focus {
     background: rgba(255, 255, 255, 0.1);
-    color: unset;
   }
 }
 
-.ant-select-dropdown{
-  background-color: black;
+.ant-select-dropdown {
+  background-color: #f2f2f2;
+  padding: 0;
+  .ant-select-item{
+    font-size: 14px;
+    color: #000;
+    font-weight: normal;
+    text-transform: capitalize;
+  }
 }
+
+
 .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgb(117, 93, 192);
+  color: #fff;
 }
 .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgb(117, 93, 192);
+  color: #fff;
 }
 .ant-popover-inner {
   border-radius: 12px;
-  background: #1f1f1f;
+  background: #FFf;
 }
 
 .ant-popover-arrow {
@@ -52,4 +64,140 @@ h5 {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.ant-popover-inner-content div.wallet-address {
+	color: #000;
+	letter-spacing: 0 !important;
+	font-family: AvertaStd-Semibold;
+	font-size: 18px;
+	line-height: 130%;
+}
+.ant-popover-inner-content .profile {
+  font-family: AvertaStd-Regular;
+  font-size: 18px;
+  line-height: 130%;
+  color: #919191;
+}
+.profile-detail .balance-title {
+	font-family: AvertaStd-Regular;
+	font-size: 18px;
+	line-height: 130%;
+	color: #919191;
+	margin-top: 18px;
+}
+
+.profile-detail .balance-wrap {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+  margin-bottom: 25px;
+}
+.balance-wrap span{
+  font-family: AvertaStd-Regular;
+  font-size: 18px;
+  line-height: 130%;
+  color: #919191;
+}
+
+.profile-action-button {
+	display: flex;
+	flex-wrap: wrap;
+  margin-bottom: 15px;
+  button.ant-btn{
+    background: transparent !important;
+  }
+  &:last-child{
+    margin-bottom: 0;
+  }
+}
+.profile-action-button > a,
+.profile-action-button button {
+	font-family: AvertaStd-Semibold;
+	font-size: 18px;
+	line-height: 130%;
+	color: #000000;
+	border: none;
+	box-shadow: none;
+	padding: 0;
+	height: auto;
+	width: 48%;
+	text-align: left;
+  &:active,
+  &:focus,
+  &:hover{
+    color: #6300FF;
+  }
+  span{
+	  font-family: AvertaStd-Semibold;
+  }
+}
+
+.Network-box {
+  h5 {
+    font-family: AvertaStd-Semibold;
+    font-size: 24px;
+    line-height: 130%;
+    color: #000000;
+  }
+  .ant-select {
+    background: #F2F2F2;
+    border-radius: 8px;
+    .ant-select-selection-item {
+      font-family: AvertaStd-Regular;
+      font-size: 24px;
+      line-height: 130%;
+      color: #909090;
+      button{
+        background: transparent;
+      }
+    }
+  }
+}
+
+.addFundbalance-wrap{
+  > span{
+    font-family: AvertaStd-Regular;
+    font-size: 14px;
+    line-height: 130%;
+    color: #000000;
+    font-weight: normal;
+  }
+}
+
+.addfund-button{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+   > button{
+      font-family: AvertaStd-Regular;
+      font-size: 18px;
+      line-height: 10px;
+      text-align: center;
+      border: 1px solid #6300FF;
+      border-radius: 20px;
+      min-height: 40px;
+      min-width: 128px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: auto;
+      color: #fff;
+      background-color: #6300FF;
+      &:hover{
+        background-color: #000000 !important;
+        color: #fff;
+        border-color: #fff;
+      }
+      &.border-btn{
+        color: #000000;
+        border: 1px solid #000000;
+        background-color: #fff;
+        &:hover{
+          color: #fff;
+          border: 1px solid #6300FF;
+          background-color: #6300FF !important;
+        }
+      }
+   }
 }

@@ -68,14 +68,14 @@ export const WalletModal: FC = () => {
       ></div>
       <h2
         style={{
-          color: 'white',
+          color: 'black',
           fontWeight: 'bold',
           fontSize: '1.2rem',
         }}
       >
         {selected ? 'Change provider' : ''}
       </h2>
-      <p style={{ color: 'white', fontSize: '1rem' }}>
+      <p style={{ color: 'black', fontSize: '1rem' }}>
         {selected
           ? 'Choose from the following options:'
           : 'Please sign into your wallet'}
@@ -106,7 +106,7 @@ export const WalletModal: FC = () => {
               width: '100%',
               textAlign: 'left',
               marginBottom: 8,
-              color: 'white',
+              color: 'black',
             }}
           >
             {wallet.name}

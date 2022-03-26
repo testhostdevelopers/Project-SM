@@ -11,36 +11,44 @@ export const ArtistsView = () => {
   const { whitelistedCreatorsByCreator } = useMeta();
 
   const breakpointColumnsObj = {
-    default: 4,
+    default: 5,
     1100: 3,
     700: 2,
     500: 1,
   };
   const items = Object.values(whitelistedCreatorsByCreator);
   const artistGrid = (
-    <Masonry
-      breakpointCols={breakpointColumnsObj}
-      className="my-masonry-grid artists-masonry"
-      columnClassName="my-masonry-grid_column"
-    >
-      {items.map((m, idx) => {
-        const id = m.info.address;
-        return (
-          <Link to={`/artists/${id}`} key={idx}>
-            <ArtistCard
-              key={id}
-              artist={{
-                address: m.info.address,
-                name: m.info.name || '',
-                image: m.info.image || '',
-                link: m.info.twitter || '',
-                background: m.info.background || '',
-              }}
-            />
-          </Link>
-        );
-      })}
-    </Masonry>
+    <>
+    
+      <div className='title side-padding'>
+        <h1>Creators</h1>
+      </div>
+    <div className='center-div'>
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="my-masonry-grid artists-masonry"
+        columnClassName="my-masonry-grid_column"
+      >
+        {items.map((m, idx) => {
+          const id = m.info.address;
+          return (
+            <Link to={`/artists/${id}`} key={idx}>
+              <ArtistCard
+                key={id}
+                artist={{
+                  address: m.info.address,
+                  name: m.info.name || '',
+                  image: m.info.image || '',
+                  link: m.info.twitter || '',
+                  background: m.info.background || '',
+                }}
+              />
+            </Link>
+          );
+        })}
+      </Masonry>
+    </div>
+    </>
   );
 
   return (

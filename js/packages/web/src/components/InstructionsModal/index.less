@@ -1,5 +1,40 @@
 .instructions-modal{
   width: 80% !important;
+  &.modal-box:not(.big-modal) {
+     width: 1200px !important;
+  }
+  .card-cover{
+    background: #C4C4C4;
+    max-width: 280px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .site-card-wrapper{
+    max-width: 977px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .ant-modal-body{
+    .ant-card{
+      div.body-content {
+        font-family: AvertaStd-Regular;
+        font-size: 14px;
+        line-height: 130%;
+        color: #9D9D9D;
+      }
+    }
+    .ant-card-body{
+      div.body-title {
+        font-style: normal;
+        font-weight: 600;
+        margin-top: 20px;
+        font-family: AvertaStd-Bold;
+        font-size: 24px;
+        line-height: 110%;
+        color: #000000;
+      }
+    }
+  }
 }
 
 
@@ -93,7 +128,7 @@
             font-size: 14px;
             line-height: 14px;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.7);
+            color: #000;
           }
           .sol-img-wrapper{
             border-radius: 50%;
@@ -108,7 +143,7 @@
   }
 
   .ant-modal-content {
-    background: #1f1f1f;
+    background: #fff;
     border-radius: 12px;
   }
 
@@ -116,15 +151,16 @@
     border-bottom: 0;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
-    padding: 28px 24px 28px 24px;
+    padding: 28px 40px 28px 40px;
     background-color: transparent !important;
-    color: white !important;
+    color: #000 !important;
     .ant-modal-title {
-      color: white;
       font-style: normal;
       font-weight: 600;
-      font-size: 24px;
-      line-height: 24px;
+      font-family: AvertaStd-Bold;
+      font-size: 32px;
+      line-height: 120%;
+      color: #000000;
     }
   }
 
@@ -137,9 +173,10 @@
   }
 
   .ant-modal-body {
-    background: rgba(255, 255, 255, 0.05) !important;
+    background: #fff !important;
     border-radius: 12px;
-    padding: 48px;
+    padding: 15px 40px 40px 40px;
+    width: 100%;
     @media (max-width: @screen-sm-min) {
       padding: 30px;
       min-height: 90vh !important;
@@ -152,7 +189,7 @@
         border-radius: 12px;
         .card-cover {
           //background: rgba(255, 255, 255, 0.1);
-          height: 200px;
+          height: 180px;
           border-radius: 12px;
           display: flex;
           justify-content: center;
@@ -173,7 +210,7 @@
         line-height: 20px;
         margin-top: 20px;
         margin-bottom: 12px;
-        color: white;
+        color: #000;
       }
 
       .body-content {
@@ -181,7 +218,7 @@
         font-weight: normal;
         font-size: 16px;
         line-height: 20px;
-        color: rgba(255, 255, 255, 0.7)
+        color: #000
       }
 
       .ant-card-body {

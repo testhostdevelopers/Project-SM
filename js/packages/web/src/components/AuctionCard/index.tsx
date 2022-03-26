@@ -486,7 +486,10 @@ export const AuctionCard = ({
   const isOpenEditionSale =
     auctionView.auction.info.bidState.type === BidStateType.OpenEdition;
 
-  const isBidderPotEmpty = Boolean(auctionView.myBidderPot?.info.emptied);
+  const isBidderPotEmpty = Boolean(
+    // If I haven't bid, myBidderPot should be empty
+    !auctionView.myBidderPot || auctionView.myBidderPot?.info.emptied,
+  );
   const doesInstantSaleHasNoItems =
     isBidderPotEmpty &&
     auctionView.auction.info.bidState.max.toNumber() === bids.length;
@@ -495,7 +498,9 @@ export const AuctionCard = ({
     !isOpenEditionSale &&
     auctionView.isInstantSale &&
     isAuctionManagerAuthorityNotWalletOwner &&
-    doesInstantSaleHasNoItems;
+    doesInstantSaleHasNoItems &&
+    // If your bidderpot is empty but you haven't claimed
+    !canClaimPurchasedItem;
 
   const shouldHide =
     shouldHideInstantSale ||
@@ -728,7 +733,7 @@ export const AuctionCard = ({
                     className="metaplex-button-default"
                     style={{
                       background: 'transparent',
-                      color: 'white',
+                      color: 'black',
                       width: 'unset',
                       fontWeight: 600,
                       letterSpacing: '-0.02em',
@@ -857,7 +862,7 @@ export const AuctionCard = ({
         </h1>
         <p
           style={{
-            color: 'white',
+            color: 'black',
             textAlign: 'center',
             fontSize: '2rem',
           }}
@@ -883,7 +888,7 @@ export const AuctionCard = ({
         </h1>
         <p
           style={{
-            color: 'white',
+            color: 'black',
             textAlign: 'center',
             fontSize: '2rem',
           }}
@@ -912,7 +917,7 @@ export const AuctionCard = ({
         </h1>
         <p
           style={{
-            color: 'white',
+            color: 'black',
             textAlign: 'center',
             fontSize: '2rem',
           }}
@@ -936,7 +941,7 @@ export const AuctionCard = ({
           alignItems: 'start',
         }}
       >
-        <h3 style={{ color: 'white' }}>
+        <h3 style={{ color: 'black' }}>
           Warning: There may be some items in this auction that still are
           required by the auction for printing bidders&apos; limited or open
           edition NFTs. If you wish to withdraw them, you are agreeing to foot

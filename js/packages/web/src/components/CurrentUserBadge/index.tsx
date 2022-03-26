@@ -70,23 +70,19 @@ const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
             </Link>
           </div>
         ) : (
-          <div
-            style={{
-              display: 'flex',
-            }}
-          >
+          <div className='profile-action-button'>
             {canCreate && (
               <>
-                <Link to={`/art/create`} style={{ width: '100%' }}>
-                  <Button className="metaplex-button-default" style={btnStyle}>
+                <Link to={`/art/create`}>
+                  <Button className="metaplex-button-default">
                     Create
                   </Button>
                 </Link>
                 &nbsp;&nbsp;
               </>
             )}
-            <Link to={`/auction/create/0`} style={{ width: '100%' }}>
-              <Button className="metaplex-button-default" style={btnStyle}>
+            <Link to={`/auction/create/0`}>
+              <Button className="metaplex-button-default">
                 Sell
               </Button>
             </Link>
@@ -112,25 +108,25 @@ const AddFundsModal = (props: {
       }}
     >
       <div style={{ maxWidth: '100%' }}>
-        <p style={{ color: 'white' }}>
+        <p style={{ color: 'black' }}>
           We partner with <b>FTX</b> to make it simple to start purchasing
           digital collectibles.
         </p>
-        <div
+        <div className='addFundbalance-wrap'
           style={{
             width: '100%',
-            background: '#242424',
-            borderRadius: 12,
+            background: '#C4C4C4',
+            borderRadius: 8,
             marginBottom: 10,
             height: 50,
             display: 'flex',
             alignItems: 'center',
-            padding: '0 10px',
+            padding: '0px 15px',
             justifyContent: 'space-between',
             fontWeight: 700,
           }}
         >
-          <span style={{ color: 'rgba(255, 255, 255, 0.5)' }}>Balance</span>
+          <span className='addfundbalance'>Balance</span>
           <span>
             {formatNumber.format(props.balance)}&nbsp;&nbsp;
             <span
@@ -147,40 +143,29 @@ const AddFundsModal = (props: {
             SOL
           </span>
         </div>
-        <p>
+        <p style={{ color:'#9D9D9D',paddingTop:'5px'}}>
           If you have not used FTX Pay before, it may take a few moments to get
           set up.
         </p>
-        <Button
-          onClick={() => props.setShowAddFundsModal(false)}
-          style={{
-            background: '#454545',
-            borderRadius: 14,
-            width: '30%',
-            padding: 10,
-            height: 'auto',
-          }}
-        >
-          Close
-        </Button>
-        <Button
-          onClick={() => {
-            window.open(
-              `https://ftx.com/pay/request?coin=SOL&address=${props.publicKey?.toBase58()}&tag=&wallet=sol&memoIsRequired=false`,
-              '_blank',
-              'resizable,width=680,height=860',
-            );
-          }}
-          style={{
-            background: 'black',
-            borderRadius: 14,
-            width: '68%',
-            marginLeft: '2%',
-            padding: 10,
-            height: 'auto',
-            borderColor: 'black',
-          }}
-        >
+        <div className='d_flex addfund-button'>
+            <Button className='border-btn'
+              onClick={() => props.setShowAddFundsModal(false)}
+            >
+              Close
+            </Button>
+            <Button
+              onClick={() => {
+                window.open(
+                  `https://ftx.com/pay/request?coin=SOL&address=${props.publicKey?.toBase58()}&tag=&wallet=sol&memoIsRequired=false`,
+                  '_blank',
+                  'resizable,width=680,height=860',
+                );
+              }}
+              style={{
+                width: '66%',
+              }}
+            >
+         
           <div
             style={{
               display: 'flex',
@@ -188,13 +173,13 @@ const AddFundsModal = (props: {
               justifyContent: 'center',
               alignContent: 'center',
               alignItems: 'center',
-              fontSize: 16,
             }}
           >
             <span style={{ marginRight: 5 }}>Sign with</span>
             <img src="/ftxpay.png" width="80" />
           </div>
         </Button>
+        </div>
       </div>
     </MetaplexModal>
   );
@@ -249,56 +234,32 @@ export const CurrentUserBadge = (props: {
         content={
           <Settings
             additionalSettings={
-              <div
+              <div className='profile-detail'
                 style={{
                   width: 250,
                 }}
               >
-                <h5
-                  style={{
-                    color: 'rgba(255, 255, 255, 0.7)',
-                    letterSpacing: '0.02em',
-                  }}
-                >
-                  BALANCE
+                <h5 className='balance-title'>
+                  Balance
                 </h5>
-                <div
-                  style={{
-                    marginBottom: 10,
-                  }}
-                >
+                <div className='balance-wrap'>
                   <TokenCircle
                     iconFile={solMintInfo ? solMintInfo.logoURI : ''}
                   />
                   &nbsp;
-                  <span
-                    style={{
-                      fontWeight: 600,
-                      color: '#FFFFFF',
-                    }}
-                  >
+                  <span>
                     {formatNumber.format(balance)} SOL
                   </span>
                   &nbsp;
-                  <span
-                    style={{
-                      color: 'rgba(255, 255, 255, 0.5)',
-                    }}
-                  >
+                  <span>
                     {formatUSD.format(balanceInUSD)}
                   </span>
                   &nbsp;
                 </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    marginBottom: 10,
-                  }}
-                >
+                <div className='profile-action-button'>
                   <Button
                     className="metaplex-button-default"
                     onClick={() => setShowAddFundsModal(true)}
-                    style={btnStyle}
                   >
                     Add Funds
                   </Button>
@@ -306,7 +267,6 @@ export const CurrentUserBadge = (props: {
                   <Button
                     className="metaplex-button-default"
                     onClick={disconnect}
-                    style={btnStyle}
                   >
                     Disconnect
                   </Button>
@@ -353,18 +313,13 @@ export const Cog = () => {
         trigger="click"
         placement="bottomRight"
         content={
-          <div
+          <div className='Network-box'
             style={{
-              width: 250,
+              width: 300,
             }}
           >
-            <h5
-              style={{
-                color: 'rgba(255, 255, 255, 0.7)',
-                letterSpacing: '0.02em',
-              }}
-            >
-              NETWORK
+            <h5>
+              Network
             </h5>
             <Select
               onSelect={network => {
@@ -391,8 +346,6 @@ export const Cog = () => {
               value={endpoint.name}
               bordered={false}
               style={{
-                background: 'rgba(255, 255, 255, 0.05)',
-                borderRadius: 8,
                 width: '100%',
                 marginBottom: 10,
               }}

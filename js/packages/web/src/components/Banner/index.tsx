@@ -6,6 +6,7 @@ export const Banner = (props: {
   useBannerBg: boolean;
   headingText: string;
   subHeadingText: string;
+  byText: string;
   actionComponent?: JSX.Element;
   children?: React.ReactNode;
 }) => {
@@ -36,7 +37,8 @@ export const Banner = (props: {
       <div id="mobile-banner">
         <img className="banner-img" src={props.src} />
         <div className="banner-content">
-          <div id={'main-heading'}>{props.headingText}</div>
+          <div id={'main-headingd'}>{props.headingText}</div>
+          <div id={'by'}>{props.byText}</div>
           <div id={'sub-heading'}>{props.subHeadingText}</div>
           {props.actionComponent}
         </div>
@@ -49,15 +51,16 @@ export const Banner = (props: {
         <div id="banner-inner">
           <div id={'message-container'}>
             <div id={'main-heading'}>{props.headingText}</div>
+            <div id={'by'}>{props.byText}</div>
             <div id={'sub-heading'}>{props.subHeadingText}</div>
             {props.actionComponent}
           </div>
           {props.children}
-          <div className="powered-by">
+          {/* <div className="powered-by">
             <span>
               POWERED BY <b>METAPLEX</b>
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

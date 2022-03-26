@@ -525,7 +525,7 @@ export function Notifications() {
 
   const content = notifications.length ? (
     <div
-      style={{ width: '300px', color: 'white' }}
+      style={{ width: '380px', color: 'black' }}
       className={'notifications-container'}
     >
       <List
@@ -551,11 +551,11 @@ export function Notifications() {
               </>
             }
           >
-            <List.Item.Meta
+            <List.Item.Meta className='noti-action'
               title={<span>{item.title}</span>}
               description={
-                <span>
-                  <i>{item.description}</i>
+                <span className='des'>
+                  {item.description}
                 </span>
               }
             />
@@ -568,7 +568,7 @@ export function Notifications() {
   );
 
   const justContent = (
-    <Popover placement="bottomLeft" content={content} trigger="click">
+    <Popover className='notification-popup' placement="bottomRight" content={content} trigger="click">
       <img src={'/bell.svg'} style={{ cursor: 'pointer' }} />
       {!!notifications.length && (
         <div className="mobile-notification">{notifications.length - 1}</div>
