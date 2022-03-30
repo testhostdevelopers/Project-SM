@@ -1614,12 +1614,11 @@ const TierTableStep = (props: {
       <Row className="call-to-action">
         <h2>Add Winning Tiers and Their Prizes</h2>
         <p>
-          Each row represents a tier. You can choose which winning spots get
-          which tiers.
+          Each row represents a tier. You can choose which winning spots get which tiers.
         </p>
       </Row>
       {props.attributes.tiers.map((wcg, configIndex) => (
-        <Row className="content-action" key={configIndex}>
+        <Row className="content-action Add-Winning " key={configIndex}>
           <Col xl={24}>
             <h3>Tier #{configIndex + 1} Basket</h3>
           </Col>
@@ -1639,7 +1638,7 @@ const TierTableStep = (props: {
           />
 
           {wcg.items.map((i, itemIndex) => (
-            <Col className="section" xl={8} key={itemIndex}>
+            <Col className="section" key={itemIndex}>
               <Card>
                 <ArtSelector
                   filter={artistFilter}
@@ -2114,7 +2113,7 @@ const WaitingStep = (props: {
     >
       <Progress type="circle" percent={progress} />
       <div className="waiting-title">
-        Your creation is being listed with Metaplex...
+        Your creation is being listed with Starlight......
       </div>
       <div className="waiting-subtitle">This can take up to 30 seconds.</div>
     </div>

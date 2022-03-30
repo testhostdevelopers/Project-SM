@@ -4,6 +4,7 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import { shortenAddress } from '../../utils';
 import { CopyOutlined } from '@ant-design/icons';
 import { Identicon } from '../Identicon';
+import { Link } from 'react-router-dom';
 
 export const Settings = ({
   additionalSettings,
@@ -43,7 +44,8 @@ export const Settings = ({
           </>
         )}
         <br />
-        <span className='profile'>View profile</span>
+        <Link to={`/artists/${publicKey}`} className='profile'>View profile </Link>
+
         {additionalSettings}
       </div>
     </>

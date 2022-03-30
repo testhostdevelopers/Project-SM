@@ -995,7 +995,7 @@ const RoyaltiesStep = (props: {
           block
           icon={<PlusOutlined />}
         >
-          Add attribute
+          Add Another Creator
         </Button>
       </Form.Item>
         {/* <span

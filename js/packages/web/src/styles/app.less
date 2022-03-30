@@ -772,11 +772,15 @@ div.ant-upload-list-item{
 
 }
 
-
+path.ant-progress-circle-trail {
+	stroke: #C4C4C4;
+}
 .ant-progress-inner:not(.ant-progress-circle-gradient) path.ant-progress-circle-path {
 	stroke: #6300FF;
 }
-
+.ant-progress-circle path{
+  stroke-width: 10px
+}
 div.waiting-title {
 	font-family: AvertaStd-Bold;
 	font-size: 32px;
@@ -801,9 +805,9 @@ div.token-button {
   .ant-modal.modal-box {
     margin: 0;
   }
-  .ant-modal-close-x {
-    filter: invert(1);
-  }
+  // .ant-modal-close-x {
+  //   filter: invert(1);
+  // }
   .modal-box {
     .ant-modal-close{
       + .ant-modal-header {

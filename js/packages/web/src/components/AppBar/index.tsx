@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';;
 import { Link } from 'react-router-dom';
 import { Button, Menu, Modal } from 'antd';
 import { useWallet } from '@solana/wallet-adapter-react';
@@ -13,6 +13,7 @@ import {
 } from '../CurrentUserBadge';
 import { ConnectButton } from '@oyster/common';
 import { MobileNavbar } from '../MobileNavbar';
+import { useMeta, useSolPrice } from '../../contexts';
 
 const getDefaultLinkActions = (connected: boolean) => {
   return [
@@ -25,8 +26,8 @@ const getDefaultLinkActions = (connected: boolean) => {
     <Link to={`/Upcoming`} key={'Upcoming'}>
       <Button className="app-btn">Upcoming</Button>
     </Link>,
-    <Link to={`/Howitworks`} key={'Howitworks'}>
-      <Button className="app-btn">How it works</Button>
+    <Link to={`/`} key={'/'}>
+      <HowToBuyModal buttonClassName="modal-button-default no-border" />
     </Link>,
 
 
@@ -127,6 +128,18 @@ export const LogoLink = () => {
 
 export const AppBar = () => {
   const { connected } = useWallet();
+
+  const { publicKey } = useWallet();
+  const { whitelistedCreatorsByCreator, store } = useMeta();
+  const pubkey = publicKey?.toBase58() || '';
+
+  const canCreate = useMemo(() => {
+    return (
+      store?.info?.public ||
+      whitelistedCreatorsByCreator[pubkey]?.info?.activated
+    );
+  }, [pubkey, whitelistedCreatorsByCreator, store]);
+
   return (
     <>
       <MobileNavbar />
@@ -137,20 +150,36 @@ export const AppBar = () => {
           <MetaplexMenu />
         </div>
         <div className="app-right">
-          {!connected && (
+          {/* {!connected && (
             <HowToBuyModal buttonClassName="modal-button-default no-border" />
-          )}
+          )} */}
+
           {!connected && (
+            <>
             <ConnectButton allowWalletChange />
+            </>
           )}
           {connected && (
             <>
+            <div className='profile-action-button'>
+              {canCreate && (
+                <>
+                  <Link to={`/art/create`}>
+                    <Button className="metaplex-button-default">
+                      Create
+                    </Button>
+                  </Link>
+                  &nbsp;&nbsp;
+                </>
+              )}
+            </div>
+              <Notifications />
               <CurrentUserBadge
                 showBalance={false}
                 showAddress={true}
                 iconSize={24}
               />
-              <Notifications />
+              
               <Cog />
             </>
           )}

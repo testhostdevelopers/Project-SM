@@ -30,8 +30,10 @@
         margin-top: 20px;
         font-family: AvertaStd-Bold;
         font-size: 24px;
-        line-height: 110%;
+        line-height: 120%;
         color: #000000;
+        margin-top: 10px !important;
+        margin-bottom: 15px !important;
       }
     }
   }
@@ -151,7 +153,7 @@
     border-bottom: 0;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
-    padding: 28px 40px 28px 40px;
+    padding: 28px 40px 35px 40px;
     background-color: transparent !important;
     color: #000 !important;
     .ant-modal-title {
@@ -165,11 +167,36 @@
   }
 
   .ant-modal-close-x {
-
-    width: fit-content;
-    height: fit-content;
-    margin-right: 24px;
-    margin-top: 8px;
+    width: 48px;
+    height: 48px;
+    margin-right: 20px;
+    margin-top: 20px;
+    border: 1px solid #c7c7c7;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > .anticon {
+        svg{
+        transition: all 0.5s ease;
+      }
+    }
+    > img{
+      filter: invert(1);
+      transition: all 0.5s ease;
+    }
+    &:hover{
+      img{
+        transition: all 0.5s ease;
+        transform: rotate(180deg);
+      }
+      > .anticon {
+        svg{
+        transition: all 0.5s ease;
+        transform: rotate(180deg);
+      }
+    }
+    }
   }
 
   .ant-modal-body {
@@ -234,6 +261,8 @@
           bottom: 0;
           position: absolute;
           right: 0;
+          left: 0;
+          margin: auto;
         }
 
         .button-container {
@@ -280,4 +309,39 @@
 
 .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
   background-color: rgba(255, 255, 255, 0.08)
+}
+
+.ant-modal {
+  .ant-modal-close-x {
+    width: 48px;
+    height: 48px;
+    margin-right: 20px;
+    margin-top: 20px;
+    border: 1px solid #c7c7c7;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > .anticon {
+        svg{
+        transition: all 0.5s ease;
+      }
+    }
+    > img{
+      filter: invert(1);
+      transition: all 0.5s ease;
+    }
+    &:hover{
+      img{
+        transition: all 0.5s ease;
+        transform: rotate(180deg);
+      }
+      > .anticon {
+        svg{
+        transition: all 0.5s ease;
+        transform: rotate(180deg);
+      }
+    }
+    }
+  }
 }

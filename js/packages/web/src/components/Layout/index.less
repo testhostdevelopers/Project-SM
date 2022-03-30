@@ -29,16 +29,64 @@
   display: flex;
   flex-direction: row;
   margin-right: 0;
-  max-width: 250px;
+  max-width: 310px;
   width: 100%;
   justify-content: flex-end;
+  > div,
+  > span{
+    padding: 0;
+    margin-left: 10px;
+    align-items: flex-start;
+    height: auto;
+    min-height: 1px;
+    line-height: normal;
+    margin-bottom: 0;
+    > button.ant-btn-default.ant-btn.wallet-key,
+    > button.ant-btn-default.ant-btn.wallet-key,
+    > .notification-popup{
+      border: 1px solid #C7C7C7;
+      width: 48px;
+      height: 48px;
+      line-height: 42px;
+      text-align: center;
+      border-radius: 50px;
+      display: inline-block;
+      vertical-align: top;
+      &:after{
+        display: none;
+      }
+      &:hover{
+        background-color: #C7C7C7 !important;
+      }
+    }
+  }
+  .profile-action-button{
+    margin-left: 0;
+    margin-right: -7px;
+    > a{
+      width: auto;
+      button{
+        color: #FFFFFF;
+        background: url('/buttonBg.png') no-repeat 0 0 !important;
+        background-size: cover !important;
+        border: 1px solid #fff;
+        padding: 14px 20px 16px 20px;
+        height: 48px;
+        font-size: 14px;
+        text-align: center;
+        &:hover{
+          border-color: #6300FF;
+        }
+      }
+    }
+  }
 }
 .app-right .ant-dropdown-button .ant-dropdown-trigger {
 	display: none;
 }
-.app-right .ant-badge img {
-	filter: invert(1);
-}
+// .app-right .ant-badge img {
+// 	filter: invert(1);
+// }
 .app-right button.ant-btn,
 .app-right button.connector {
 	box-shadow: none;

@@ -525,7 +525,7 @@ export function Notifications() {
 
   const content = notifications.length ? (
     <div
-      style={{ width: '380px', color: 'black' }}
+      style={{ width: '310px', color: 'black' }}
       className={'notifications-container'}
     >
       <List

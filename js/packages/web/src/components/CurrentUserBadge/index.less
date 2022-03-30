@@ -18,12 +18,12 @@
   border: none;
   border-radius: 48px;
   padding: 18px 8px;
-  > img{
-    filter: invert(1);
-  }
-  &:focus {
-    background: rgba(255, 255, 255, 0.1);
-  }
+  // > img{
+  //   filter: invert(1);
+  // }
+  // &:focus {
+  //   background: rgba(255, 255, 255, 0.1);
+  // }
 }
 
 .ant-select-dropdown {
@@ -136,16 +136,23 @@ h5 {
 .Network-box {
   h5 {
     font-family: AvertaStd-Semibold;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 130%;
     color: #000000;
+  }
+  > button.ant-btn{
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    height: auto !important;
+    font-family: AvertaStd-Regular;
   }
   .ant-select {
     background: #F2F2F2;
     border-radius: 8px;
     .ant-select-selection-item {
       font-family: AvertaStd-Regular;
-      font-size: 24px;
+      font-size: 18px;
       line-height: 130%;
       color: #909090;
       button{
@@ -162,6 +169,8 @@ h5 {
     line-height: 130%;
     color: #000000;
     font-weight: normal;
+    display: flex;
+    align-items: center;
   }
 }
 

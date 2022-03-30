@@ -61,6 +61,12 @@ export const ArtistView = () => {
               Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
               {creator?.info.description}
             </div>
+            <div className='profile-siteinfo'>
+              <span>
+                <img src='/world.svg'/>
+              </span>
+              <span>pixeldrops.com</span>
+            </div>
             {/* <div className="info-header">Art Created</div> */}
             {artworkGrid}
           </Col>

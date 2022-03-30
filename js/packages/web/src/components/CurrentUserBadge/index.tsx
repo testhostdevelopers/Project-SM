@@ -136,6 +136,7 @@ const AddFundsModal = (props: {
                 display: 'inline-block',
                 padding: '1px 4px 4px 4px',
                 lineHeight: 1,
+                marginRight:'5px'
               }}
             >
               <img src="/sol.svg" width="10" />
@@ -221,7 +222,7 @@ export const CurrentUserBadge = (props: {
   }
 
   return (
-    <div className="wallet-wrapper">
+    <div className="wallet-wrapper home-address">
       {props.showBalance && (
         <span>
           {formatNumber.format((account?.lamports || 0) / LAMPORTS_PER_SOL)} SOL
@@ -278,7 +279,8 @@ export const CurrentUserBadge = (props: {
         }
       >
         <Button className="wallet-key">
-          {image}
+          <img src="/user.svg"/>
+          {/* {image}
           {name && (
             <span
               style={{
@@ -288,7 +290,7 @@ export const CurrentUserBadge = (props: {
             >
               {name}
             </span>
-          )}
+          )} */}
         </Button>
       </Popover>
       <AddFundsModal

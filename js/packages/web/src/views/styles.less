@@ -570,7 +570,20 @@ span.ant-input-group-addon {
     text-align: center;
     color: #9D9D9D;
     max-width: 556px;
-    margin: 20px auto 30px auto;
+    margin: 20px auto 20px auto;
+  }
+  .profile-siteinfo{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+    > span{
+      margin: 0 5px;
+      font-family: 'AvertaStd-Bold';
+      font-size: 16px;
+      line-height: 140%;
+      text-align: center;
+      color: #000000;
+    }
   }
 }
 
@@ -600,6 +613,48 @@ span.ant-input-group-addon {
         line-height: 130%;
         text-align: center;
         color: #9D9D9D;
+      }
+    }
+  }
+}
+
+.creator-base-page{
+  .Add-Winning {
+    align-items: center;
+    margin-bottom: 30px;
+    .ant-btn-primary {
+      max-width: 110px;
+      margin-bottom: 0;
+      min-width: 1px;
+    }
+    .section{
+      padding: 0; 
+      margin-right: 25px;
+      margin-bottom: 15px;
+      .ant-card-bordered {
+        border: none;
+        padding: 0;
+        background: transparent;
+      }
+      .artwork-grid{
+        .ant-card-bordered {
+          background: #ECECEC;
+          border: 1px solid #000000;
+          box-sizing: border-box;
+          border-radius: 8px;
+        }
+      }
+    }
+    .ant-checkbox-group {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .ant-card-body {
+      padding: 0;
+      background: transparent;
+      .artwork-grid {
+        margin: 0;
+        width: 100%;
       }
     }
   }
