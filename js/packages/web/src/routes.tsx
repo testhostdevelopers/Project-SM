@@ -19,7 +19,7 @@ import { PackCreateView } from './views/packCreate';
 import { BillingView } from './views/auction/billing';
 import { UpcomingView } from './views/Upcoming';
 
-export function Routes() {
+export function Routes(props) {
   const shouldEnableNftPacks = process.env.NEXT_ENABLE_NFT_PACKS === 'true';
   return (
     <>
@@ -78,7 +78,7 @@ export function Routes() {
               component={() => <BillingView />}
             />
             <Route path="/about" component={() => <StaticPageView />} />
-            <Route path="/" component={() => <HomeView />} />
+            <Route path="/" component={() => <HomeView {...props} />} />
             
 
           </Switch>

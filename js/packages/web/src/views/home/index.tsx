@@ -5,7 +5,7 @@ import { useMeta } from '../../contexts';
 import { SalesListView } from './components/SalesList';
 import { SetupView } from './setup';
 
-export const HomeView = () => {
+export const HomeView = (props) => {
   const { isLoading, store } = useMeta();
   const { isConfigured } = useStore();
 
@@ -13,7 +13,7 @@ export const HomeView = () => {
 
   return (
     <Layout style={{ margin: 0, marginTop: 30, alignItems: 'center' }}>
-      {showAuctions ? <SalesListView /> : <SetupView />}
+     {showAuctions ? <SalesListView {...props} /> : <SetupView />}
     </Layout>
   );
 };

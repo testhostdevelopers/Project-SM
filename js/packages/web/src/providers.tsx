@@ -5,6 +5,8 @@ import {
   WalletProvider,
   MetaProvider,
 } from '@oyster/common';
+import { PrismicProvider } from '@prismicio/react';
+import { linkResolver } from './linkResolver';
 import React, { FC } from 'react';
 import { ConfettiProvider } from './components/Confetti';
 import { AppLayout } from './components/Layout';
@@ -14,6 +16,8 @@ import { SPLTokenListProvider } from './contexts/tokenList';
 
 export const Providers: FC = ({ children }) => {
   return (
+    <PrismicProvider linkResolver={linkResolver}>
+
     <ConnectionProvider>
       <WalletProvider>
         <AccountsProvider>
@@ -36,5 +40,6 @@ export const Providers: FC = ({ children }) => {
         </AccountsProvider>
       </WalletProvider>
     </ConnectionProvider>
+    </PrismicProvider>
   );
 };

@@ -1,9 +1,8 @@
 import React from 'react';
 import { Routes } from './routes';
 // import { Routes } from './views/preLaunch/routes'
-
-function App() {
-  return <Routes />;
+import PrismicFactory from '../src/Prismic-HOC';
+function App(props) {
+  return <Routes {...props} />;
 }
-
-export default App;
+export default PrismicFactory(App);
