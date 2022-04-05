@@ -96,6 +96,7 @@ export const SalesListView = props => {
               <div className="featured-creators">
                 <h2>Featured Creators</h2>
                 <ul>
+                {(prismicContent[0]?.data?.image?.url && prismicContent[0]?.data?.title_1[0]?.text) ?
                   <li>
                     <Link to={'#0'}>
                       <div className="featuere-img">
@@ -105,7 +106,8 @@ export const SalesListView = props => {
                         <h5>{prismicContent[0]?.data?.title_1[0]?.text}</h5>
                       </div>
                     </Link>
-                  </li>
+                  </li>: null}
+                  {(prismicContent[0]?.data?.image_2?.url && prismicContent[0]?.data?.title_2[0]?.text) ?
                   <li>
                     <Link to={'#0'}>
                       <div className="featuere-img">
@@ -115,7 +117,8 @@ export const SalesListView = props => {
                         <h5>{prismicContent[0]?.data?.title_2[0]?.text}</h5>
                       </div>
                     </Link>
-                  </li>
+                  </li>: null}
+                  {(prismicContent[0]?.data?.image_3?.url && prismicContent[0]?.data?.title_3[0]?.text) ?
                   <li>
                     <Link to={'#0'}>
                       <div className="featuere-img">
@@ -125,7 +128,8 @@ export const SalesListView = props => {
                         <h5>{prismicContent[0]?.data?.title_3[0]?.text}</h5>
                       </div>
                     </Link>
-                  </li>
+                  </li>: null}
+                  {(prismicContent[0]?.data?.image_4?.url && prismicContent[0]?.data?.title_4[0]?.text) ?
                   <li>
                     <Link to={'#0'}>
                       <div className="featuere-img">
@@ -135,7 +139,8 @@ export const SalesListView = props => {
                         <h5>{prismicContent[0]?.data?.title_4[0]?.text}</h5>
                       </div>
                     </Link>
-                  </li>
+                  </li>: null}
+                  {(prismicContent[0]?.data?.image_5?.url && prismicContent[0]?.data?.title_5[0]?.text) ?
                   <li>
                     <Link to={'#0'}>
                       <div className="featuere-img">
@@ -145,7 +150,8 @@ export const SalesListView = props => {
                         <h5>{prismicContent[0]?.data?.title_5[0]?.text}</h5>
                       </div>
                     </Link>
-                  </li>
+                  </li>: null}
+                  {(prismicContent[0]?.data?.image_6?.url && prismicContent[0]?.data?.title_6[0]?.text) ?
                   <li>
                     <Link to={'#0'}>
                       <div className="featuere-img">
@@ -155,7 +161,8 @@ export const SalesListView = props => {
                         <h5>{prismicContent[0]?.data?.title_6[0]?.text}</h5>
                       </div>
                     </Link>
-                  </li>
+                  </li>: null}
+                  {(prismicContent[0]?.data?.image_7?.url && prismicContent[0]?.data?.title_7[0]?.text) ?
                   <li>
                     <Link to={'#0'}>
                       <div className="featuere-img">
@@ -165,7 +172,8 @@ export const SalesListView = props => {
                         <h5>{prismicContent[0]?.data?.title_7[0]?.text}</h5>
                       </div>
                     </Link>
-                  </li>
+                  </li>: null}
+                  {(prismicContent[0]?.data?.image_8?.url && prismicContent[0]?.data?.title_8[0]?.text) ?
                   <li>
                     <Link to={'#0'}>
                       <div className="featuere-img">
@@ -175,7 +183,8 @@ export const SalesListView = props => {
                         <h5>{prismicContent[0]?.data?.title_8[0]?.text}</h5>
                       </div>
                     </Link>
-                  </li>
+                  </li>: null}
+                  {(prismicContent[0]?.data?.image_9?.url && prismicContent[0]?.data?.title_9[0]?.text) ?
                   <li>
                     <Link to={'#0'}>
                       <div className="featuere-img">
@@ -185,8 +194,8 @@ export const SalesListView = props => {
                         <h5>{prismicContent[0]?.data?.title_9[0]?.text}</h5>
                       </div>
                     </Link>
-                  </li>
-                  <li>
+                  </li>: null}
+                  {(prismicContent[0]?.data?.image_10?.url && prismicContent[0]?.data?.title_10[0]?.text) ? <li>
                     <Link to={'#0'}>
                       <div className="featuere-img">
                         <img src={prismicContent[0]?.data?.image_10?.url} />
@@ -195,7 +204,7 @@ export const SalesListView = props => {
                         <h5>{prismicContent[0]?.data?.title_10[0]?.text}</h5>
                       </div>
                     </Link>
-                  </li>
+                  </li> : null}
                 </ul>
               </div>
             )}
