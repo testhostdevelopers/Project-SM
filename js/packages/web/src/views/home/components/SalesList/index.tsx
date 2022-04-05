@@ -11,6 +11,8 @@ import { HowToBuyModal } from '../../../../components/HowToBuyModal';
 import { useAuctionsList } from './hooks/useAuctionsList';
 import { AuctionRenderCard } from '../../../../components/AuctionRenderCard';
 
+
+
 const { TabPane } = Tabs;
 const { Content } = Layout;
 
@@ -30,19 +32,60 @@ export const SalesListView = () => {
 
   return (
     <>
-    
-      <Banner
-        src="/RectangleBanner.jpg"
-        headingText="Name of Collection"
-        byText="By Lorem Ipsum"
-        subHeadingText="Lorem Ipsum is simply dummy text of the printing
-        and typesetting industry. Lorem Ipsum has been the 
-        industry's standard dummy text ever since the 1500s, 
-        when an unknown printer took a galley of type and 
-        scrambled it to make a type specimen book."
-        actionComponent={<HowToBuyModal buttonClassName="Explore Collection" />}
-        useBannerBg
-      />
+
+      <div className='hero-slider'>
+
+        <input type="radio" id="trigger1" name="slider" checked />
+        <label htmlFor="trigger1"></label>
+        <div className='slide'>
+            <Banner
+              src="/RectangleBanner.jpg"
+              headingText="Name of Collection 1"
+              byText="By Lorem Ipsum"
+              subHeadingText="Lorem Ipsum is simply dummy text of the printing
+              and typesetting industry. Lorem Ipsum has been the 
+              industry's standard dummy text ever since the 1500s, 
+              when an unknown printer took a galley of type and 
+              scrambled it to make a type specimen book."
+              actionComponent={<HowToBuyModal buttonClassName="Explore Collection" />}
+              useBannerBg
+            />
+        </div>
+        
+        <input type="radio" id="trigger2" name="slider" />
+        <label htmlFor="trigger2"></label>
+        <div className='slide'>
+          <Banner
+            src="/RectangleBanner.jpg"
+            headingText="Name of Collection 2"
+            byText="By Lorem Ipsum"
+            subHeadingText="Lorem Ipsum is simply dummy text of the printing
+            and typesetting industry. Lorem Ipsum has been the 
+            industry's standard dummy text ever since the 1500s, 
+            when an unknown printer took a galley of type and 
+            scrambled it to make a type specimen book."
+            actionComponent={<HowToBuyModal buttonClassName="Explore Collection" />}
+            useBannerBg
+          />
+        </div>
+
+        <input type="radio" id="trigger3" name="slider" />
+        <label htmlFor="trigger3"></label>
+        <div className='slide'>
+          <Banner
+            src="/RectangleBanner.jpg"
+            headingText="Name of Collection 3"
+            byText="By Lorem Ipsum"
+            subHeadingText="Lorem Ipsum is simply dummy text of the printing
+            and typesetting industry. Lorem Ipsum has been the 
+            industry's standard dummy text ever since the 1500s, 
+            when an unknown printer took a galley of type and 
+            scrambled it to make a type specimen book."
+            actionComponent={<HowToBuyModal buttonClassName="Explore Collection" />}
+            useBannerBg
+          />
+        </div>
+      </div>
 
       <Layout>
         <Content style={{ display: 'flex', flexWrap: 'wrap' }}>
