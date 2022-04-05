@@ -334,7 +334,16 @@ a:active {
         background: #C4C4C4;
         border-radius: 25px;
         overflow: hidden;
-        padding-top: 100%
+        padding-top: 100%;
+        position: relative;
+        img{
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 100%;
+          object-fit: contain;
+        }
       }
       .feature-content{
         margin-top: 15px;
