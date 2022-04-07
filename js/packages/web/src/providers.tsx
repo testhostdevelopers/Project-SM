@@ -1,3 +1,4 @@
+import { PrismicProvider } from '@prismicio/react';
 import {
   AccountsProvider,
   ConnectionProvider,
@@ -5,8 +6,6 @@ import {
   WalletProvider,
   MetaProvider,
 } from '@oyster/common';
-import { PrismicProvider } from '@prismicio/react';
-import { linkResolver } from './linkResolver';
 import React, { FC } from 'react';
 import { ConfettiProvider } from './components/Confetti';
 import { AppLayout } from './components/Layout';
@@ -16,30 +15,29 @@ import { SPLTokenListProvider } from './contexts/tokenList';
 
 export const Providers: FC = ({ children }) => {
   return (
-    <PrismicProvider linkResolver={linkResolver}>
-
-    <ConnectionProvider>
-      <WalletProvider>
-        <AccountsProvider>
-          <SPLTokenListProvider>
-            <CoingeckoProvider>
-              <StoreProvider
-                ownerAddress={process.env.NEXT_PUBLIC_STORE_OWNER_ADDRESS}
-                storeAddress={process.env.NEXT_PUBLIC_STORE_ADDRESS}
-              >
-                <MetaProvider>
-                  <LoaderProvider>
-                    <ConfettiProvider>
-                      <AppLayout>{children}</AppLayout>
-                    </ConfettiProvider>
-                  </LoaderProvider>
-                </MetaProvider>
-              </StoreProvider>
-            </CoingeckoProvider>
-          </SPLTokenListProvider>
-        </AccountsProvider>
-      </WalletProvider>
-    </ConnectionProvider>
+    <PrismicProvider>
+      <ConnectionProvider>
+        <WalletProvider>
+          <AccountsProvider>
+            <SPLTokenListProvider>
+              <CoingeckoProvider>
+                <StoreProvider
+                  ownerAddress={process.env.NEXT_PUBLIC_STORE_OWNER_ADDRESS}
+                  storeAddress={process.env.NEXT_PUBLIC_STORE_ADDRESS}
+                >
+                  <MetaProvider>
+                    <LoaderProvider>
+                      <ConfettiProvider>
+                        <AppLayout>{children}</AppLayout>
+                      </ConfettiProvider>
+                    </LoaderProvider>
+                  </MetaProvider>
+                </StoreProvider>
+              </CoingeckoProvider>
+            </SPLTokenListProvider>
+          </AccountsProvider>
+        </WalletProvider>
+      </ConnectionProvider>
     </PrismicProvider>
   );
 };

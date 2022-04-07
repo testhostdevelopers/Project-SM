@@ -1,5 +1,5 @@
 import { useWallet } from '@solana/wallet-adapter-react';
-import { Col, Layout, Row, Tabs } from 'antd';
+import { Col, Layout, Row, Tabs, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 
@@ -31,62 +31,25 @@ export const SalesListView = props => {
   return (
     <>
       <div className="hero-slider">
-        <input type="radio" id="trigger1" name="slider" checked />
-        <label htmlFor="trigger1"></label>
-        <div className="slide">
-          <Banner
-            src="/RectangleBanner.jpg"
-            headingText="Name of Collection 1"
-            byText="By Lorem Ipsum"
-            subHeadingText="Lorem Ipsum is simply dummy text of the printing
-              and typesetting industry. Lorem Ipsum has been the 
-              industry's standard dummy text ever since the 1500s, 
-              when an unknown printer took a galley of type and 
-              scrambled it to make a type specimen book."
-            actionComponent={
-              <HowToBuyModal buttonClassName="Explore Collection" />
-            }
-            useBannerBg
-          />
-        </div>
-
-        <input type="radio" id="trigger2" name="slider" />
-        <label htmlFor="trigger2"></label>
-        <div className="slide">
-          <Banner
-            src="/RectangleBanner.jpg"
-            headingText="Name of Collection 2"
-            byText="By Lorem Ipsum"
-            subHeadingText="Lorem Ipsum is simply dummy text of the printing
-            and typesetting industry. Lorem Ipsum has been the 
-            industry's standard dummy text ever since the 1500s, 
-            when an unknown printer took a galley of type and 
-            scrambled it to make a type specimen book."
-            actionComponent={
-              <HowToBuyModal buttonClassName="Explore Collection" />
-            }
-            useBannerBg
-          />
-        </div>
-
-        <input type="radio" id="trigger3" name="slider" />
-        <label htmlFor="trigger3"></label>
-        <div className="slide">
-          <Banner
-            src="/RectangleBanner.jpg"
-            headingText="Name of Collection 3"
-            byText="By Lorem Ipsum"
-            subHeadingText="Lorem Ipsum is simply dummy text of the printing
-            and typesetting industry. Lorem Ipsum has been the 
-            industry's standard dummy text ever since the 1500s, 
-            when an unknown printer took a galley of type and 
-            scrambled it to make a type specimen book."
-            actionComponent={
-              <HowToBuyModal buttonClassName="Explore Collection" />
-            }
-            useBannerBg
-          />
-        </div>
+        {prismicContent && prismicContent.length > 0 && (
+          prismicContent[0]?.data?.home_collection && prismicContent[0]?.data?.home_collection.length > 0 &&
+          prismicContent[0]?.data?.home_collection.map((x, i) =>
+            <><input type="radio" id={`trigger${i+1}`} name="slider" checked />
+              <label htmlFor={`trigger${i+1}`}></label>
+              <div className="slide">
+                <Banner
+                  src={x.home_collection_image?.url}
+                  headingText={x.home_collection_name[0]?.text}
+                  byText={x.home_collection_by[0]?.text}
+                  subHeadingText={x.home_collection_description[0]?.text}
+                  actionComponent={
+                    <Link to={x.home_collection_btn_url[0].text} target="_blank">
+                    <Button type="primary">{x.home_collection_btn_text[0]?.text}</Button></Link>
+                  }
+                  useBannerBg
+                />
+              </div></>
+          ))}
       </div>
 
       <Layout>
@@ -96,115 +59,18 @@ export const SalesListView = props => {
               <div className="featured-creators">
                 <h2>Featured Creators</h2>
                 <ul>
-                {(prismicContent[0]?.data?.image?.url && prismicContent[0]?.data?.title_1[0]?.text) ?
-                  <li>
-                    <Link to={'#0'}>
-                      <div className="featuere-img">
-                        <img src={prismicContent[0]?.data?.image?.url} />
-                      </div>
-                      <div className="feature-content">
-                        <h5>{prismicContent[0]?.data?.title_1[0]?.text}</h5>
-                      </div>
-                    </Link>
-                  </li>: null}
-                  {(prismicContent[0]?.data?.image_2?.url && prismicContent[0]?.data?.title_2[0]?.text) ?
-                  <li>
-                    <Link to={'#0'}>
-                      <div className="featuere-img">
-                        <img src={prismicContent[0]?.data?.image_2?.url} />
-                      </div>
-                      <div className="feature-content">
-                        <h5>{prismicContent[0]?.data?.title_2[0]?.text}</h5>
-                      </div>
-                    </Link>
-                  </li>: null}
-                  {(prismicContent[0]?.data?.image_3?.url && prismicContent[0]?.data?.title_3[0]?.text) ?
-                  <li>
-                    <Link to={'#0'}>
-                      <div className="featuere-img">
-                        <img src={prismicContent[0]?.data?.image_3?.url} />
-                      </div>
-                      <div className="feature-content">
-                        <h5>{prismicContent[0]?.data?.title_3[0]?.text}</h5>
-                      </div>
-                    </Link>
-                  </li>: null}
-                  {(prismicContent[0]?.data?.image_4?.url && prismicContent[0]?.data?.title_4[0]?.text) ?
-                  <li>
-                    <Link to={'#0'}>
-                      <div className="featuere-img">
-                        <img src={prismicContent[0]?.data?.image_4?.url} />
-                      </div>
-                      <div className="feature-content">
-                        <h5>{prismicContent[0]?.data?.title_4[0]?.text}</h5>
-                      </div>
-                    </Link>
-                  </li>: null}
-                  {(prismicContent[0]?.data?.image_5?.url && prismicContent[0]?.data?.title_5[0]?.text) ?
-                  <li>
-                    <Link to={'#0'}>
-                      <div className="featuere-img">
-                        <img src={prismicContent[0]?.data?.image_5?.url} />
-                      </div>
-                      <div className="feature-content">
-                        <h5>{prismicContent[0]?.data?.title_5[0]?.text}</h5>
-                      </div>
-                    </Link>
-                  </li>: null}
-                  {(prismicContent[0]?.data?.image_6?.url && prismicContent[0]?.data?.title_6[0]?.text) ?
-                  <li>
-                    <Link to={'#0'}>
-                      <div className="featuere-img">
-                        <img src={prismicContent[0]?.data?.image_6?.url} />
-                      </div>
-                      <div className="feature-content">
-                        <h5>{prismicContent[0]?.data?.title_6[0]?.text}</h5>
-                      </div>
-                    </Link>
-                  </li>: null}
-                  {(prismicContent[0]?.data?.image_7?.url && prismicContent[0]?.data?.title_7[0]?.text) ?
-                  <li>
-                    <Link to={'#0'}>
-                      <div className="featuere-img">
-                        <img src={prismicContent[0]?.data?.image_7?.url} />
-                      </div>
-                      <div className="feature-content">
-                        <h5>{prismicContent[0]?.data?.title_7[0]?.text}</h5>
-                      </div>
-                    </Link>
-                  </li>: null}
-                  {(prismicContent[0]?.data?.image_8?.url && prismicContent[0]?.data?.title_8[0]?.text) ?
-                  <li>
-                    <Link to={'#0'}>
-                      <div className="featuere-img">
-                        <img src={prismicContent[0]?.data?.image_8?.url} />
-                      </div>
-                      <div className="feature-content">
-                        <h5>{prismicContent[0]?.data?.title_8[0]?.text}</h5>
-                      </div>
-                    </Link>
-                  </li>: null}
-                  {(prismicContent[0]?.data?.image_9?.url && prismicContent[0]?.data?.title_9[0]?.text) ?
-                  <li>
-                    <Link to={'#0'}>
-                      <div className="featuere-img">
-                        <img src={prismicContent[0]?.data?.image_9?.url} />
-                      </div>
-                      <div className="feature-content">
-                        <h5>{prismicContent[0]?.data?.title_9[0]?.text}</h5>
-                      </div>
-                    </Link>
-                  </li>: null}
-                  {(prismicContent[0]?.data?.image_10?.url && prismicContent[0]?.data?.title_10[0]?.text) ? <li>
-                    <Link to={'#0'}>
-                      <div className="featuere-img">
-                        <img src={prismicContent[0]?.data?.image_10?.url} />
-                      </div>
-                      <div className="feature-content">
-                        <h5>{prismicContent[0]?.data?.title_10[0]?.text}</h5>
-                      </div>
-                    </Link>
-                  </li> : null}
+                  {(prismicContent[0]?.data?.home_featured_creator && prismicContent[0]?.data?.home_featured_creator.length > 0) &&
+                    prismicContent[0]?.data?.home_featured_creator.map((x) => (<li>
+                      <Link to={x.creator_link[0]?.text} target="_blank">
+                        <div className="featuere-img">
+                          <img src={x.creator_image.url} />
+                        </div>
+                        <div className="feature-content">
+                          <h5>{x.creator_name[0]?.text}</h5>
+                        </div>
+                      </Link>
+                    </li>))
+                  }
                 </ul>
               </div>
             )}
