@@ -5,5 +5,4 @@ import PrismicFactory from '../src/Prismic-HOC';
 function App(props) {
   return <Routes {...props} />;
 }
-
 export default PrismicFactory(App);
