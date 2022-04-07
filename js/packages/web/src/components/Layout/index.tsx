@@ -16,7 +16,7 @@ export const AppLayout = React.memo(function AppLayoutImpl(props: any) {
         <span id={'static-header-gradient'}></span>
         <span id={'static-end-gradient'}></span>
         <Header className="App-Bar">
-          <AppBar />
+          <AppBar {...props}/>
         </Header>
         <Layout id={'width-layout'}>
           <Content
@@ -28,7 +28,7 @@ export const AppLayout = React.memo(function AppLayoutImpl(props: any) {
             {props.children}
           </Content>
         </Layout>
-        <Footer />
+        <Footer {...props}/>
       </Layout>
     </>
   );

@@ -6,16 +6,18 @@ import { ConnectButton } from '@oyster/common';
 interface HowToBuyModalProps {
   buttonClassName: string;
   onClick?: any;
+  modalProps: any;
 }
 
 export const HowToBuyModal: React.FC<HowToBuyModalProps> = ({
   buttonClassName,
   onClick,
-}) => {
+  modalProps
+}) => {  
   return (
     <InstructionsModal
       buttonClassName={buttonClassName}
-      buttonText="How to Buy"
+      buttonText={modalProps?.children?._owner?.memoizedProps.prismicContent && modalProps?.children?._owner?.memoizedProps.prismicContent[0].data.how_to_buy[0].text}
       modalTitle={`Buying NFTs on ${LABELS.STORE_NAME}`}
       cardProps={[
         {

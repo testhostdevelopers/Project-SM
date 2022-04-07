@@ -7,7 +7,7 @@ const { Option } = Select;
 import { Link } from "react-router-dom";
 
 
-export const Footer = () => {
+export const Footer = (props) => {
   const validateMessages = {
     types: {
       email: 'Input is not a valid email!',
@@ -100,7 +100,8 @@ export const Footer = () => {
               <img src={'/metaplex-logo.svg'} />
             </div>
             <div className="footer-link">
-              <p>A next-generation NFT Marketplace that enables the utility of the world’s most sought-after digital assets.</p>
+              {/* <p>A next-generation NFT Marketplace that enables the utility of the world’s most sought-after digital assets.</p> */}
+              <p>{props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.footer_description[0].text}</p>
             </div>
             <NewsLetterForm />
           </div>
@@ -113,7 +114,7 @@ export const Footer = () => {
             </div>
           ) : null} */}
 
-          {footerConf.components.map((component, ii) => (
+          {footerConf(props).components.map((component, ii) => (
             <div className="footer-section-container" key={ii}>
               <div className="sub-header">{component.title}</div>
               {component.links.map((link, jj) => (
@@ -132,7 +133,7 @@ export const Footer = () => {
           ))}
           <div className="footer-section-container subscriber-container">
             <div className='Language'>
-                <div className="sub-header">Language</div>
+                <div className="sub-header">{props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.language[0].text}</div>
                 <div className="topSeller">
                   <div className="headerSelect">
                       <Select className="section-select-filter" defaultValue="en" style={{ width: "100%", marginLeft: "0" }}>
@@ -186,7 +187,8 @@ export const Footer = () => {
         <div className="footer-foot">
           <div className="small-body footer-link">
             {/* 2021 {LABELS.STORE_NAME} LLC, All rights reserved */}
-            © 2022 {LABELS.STORE_NAME} LLC, All Rights Reserved.
+            {/* © 2022 {LABELS.STORE_NAME} LLC, All Rights Reserved. */}
+            {props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.footer_line[0].text}
           </div>
           <div className="footer-social-icons">
                 <a href="https://twitter.com/starlight_meta" target="_blank">

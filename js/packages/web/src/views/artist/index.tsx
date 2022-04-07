@@ -6,11 +6,13 @@ import { MetaAvatar } from '../../components/MetaAvatar';
 import { CardLoader } from '../../components/MyLoader';
 import { useCreator, useCreatorArts } from '../../hooks';
 
-export const ArtistView = () => {
+export const ArtistView = (props) => {
   const { id } = useParams<{ id: string }>();
   const creator = useCreator(id);
   const artwork = useCreatorArts(id);
 
+  const { prismicContent } = props || [];
+  const creatorDeatil = (prismicContent && prismicContent.length > 0 && prismicContent[0].data.creator.length > 0) && prismicContent[0].data.creator.filter((x) => x.creator_id[0].text == id);
   const artworkGrid = (
     <div className="artwork-grid">
       {artwork.length > 0
@@ -35,10 +37,10 @@ export const ArtistView = () => {
     <>
       <div className='cover-img'>
           <div className='cover-img-box'>
-                <img src="/RectangleBanner.jpg" />
+                <img src={creatorDeatil[0].cover_pic.url} />
           </div>
           <div className='profile-img-box'>
-                <img src="/profile-img.png" />
+                <img src={creatorDeatil[0].profile_pic.url} />
           </div>
       </div>
 
@@ -50,7 +52,7 @@ export const ArtistView = () => {
           <Col className='center-all' span={24}>
             
             <h2 className='p-address'>
-              Pete Jackson
+            {creatorDeatil[0].creator_name[0].text}
               {/* <MetaAvatar creators={creator ? [creator] : []} size={100} /> */}
               <span className='profile-address'>
                {creator?.info.name || creator?.info.address}
@@ -58,14 +60,14 @@ export const ArtistView = () => {
             </h2>
             {/* <div className="info-header">ABOUT THE CREATOR</div> */}
             <div className="info-content">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            {creatorDeatil[0].creator_description[0].text}
               {creator?.info.description}
             </div>
             <div className='profile-siteinfo'>
               <span>
                 <img src='/world.svg'/>
               </span>
-              <span>pixeldrops.com</span>
+              <span>{creatorDeatil[0].creator_webite_url[0].text}</span>
             </div>
             {/* <div className="info-header">Art Created</div> */}
             {artworkGrid}
