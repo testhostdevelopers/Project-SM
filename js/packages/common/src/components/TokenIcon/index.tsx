@@ -34,7 +34,7 @@ export const TokenIcon = (props: {
           marginRight: '0.5rem',
           marginTop: '0.11rem',
           borderRadius: '10rem',
-          backgroundColor: 'white',
+          backgroundColor: 'black',
           backgroundClip: 'padding-box',
           ...props.style,
         }}

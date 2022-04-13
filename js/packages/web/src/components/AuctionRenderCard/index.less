@@ -45,20 +45,23 @@
   background: #3e3e3e;
   border-radius: 8px;
   margin: 24px 0px 24px 20px;
-  color: #ffffff;
+  color: #000000;
   padding: 4px 8px;
   text-align: center;
   display: inline-block;
 }
 
 .auction-render-card {
-  min-width: 200px;
+  min-width: 280px;
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.1));
   border-radius: 12px;
-  // border: 0px;
   overflow: hidden;
+  background: #FFFFFF;
+  border: 1px solid #EDECEC;
+  box-sizing: border-box;
+  box-shadow: 0px 25px 40px rgba(0, 0, 0, 0.01);
+  border-radius: 15px;
 
   .ant-card-body {
     display: flex;
@@ -67,8 +70,6 @@
     align-items: flex-start;
     padding: 0;
     text-align: left;
-
-    background: #1e1e1e;
     border-radius: 0;
   }
 
@@ -132,13 +133,13 @@
   }
 
   .card-art-info {
-    background: @grey-100;
+    background: #fff;
     border-radius: 0 0 12px 12px;
     width: 100%;
     height: 100%;
 
     .pack-gray-wrapper, .auction-gray-wrapper {
-      padding: 16px;
+      padding: 0;
       border-radius: 12px;
       background: @grey-60;
       height: calc(100% - 64px);
@@ -146,10 +147,20 @@
 
     .auction-gray-wrapper {
       height: 100%;
+      .pic-timer{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: -15px;
+        z-index: 1;
+        position: relative;
+        padding: 0 12px;
+        align-items: center;
+      }
     }
 
     .card-artist-info {
-      margin-bottom: 16px;
+      margin-bottom: 0;
 
       &--pack {
         display: flex;
@@ -202,17 +213,33 @@
     }
 
     .art-name {
+      padding: 0;
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
-      margin-top: 20px;
-      font-size: 24px;
       line-height: 32px;
       font-weight: 600;
+      font-family: AvertaStd-Semibold;
+      font-size: 12px;
+      line-height: 14px;
+      display: flex;
+      align-items: center;
+      color: #000000;
     }
 
     .auction-info-container {
-      padding: 16px 0;
+      padding: 10px 12px;
+      background: #ededed;
+      border-radius: 15px;
+      font-family: AvertaStd-Semibold;
+      font-size: 14px;
+      line-height: 16px;
+      display: flex;
+      align-items: center;
+      color: #000000;
+      .clk{
+        margin-right: 5px;
+      }
     }
 
     .art-auction-info {
@@ -279,7 +306,7 @@
     min-height: 78px;
     .usd {
       padding-bottom: 5px;
-      opacity: 0.7;
+      color: #000;
       font-size: 16px !important;
       line-height: 16px !important;
       margin-left: 0px;
@@ -302,9 +329,48 @@
 }
 
 .cd-title {
-  color: rgba(255, 255, 255, 0.7);
+  color: #000;
 }
 
 .cd-time {
-  color: white;
+  color: #000;
+}
+
+.card-detail{
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .art-detail{
+    width: 60%;
+  }
+  .card-bid-info{
+    padding: 0;
+    min-height: 1px;
+    width: 40%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    > div{
+      align-items: center;
+    }
+    .ant-statistic-content-value {
+      font-family: AvertaStd-Bold;
+      font-size: 16px;
+      line-height: 19px;
+      display: flex;
+      align-items: center;
+      color: #6300FF;
+      margin-right: 5px;
+    }
+    .usd{
+      padding: 0;
+      font-family: AvertaStd-Bold;
+      font-size: 12px;
+      line-height: 14px;
+      display: flex;
+      align-items: center;
+      color: #979797;
+    }
+  }
 }

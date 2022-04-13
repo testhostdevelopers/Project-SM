@@ -147,7 +147,11 @@ export const ArtCreateView = () => {
 
   return (
     <>
-      <Row className={'creator-base-page'} style={{ paddingTop: 50 }}>
+      
+      <Row className={'creator-base-page creat-new-nft'}>
+        <div className='main-title'>
+          <h1>Create a new item</h1>
+        </div>
         {stepsVisible && (
           <Col span={24} md={4}>
             <Steps
@@ -228,7 +232,10 @@ export const ArtCreateView = () => {
             />
           )}
           {0 < step && step < 5 && (
-            <div style={{ margin: 'auto', width: 'fit-content' }}>
+            <div className='back-btn'>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.33366H2.55333L6.28 1.60699L5.33333 0.666992L0 6.00033L5.33333 11.3337L6.27333 10.3937L2.55333 6.66699H12V5.33366Z" fill="#141414"/>
+              </svg>
               <Button onClick={() => gotoStep(step - 1)}>Back</Button>
             </div>
           )}
@@ -407,11 +414,11 @@ const UploadStep = (props: {
           very first time.
         </p>
       </Row>
-      <Row className="content-action">
+      <Row className="content-action hide-upload">
         <h3>Upload a cover image (PNG, JPG, GIF, SVG)</h3>
         <Dragger
           accept=".png,.jpg,.gif,.mp4,.svg"
-          style={{ padding: 20, background: 'rgba(255, 255, 255, 0.08)' }}
+          style={{ padding: 20, background: '#ECECEC' }}
           multiple={false}
           onRemove={() => {
             setMainFile(undefined);
@@ -460,13 +467,13 @@ const UploadStep = (props: {
       </Row>
       {props.attributes.properties?.category !== MetadataCategory.Image && (
         <Row
-          className="content-action"
-          style={{ marginBottom: 5, marginTop: 30 }}
+          className="content-action hide-upload"
+          style={{ marginBottom: 5, marginTop: 50 }}
         >
           <h3>{uploadMsg(props.attributes.properties?.category)}</h3>
           <Dragger
             accept={acceptableFiles(props.attributes.properties?.category)}
-            style={{ padding: 20, background: 'rgba(255, 255, 255, 0.08)' }}
+            style={{ padding: 20, background: '#ECECEC' }}
             multiple={false}
             customRequest={info => {
               // dont upload files here, handled outside of the control
@@ -500,7 +507,7 @@ const UploadStep = (props: {
         style={{
           width: '100%',
           flexDirection: 'column',
-          paddingTop: 30,
+          paddingTop: 65,
           marginBottom: 4,
         }}
         label={<h3>OR use absolute URL to content</h3>}
@@ -672,8 +679,8 @@ const InfoStep = (props: {
           your audience.
         </p>
       </Row>
-      <Row className="content-action" justify="space-around">
-        <Col>
+      <Row className="content-action">
+        <Col className='art-prev'>
           {props.attributes.image && (
             <ArtCard
               image={image}
@@ -687,7 +694,7 @@ const InfoStep = (props: {
             />
           )}
         </Col>
-        <Col className="section" style={{ minWidth: 300 }}>
+        <Col className="section art-detail">
           <label className="action-field">
             <span className="field-title">Title</span>
             <Input
@@ -810,7 +817,7 @@ const InfoStep = (props: {
                     </Space>
                   ))}
                   <Form.Item>
-                    <Button
+                    <Button className='attribute'
                       type="dashed"
                       onClick={() => add()}
                       block
@@ -896,7 +903,7 @@ const RoyaltiesSplitter = (props: {
                 gutter={[0, 16]}
                 style={{ margin: '5px auto' }}
               >
-                <Col span={4} style={{ padding: 10 }}>
+                <Col className='wallet-add-label' span={5} style={{ padding: 10 }}>
                   {creator.label}
                 </Col>
                 <Col span={3}>
@@ -910,7 +917,7 @@ const RoyaltiesSplitter = (props: {
                     className="royalties-input"
                   />
                 </Col>
-                <Col span={4} style={{ paddingLeft: 12 }}>
+                <Col span={5} style={{ paddingLeft: 12 }}>
                   <Slider value={amt} onChange={handleChangeShare} />
                 </Col>
                 {props.isShowErrors && amt === 0 && (
@@ -983,8 +990,8 @@ const RoyaltiesStep = (props: {
           after its initial sale.
         </p>
       </Row>
-      <Row className="content-action" style={{ marginBottom: 20 }}>
-        <label className="action-field">
+      <Row className="content-action" style={{ marginBottom: 0 }}>
+        <label className="action-field" style={{ maxWidth: 557, width: '100%' }}>
           <span className="field-title">Royalty Percentage</span>
           <p>
             This is how much of each secondary sale will be paid out to the
@@ -1023,13 +1030,24 @@ const RoyaltiesStep = (props: {
         </Row>
       )}
       <Row>
-        <span
+
+      <Form.Item style={{ maxWidth: "100%", width: '100%', marginTop: '35px' }}>
+        <Button className='attribute'
+          type="dashed"
+          onClick={() => setShowCreatorsModal(true)}
+          block
+          icon={<PlusOutlined />}
+        >
+          Add Another Creator
+        </Button>
+      </Form.Item>
+        {/* <span
           onClick={() => setShowCreatorsModal(true)}
           style={{ padding: 10, marginBottom: 10 }}
         >
           <span
             style={{
-              color: 'white',
+              color: 'black',
               fontSize: 25,
               padding: '0px 8px 3px 8px',
               background: 'rgb(57, 57, 57)',
@@ -1049,12 +1067,12 @@ const RoyaltiesStep = (props: {
           >
             Add another creator
           </span>
-        </span>
+        </span> */}
         <MetaplexModal
           visible={showCreatorsModal}
           onCancel={() => setShowCreatorsModal(false)}
         >
-          <label className="action-field" style={{ width: '100%' }}>
+          <label className="action-field" style={{ width: '100%', marginBottom: '0', marginTop: '20px' }}>
             <span className="field-title">Creators</span>
             <UserSearch setCreators={setCreators} />
           </label>
@@ -1167,7 +1185,7 @@ const LaunchStep = (props: {
           your audience.
         </p>
       </Row>
-      <Row className="content-action" justify="space-around">
+      <Row className="content-action review-launch">
         <Col>
           {props.attributes.image && (
             <ArtCard
@@ -1182,7 +1200,7 @@ const LaunchStep = (props: {
             />
           )}
         </Col>
-        <Col className="section" style={{ minWidth: 300 }}>
+        <Col className="section review-price" style={{ minWidth: 300 }}>
           <Statistic
             className="create-statistic"
             title="Royalty Percentage"
@@ -1216,7 +1234,7 @@ const LaunchStep = (props: {
           disabled={true}
           size="large"
           onClick={props.confirm}
-          className="action-btn"
+          className="action-btn border"
         >
           Pay with Credit Card
         </Button>

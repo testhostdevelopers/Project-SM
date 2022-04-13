@@ -62,33 +62,36 @@ export const ArtworksView = () => {
     </div>
   );
 
-  const refreshButton = connected && storeIndexer.length !== 0 && (
-    <Dropdown.Button
-      className="refresh-button padding0"
-      onClick={() => pullItemsPage(userAccounts)}
-      icon={<DownOutlined />}
-      overlayClassName="refresh-overlay"
-      overlay={
-        <Menu className="gray-dropdown">
-          <Menu.Item onClick={() => pullAllMetadata()}>
-            Load All Metadata
-          </Menu.Item>
-        </Menu>
-      }
-    >
-      Refresh
-    </Dropdown.Button>
-  );
+  // const refreshButton = connected && storeIndexer.length !== 0 && (
+  //   <Dropdown.Button
+  //     className="refresh-button padding0"
+  //     onClick={() => pullItemsPage(userAccounts)}
+  //     icon={<DownOutlined />}
+  //     overlayClassName="refresh-overlay"
+  //     overlay={
+  //       <Menu className="gray-dropdown">
+  //         <Menu.Item onClick={() => pullAllMetadata()}>
+  //           Load All Metadata
+  //         </Menu.Item>
+  //       </Menu>
+  //     }
+  //   >
+  //     Refresh
+  //   </Dropdown.Button>
+  // );
 
   return (
     <Layout style={{ margin: 0, marginTop: 30 }}>
       <Content style={{ display: 'flex', flexWrap: 'wrap' }}>
         <Col style={{ width: '100%', marginTop: 10 }}>
-          <Row>
+          <Row className='artwork'>
+            <div className='title'>
+              <h1>My items</h1>
+            </div>
             <Tabs
               activeKey={activeKey}
               onTabClick={key => setActiveKey(key as ArtworkViewState)}
-              tabBarExtraContent={refreshButton}
+              //tabBarExtraContent={refreshButton}
             >
               <TabPane
                 tab={<span className="tab-title">All</span>}

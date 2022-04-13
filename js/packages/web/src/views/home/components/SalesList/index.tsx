@@ -1,7 +1,7 @@
 import { useWallet } from '@solana/wallet-adapter-react';
-import { Col, Layout, Row, Tabs } from 'antd';
+import { Col, Layout, Row, Tabs, Button } from 'antd';
 import { Link } from 'react-router-dom';
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 
 import { useMeta } from '../../../../contexts';
 import { CardLoader } from '../../../../components/MyLoader';
@@ -22,86 +22,123 @@ export enum LiveAuctionViewState {
   Own = '4',
 }
 
-export const SalesListView = (props: { collectionMintFilter?: string }) => {
+export const SalesListView = props => {
   const [activeKey, setActiveKey] = useState(LiveAuctionViewState.All);
   const { isLoading } = useMeta();
   const { connected } = useWallet();
   const { auctions, hasResaleAuctions } = useAuctionsList(activeKey);
-
-  const filteredAuctions = useMemo(() => {
-    if (props.collectionMintFilter) {
-      return auctions.filter(
-        auction =>
-          auction.thumbnail.metadata.info.collection?.key ===
-          props.collectionMintFilter,
-      );
-    }
-    return auctions;
-  }, [auctions, props.collectionMintFilter]);
-
+  const { prismicContent } = props || [];
   return (
     <>
-      {!props.collectionMintFilter && (
-        <Banner
-          src="/main-banner.svg"
-          headingText="The amazing world of Metaplex."
-          subHeadingText="Buy exclusive Metaplex NFTs."
-          actionComponent={<HowToBuyModal buttonClassName="secondary-btn" />}
-          useBannerBg
-        />
-      )}
+      <div className="hero-slider">
+        {prismicContent && prismicContent.length > 0 && (
+          prismicContent[0]?.data?.home_collection && prismicContent[0]?.data?.home_collection.length > 0 &&
+          prismicContent[0]?.data?.home_collection.map((x, i) =>
+            <><input type="radio" id={`trigger${i+1}`} name="slider" checked />
+              <label htmlFor={`trigger${i+1}`}></label>
+              <div className="slide">
+                <Banner
+                  src={x.home_collection_image?.url}
+                  headingText={x.home_collection_name[0]?.text}
+                  byText={x.home_collection_by[0]?.text}
+                  subHeadingText={x.home_collection_description[0]?.text}
+                  actionComponent={
+                    <Link to={x.home_collection_btn_url[0].text} target="_blank">
+                    <Button type="primary">{x.home_collection_btn_text[0]?.text}</Button></Link>
+                  }
+                  useBannerBg
+                />
+              </div></>
+          ))}
+      </div>
+
+      <Layout>
+        <Content style={{ display: 'flex', flexWrap: 'wrap' }}>
+          <Col style={{ width: '100%' }}>
+            {prismicContent && prismicContent.length > 0 && (
+              <div className="featured-creators">
+                <h2>Featured Creators</h2>
+                <ul>
+                  {(prismicContent[0]?.data?.home_featured_creator && prismicContent[0]?.data?.home_featured_creator.length > 0) &&
+                    prismicContent[0]?.data?.home_featured_creator.map((x) => (<li>
+                      <Link to={x.creator_link[0]?.text} target="_blank">
+                        <div className="featuere-img">
+                          <img src={x.creator_image.url} />
+                        </div>
+                        <div className="feature-content">
+                          <h5>{x.creator_name[0]?.text}</h5>
+                        </div>
+                      </Link>
+                    </li>))
+                  }
+                </ul>
+              </div>
+            )}
+          </Col>
+        </Content>
+      </Layout>
+
       <Layout>
         <Content style={{ display: 'flex', flexWrap: 'wrap' }}>
           <Col style={{ width: '100%', marginTop: 32 }}>
-            <Row>
-              <Tabs
-                activeKey={activeKey}
-                onTabClick={key => setActiveKey(key as LiveAuctionViewState)}
-              >
-                <TabPane
-                  tab={
-                    <>
-                      <span className="live"></span> Live
-                    </>
-                  }
-                  key={LiveAuctionViewState.All}
-                ></TabPane>
-                {hasResaleAuctions && (
+            <div className="home-tab">
+              <h2>Explore</h2>
+              <Row>
+                <Tabs
+                  activeKey={activeKey}
+                  onTabClick={key => setActiveKey(key as LiveAuctionViewState)}
+                >
                   <TabPane
-                    tab="Secondary Marketplace"
-                    key={LiveAuctionViewState.Resale}
+                    tab={
+                      <>
+                        <span className="live"></span> Live
+                      </>
+                    }
+                    key={LiveAuctionViewState.All}
                   ></TabPane>
-                )}
-                <TabPane tab="Ended" key={LiveAuctionViewState.Ended}></TabPane>
-                {connected && (
+                  {hasResaleAuctions && (
+                    <TabPane
+                      tab="Secondary Marketplace"
+                      key={LiveAuctionViewState.Resale}
+                    ></TabPane>
+                  )}
                   <TabPane
-                    tab="Participated"
-                    key={LiveAuctionViewState.Participated}
+                    tab="Ended"
+                    key={LiveAuctionViewState.Ended}
                   ></TabPane>
-                )}
-                {connected && (
-                  <TabPane
-                    tab="My Live Auctions"
-                    key={LiveAuctionViewState.Own}
-                  ></TabPane>
-                )}
-              </Tabs>
-            </Row>
-            <Row>
-              <div className="artwork-grid">
-                {isLoading &&
-                  [...Array(10)].map((_, idx) => <CardLoader key={idx} />)}
-                {!isLoading &&
-                  filteredAuctions.map(auction => (
-                    <Link
-                      key={auction.auction.pubkey}
-                      to={`/auction/${auction.auction.pubkey}`}
-                    >
-                      <AuctionRenderCard auctionView={auction} />
-                    </Link>
-                  ))}
-              </div>
-            </Row>
+                  {connected && (
+                    <TabPane
+                      tab="Pacrticipated"
+                      key={LiveAuctionViewState.Participated}
+                    ></TabPane>
+                  )}
+                  {connected && (
+                    <TabPane
+                      tab="My Live Auctions"
+                      key={LiveAuctionViewState.Own}
+                    ></TabPane>
+                  )}
+                </Tabs>
+              </Row>
+            </div>
+
+            <div className="explore-tab">
+              <Row>
+                <div className="artwork-grid">
+                  {isLoading &&
+                    [...Array(10)].map((_, idx) => <CardLoader key={idx} />)}
+                  {!isLoading &&
+                    auctions.map(auction => (
+                      <Link
+                        key={auction.auction.pubkey}
+                        to={`/auction/${auction.auction.pubkey}`}
+                      >
+                        <AuctionRenderCard auctionView={auction} />
+                      </Link>
+                    ))}
+                </div>
+              </Row>
+            </div>
           </Col>
         </Content>
       </Layout>

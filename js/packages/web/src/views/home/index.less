@@ -1,3 +1,71 @@
+.hero-slider {
+	width: 100%;
+	position: relative;
+  height: 550px;
+  margin-bottom: 60px;
+  overflow: hidden;
+  border-radius: 12px;
+  text-align: right;
+  padding: 0 16px;
+  input {
+    position: absolute;  
+    opacity: 0;
+    margin-top: 500px;
+    cursor: pointer;
+  }
+  
+  label {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: solid 2px white;
+    margin: 500px 4px 0 4px;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    background: #FFFFFF;
+    opacity: 0.5;
+    border-radius: 15px;
+    cursor: pointer;
+    transition-duration: .4s;
+  }
+  input:checked + label{
+    background: #6300FF;
+    border: 1.08884px solid #FFFFFF;
+    box-shadow: 0px 4.35535px 5.44419px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    opacity: 1;
+  }
+
+  input:checked ~ .slide {
+    transform: translateX(100%);
+  }
+  
+  input:checked + label + .slide {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .slide {
+    position: absolute;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transform: translateX(-100%);
+    transition-duration: .4s;
+    opacity: 1;
+    z-index: 1;
+  }
+}
+
+
+
 header.ant-layout-header.App-Bar {
   width: 100%;
   background: transparent;
@@ -5,11 +73,12 @@ header.ant-layout-header.App-Bar {
   justify-content: center;
   height: fit-content;
   z-index: 10;
+  padding: 18px 0;
 
   @media (max-width: @mobile-xs-max) {
     max-height: 64px;
     position: sticky;
-    background: @black-100;
+    background: #fff;
   }
 }
 
@@ -23,16 +92,16 @@ footer.ant-layout-footer {
 }
 
 a:link {
-  color: #b480eb;
+  color: #6300FF;
 }
 a:visited {
-  color: #b480eb;
+  color: #6300FF;
 }
 a:hover {
-  color: #b480eb;
+  color: #000;
 }
 a:active {
-  color: #b480eb;
+  color: #000;
 }
 
 .masonry-grid {
@@ -74,20 +143,24 @@ a:active {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 16px;
-  font-size: 16px;
-  line-height: 16px;
+  padding: 6px 20px;
+  font-size: 14px;
+  line-height: 100%;
   font-weight: 600;
-  height: 40px;
-  opacity: 0.8;
+  height: auto;
+  opacity: 1;
+  &:hover,
   &.ant-tabs-tab-active {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgb(99, 0, 255);
     box-shadow: 0 0 24px rgba(26, 26, 26, 0.12);
     border-radius: 8px;
     opacity: 1;
-
+    color: #fff;
     .ant-tabs-tab-btn {
-      color: white;
+      color: #000;
+    }
+    .tab-title{
+      color: #fff;
     }
   }
 
@@ -127,4 +200,163 @@ a:active {
 
 .ant-card-body {
   padding: 0;
+}
+
+.explore-tab{
+  overflow: hidden;
+  padding: 10px 0;
+}
+.home-tab {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+  margin-bottom: 53px;
+  > h2{
+    margin-bottom: 0;
+    font-family: 'LoRes9PlusOTNarrowBold' !important;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 115.8%;
+    color: #000000;
+    @media (max-width: @screen-sm-min){
+      font-size: 22px;
+      width: 100%;
+      margin-bottom: 15px;
+      + .ant-row{
+        width: 100%;
+      }
+    }
+  }
+  
+  .ant-tabs-nav{
+    margin-bottom: 0;
+  }
+  .ant-tabs-tab {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 15px;
+    font-weight: 600;
+    height: 30px;
+    opacity: 1;
+    background: rgba(157, 157, 157, 0.2);
+    border-radius: 48px;
+    font-family: AvertaStd-Bold;
+    font-size: 12px;
+    line-height: 130%;
+    text-align: center;
+    color: #9D9D9D;
+    + .ant-tabs-tab {
+      margin-left: 20px;
+    }
+    span.live {
+      width: 8px;
+      height: 8px;
+      order: 0;
+      flex-grow: 0;
+      margin-right: 8px;
+      background: #6300FF;
+      border: 1px solid #FFF;
+      box-sizing: border-box;
+      box-shadow: 0px 4.35535px 5.44419px rgba(0, 0, 0, 0.25);
+      border-radius: 15px;
+    }
+    &:hover,
+    &.ant-tabs-tab-active {
+      background: #0E0E0E;
+      box-shadow: none;
+      opacity: 1;
+      color: #fff;
+      .ant-tabs-tab-btn {
+        color: #fff;
+      }
+    }
+  }
+}
+
+.featured-creators{
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  > h2{
+    margin-bottom: 0;
+    font-family: 'LoRes9PlusOTNarrowBold' !important;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 115.8%;
+    color: #000000;
+    width: 100%;
+    @media (max-width: @screen-sm-min){
+      font-size: 22px;
+      width: 100%;
+      + .ant-row{
+        width: 100%;
+      }
+    }
+  }
+  ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin:30px -28px 0 -28px;
+    @media (max-width: 1024px){
+      margin:20px -15px 0 -15px;
+    }
+    @media (max-width: 500px){
+      margin:20px -8px 0 -8px;
+    }
+    li{
+      width: 20%;
+      padding: 0 28px;
+      margin-bottom: 25px;
+      @media (max-width: 1024px){
+        padding: 0 15px;
+        width: 25%;
+      }
+      @media (max-width: 767px){
+        width: 33.33%;
+      }
+      @media (max-width: 500px){
+        width: 50%;
+        padding: 0 8px;
+        margin-bottom: 10px;
+      }
+      a{
+        display: block;
+      }
+      .featuere-img{
+        background: #C4C4C4;
+        border-radius: 25px;
+        overflow: hidden;
+        padding-top: 100%;
+        position: relative;
+        img{
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 100%;
+          object-fit: contain;
+        }
+      }
+      .feature-content{
+        margin-top: 15px;
+        h5{
+          font-family: 'AvertaStd-Semibold';
+          font-size: 18px;
+          line-height: 115.8%;
+          color: #000000;
+          text-align: center;
+          @media (max-width: 767px){
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
 }

@@ -9,10 +9,11 @@ export interface ConnectButtonProps
     React.RefAttributes<HTMLElement> {
   allowWalletChange?: boolean;
   className?: string;
+  type?:string;
 }
 
 export const ConnectButton = (props: ConnectButtonProps) => {
-  const { children, disabled, allowWalletChange, className, ...rest } = props;
+  const { children, disabled, allowWalletChange, className, type, ...rest } = props;
   const { wallet, connect, connected } = useWallet();
   const { setVisible } = useWalletModal();
   const open = useCallback(() => setVisible(true), [setVisible]);
@@ -35,7 +36,7 @@ export const ConnectButton = (props: ConnectButtonProps) => {
         }}
         disabled={connected && disabled}
       >
-        {connected ? children : 'Connect Wallet'}
+        {connected ? children : type ? type : 'Sign in'}
       </Button>
     );
   }
@@ -51,7 +52,7 @@ export const ConnectButton = (props: ConnectButtonProps) => {
         </Menu>
       }
     >
-      Connect
+      Sign In
     </Dropdown.Button>
   );
 };

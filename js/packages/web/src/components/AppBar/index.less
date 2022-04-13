@@ -3,8 +3,21 @@
   justify-content: space-between !important;
 
   button.ant-btn:not(.connector) {
-    height: 32px;
+    height: auto;
     background: none;
+    box-shadow: none;
+    border-radius: 50px !important;
+  }
+  .app-right button.ant-btn.wallet-key {
+    // border: none;
+    padding: 0;
+    min-width: 1px;
+    // margin: 0 0 0 3px;
+    text-align: center;
+    padding-bottom: 10px;
+    &:hover{
+      background-color:  transparent !important;
+    }
   }
 }
 
@@ -17,7 +30,7 @@
   align-items: center;
   text-align: center;
 
-  color: #ffffff;
+  color: #000000;
   padding: 10px 14px 10px 6px;
 
   margin-bottom: 0px;
@@ -38,6 +51,7 @@
   font-size: 16px;
   line-height: 19px;
   border-width: 0px;
+  box-shadow: none;
 }
 
 .app-bar-inner {
@@ -55,7 +69,7 @@
       color: inherit;
     }
     &.active {
-      color: white;
+      color: #000;
     }
   }
 }

@@ -1,4 +1,98 @@
-
+.art-wrap {
+	display: flex;
+	flex-wrap: wrap;
+}
+.ant-col.about-c {
+	padding: 0 !important;
+  .info-header {
+    font-family: 'AvertaStd-Bold';
+    font-size: 16px;
+    line-height: 19px;
+    color: #979797;
+    display: block;
+    margin-bottom: 15px;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 500;
+  }
+  .ant-spin-container {
+    .ant-col {
+      padding: 0 !important;
+    }
+  }
+  .ant-list-grid {
+    .ant-col > .ant-list-item{
+      padding: 0;
+    }
+  }
+}
+.art-creater-details {
+	padding-right: 4px;
+	padding-left: 24px;
+  &:first-child{
+    padding-left: 0;
+  }
+  &:last-child{
+    padding-right: 0;
+    @media (max-width: 767px) {
+      width: 100%;
+      padding-left: 0;
+      margin-top: 20px;
+    }
+  }
+}
+.new-viewon > div.ant-col {
+	padding: 0 !important;
+	margin-top: 20px;
+}
+.new-viewon {
+  > div.ant-col {
+    .tag {
+      min-width: 76px;
+      background: transparent;
+      border: 1px solid #6300FF;
+      font-family: 'AvertaStd-Semibold';
+      font-size: 14px;
+      line-height: 10px;
+      text-align: center;
+      color: #000000;
+      font-weight: 500;
+      margin: 0 15px 0 0;
+      &:last-child{
+        margin-bottom: 0;
+      }
+      &:hover{
+        background: #6300FF;
+        color: #fff;
+      }
+    }
+  }
+}
+.art-creater-details {
+  .creator-name,
+  div {
+    font-family: 'AvertaStd-Semibold';
+    font-size: 14px;
+    line-height: 16px;
+    color: #0E0E0E;
+    font-weight: normal;
+    &.creators {
+      margin-top: -8px;
+    }
+  }
+}
+.new-viewon h6,
+.art-creater-details h6 {
+	font-weight: normal;
+	opacity: 0.7;
+	text-transform: none;
+	margin-bottom: 15px;
+	font-family: 'AvertaStd-Bold';
+	font-size: 16px;
+	line-height: 130%;
+	color: #979797;
+  margin-top: 0 !important;
+}
 .artwork-image {
   display: flex;
   width: 100%;
@@ -22,7 +116,7 @@
   margin-bottom: 1vh;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
+  color: #000;
 }
 
 .info-content {
@@ -38,9 +132,9 @@
 .art-edition {
   font-weight: 600;
   font-size: 1.3rem;
-  color: #fff;
+  color: #000;
 }
 
 .ant-card-head {
-  color: white;
+  color: #000;
 }

@@ -113,37 +113,38 @@ const Countdown = ({ state }: { state?: CountdownState }) => {
   }
   return (
     <Row
-      style={{ width: '100%', flexWrap: 'nowrap' }}
+      style={{ width: '100%', flexWrap: 'nowrap', alignItems: 'center', }}
       className={'no-label-cd'}
     >
       {localState.days > 0 && (
         <Col>
-          <div className="cd-number">
+          <div className="cd-number day">
             {localState.days}
-            <span style={{ opacity: 0.5 }}>days</span>
+            <span>D</span>
           </div>
         </Col>
       )}
       <Col>
-        <div className="cd-number">
+        <div className="cd-number hours">
           {localState.hours}
-          <span style={{ opacity: 0.5 }}>hours</span>
+          <span>H</span>
         </div>
       </Col>
       <Col>
-        <div className="cd-number">
+        <div className="cd-number month">
           {localState.minutes}
-          <span style={{ opacity: 0.5 }}>min</span>
+          <span>M</span>
         </div>
       </Col>
       {!localState.days && (
         <Col>
-          <div className="cd-number">
+          <div className="cd-number seconds">
             {localState.seconds}
-            <span style={{ opacity: 0.5 }}>sec</span>
+            <span>S</span>
           </div>
         </Col>
       )}
+      left
     </Row>
   );
 };

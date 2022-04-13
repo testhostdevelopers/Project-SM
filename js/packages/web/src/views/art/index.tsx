@@ -82,12 +82,8 @@ export const ArtView = () => {
   return (
     <Content>
       <Col>
-        <Row ref={ref}>
-          <Col
-            xs={{ span: 24 }}
-            md={{ span: 12 }}
-            style={{ paddingRight: '30px' }}
-          >
+        <Row className="no-margin" align='top' justify="center" ref={ref} gutter={[66, 0]}>
+          <Col span={33} md={10} className={'img-cont-500'}>
             <ArtContent
               style={{ width: '100%', height: 'auto', margin: '0 auto' }}
               height={300}
@@ -100,92 +96,97 @@ export const ArtView = () => {
             />
           </Col>
           {/* <Divider /> */}
-          <Col
-            xs={{ span: 24 }}
-            md={{ span: 12 }}
-            style={{ textAlign: 'left', fontSize: '1.4rem' }}
-          >
-            <Row>
-              <div style={{ fontWeight: 700, fontSize: '4rem' }}>
+          <Col span={33} md={12}>
+          <div className='border-div'>
+              <h2 className="art-title">
                 {art.title || <Skeleton paragraph={{ rows: 0 }} />}
-              </div>
-            </Row>
-            <Row>
-              <Col span={6}>
-                <h6>Royalties</h6>
-                <div className="royalties">
-                  {((art.seller_fee_basis_points || 0) / 100).toFixed(2)}%
-                </div>
-              </Col>
-              <Col span={12}>
-                <ViewOn id={id} />
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <h6 style={{ marginTop: 5 }}>Created By</h6>
-                <div className="creators">
-                  {(art.creators || []).map((creator, idx) => {
-                    return (
-                      <div
-                        key={idx}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          marginBottom: 5,
-                        }}
-                      >
-                        <MetaAvatar creators={[creator]} size={64} />
-                        <div>
-                          <span className="creator-name">
-                            {creator.name ||
-                              shortenAddress(creator.address || '')}
-                          </span>
-                          <div style={{ marginLeft: 10 }}>
-                            {!creator.verified &&
-                              (creator.address === pubkey ? (
-                                <Button
-                                  onClick={async () => {
-                                    try {
-                                      await sendSignMetadata(
-                                        connection,
-                                        wallet,
-                                        id,
-                                      );
-                                    } catch (e) {
-                                      console.error(e);
-                                      return false;
-                                    }
-                                    return true;
-                                  }}
-                                >
-                                  Approve
-                                </Button>
-                              ) : (
-                                tag
-                              ))}
-                          </div>
-                        </div>
+              </h2>
+              <Row gutter={[44, 0]}>
+                <Col className='art-wrap' span={12} md={24}>
+                  <div className='art-creater-details'>
+                      <h6 style={{ marginTop: 5 }}>Created By</h6>
+                      <div className="creators">
+                        {(art.creators || []).map((creator, idx) => {
+                          return (
+                            <div
+                              key={idx}
+                              style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                marginBottom: 5,
+                              }}
+                            >
+                              <MetaAvatar creators={[creator]} size={32} />
+                              <div>
+                                <span className="creator-name">
+                                  {creator.name ||
+                                    shortenAddress(creator.address || '')}
+                                </span>
+                                <div style={{ marginLeft: 10 }}>
+                                  {!creator.verified &&
+                                    (creator.address === pubkey ? (
+                                      <Button
+                                        onClick={async () => {
+                                          try {
+                                            await sendSignMetadata(
+                                              connection,
+                                              wallet,
+                                              id,
+                                            );
+                                          } catch (e) {
+                                            console.error(e);
+                                            return false;
+                                          }
+                                          return true;
+                                        }}
+                                      >
+                                        Approve
+                                      </Button>
+                                    ) : (
+                                      tag
+                                    ))}
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
                       </div>
-                    );
-                  })}
-                </div>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <h6 style={{ marginTop: 5 }}>Edition</h6>
-                <div className="art-edition">{badge}</div>
-              </Col>
-            </Row>
-            {art.type === ArtType.Master && (
-              <Row>
-                <Col>
-                  <h6 style={{ marginTop: 5 }}>Max Supply</h6>
-                  <div className="art-edition">{maxSupply}</div>
+                  </div>
+
+                  <div className='art-creater-details'>
+                    <h6>Royalties</h6>
+                    <div className="royalties">
+                      {((art.seller_fee_basis_points || 0) / 100).toFixed(2)}%
+                    </div>
+                  </div>
+
+                  <div className='art-creater-details'>
+                    <h6 style={{ marginTop: 5 }}>Edition</h6>
+                    <div className="art-edition">{badge}</div>
+                  </div>
+
+                  <div className='art-creater-details'>
+                  {art.type === ArtType.Master && (
+                    <Row>
+                      <Col>
+                        <h6 style={{ marginTop: 5 }}>Max Supply</h6>
+                        <div className="art-edition">{maxSupply}</div>
+                      </Col>
+                    </Row>
+                  )}
+                  </div>
+
+                </Col>
+                <Col span={12} md={24} className="view-on-container new-viewon">
+                  <ViewOn id={id} />
                 </Col>
               </Row>
-            )}
+            <Row>
+              
+            </Row>
+           
+            
+            
             {/* <Button
                   onClick={async () => {
                     if(!art.mint) {
@@ -218,24 +219,21 @@ export const ArtView = () => {
               key={remountArtMinting}
               onMint={async () => await setRemountArtMinting(prev => prev + 1)}
             />
-          </Col>
-          <Col span="12">
+          
+          <Col className='about-c' span="24">
             <Divider />
             {art.creators?.find(c => !c.verified) && unverified}
-            <br />
-            <div className="info-header">ABOUT THE CREATION</div>
+            <div className="info-header">About The Creation</div>
             <div className="info-content">{description}</div>
-            <br />
             {/*
               TODO: add info about artist
             <div className="info-header">ABOUT THE CREATOR</div>
             <div className="info-content">{art.about}</div> */}
           </Col>
-          <Col span="12">
+          <Col span="24" className='about-c a-attributes'>
             {attributes && (
               <>
                 <Divider />
-                <br />
                 <div className="info-header">Attributes</div>
                 <List size="large" grid={{ column: 4 }}>
                   {attributes.map(attribute => (
@@ -248,6 +246,8 @@ export const ArtView = () => {
                 </List>
               </>
             )}
+          </Col>
+          </div>
           </Col>
         </Row>
       </Col>

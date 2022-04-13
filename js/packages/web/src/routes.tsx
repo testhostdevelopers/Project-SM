@@ -17,10 +17,9 @@ import { AdminView } from './views/admin';
 import PackView from './views/pack';
 import { PackCreateView } from './views/packCreate';
 import { BillingView } from './views/auction/billing';
-import { CollectionsView } from './views/collections';
-import { CollectionDetailView } from './views/collections/collectionDetail';
+import { UpcomingView } from './views/Upcoming';
 
-export function Routes() {
+export function Routes(props) {
   const shouldEnableNftPacks = process.env.NEXT_ENABLE_NFT_PACKS === 'true';
   return (
     <>
@@ -58,8 +57,10 @@ export function Routes() {
               component={() => <ArtworksView />}
             />
             <Route exact path="/art/:id" component={() => <ArtView />} />
-            <Route exact path="/artists/:id" component={() => <ArtistView />} />
+            <Route exact path="/artists/:id" component={() => <ArtistView {...props}/>} />
             <Route exact path="/artists" component={() => <ArtistsView />} />
+
+            <Route exact path="/Upcoming" component={() => <UpcomingView {...props}/>} />
 
             <Route
               exact
@@ -77,12 +78,7 @@ export function Routes() {
               component={() => <BillingView />}
             />
             <Route path="/about" component={() => <StaticPageView />} />
-            <Route path="/collections" component={() => <CollectionsView />} />
-            <Route
-              path="/collection/:id"
-              component={() => <CollectionDetailView />}
-            />
-            <Route path="/" component={() => <HomeView />} />
+            <Route path="/" component={() => <HomeView {...props} />} />
           </Switch>
         </Providers>
       </HashRouter>

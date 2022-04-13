@@ -59,8 +59,8 @@ export const ArtSelector = (props: ArtSelectorProps) => {
         })}
         {(allowMultiple || selectedItems.size === 0) && (
           <div
-            className="ant-card ant-card-bordered ant-card-hoverable art-card"
-            style={{ width: 200, height: 300, display: 'flex' }}
+            className="ant-card ant-card-bordered ant-card-hoverable art-card no-min"
+            style={{ width: 160, height: 204, display: 'flex',  }}
             onClick={open}
           >
             <span className="text-center">Add an NFT</span>
@@ -76,14 +76,14 @@ export const ArtSelector = (props: ArtSelectorProps) => {
         footer={null}
         className={'modalp-40 big-modal'}
       >
-        <Row className="call-to-action" style={{ marginBottom: 0 }}>
-          <h2>Select the NFT you want to sell</h2>
-          <p style={{ fontSize: '1.2rem' }}>
+        <Row className="call-to-action" style={{ marginBottom: 30 }}>
+          <h2 className='m-0'>Select the NFT you want to sell</h2>
+          <p className='subtext'>
             Select the NFT that you want to sell copy/copies of.
           </p>
         </Row>
         <Row
-          className="content-action"
+          className="content-action sell-card"
           style={{ overflowY: 'auto', height: '50vh' }}
         >
           <div className="artwork-grid" style={{ maxHeight: '50%' }}>

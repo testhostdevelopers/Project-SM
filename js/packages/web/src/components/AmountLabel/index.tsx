@@ -26,7 +26,7 @@ export const AmountLabel = (props: IAmountLabel) => {
     title = '',
     style = {},
     containerStyle = {},
-    iconSize = 38,
+    iconSize = 24,
     customPrefix,
     ended,
     tokenInfo,

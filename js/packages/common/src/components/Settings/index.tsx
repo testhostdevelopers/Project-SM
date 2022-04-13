@@ -4,6 +4,7 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import { shortenAddress } from '../../utils';
 import { CopyOutlined } from '@ant-design/icons';
 import { Identicon } from '../Identicon';
+import { Link } from 'react-router-dom';
 
 export const Settings = ({
   additionalSettings,
@@ -31,12 +32,7 @@ export const Settings = ({
         {publicKey && (
           <>
             <Tooltip title="Address copied">
-              <div
-                style={{
-                  fontWeight: 600,
-                  letterSpacing: '-0.02em',
-                  color: '#FFFFFF',
-                }}
+              <div className='wallet-address'
                 onClick={() =>
                   navigator.clipboard.writeText(publicKey?.toBase58() || '')
                 }
@@ -48,13 +44,8 @@ export const Settings = ({
           </>
         )}
         <br />
-        <span
-          style={{
-            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-            width: 'calc(100% + 32px)',
-            marginBottom: 10,
-          }}
-        ></span>
+        <Link to={`/artists/${publicKey}`} className='profile'>View profile </Link>
+
         {additionalSettings}
       </div>
     </>

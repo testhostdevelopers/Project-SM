@@ -1,14 +1,52 @@
-.title:hover {
-  cursor: pointer;
-}
+// .title:hover {
+//   cursor: pointer;
+// }
 
 .hover-button:hover {
   cursor: pointer;
 }
 
+.ant-popover-content{
+  .ant-popover-inner{
+    border-radius: 0;
+  }
+  .ant-list-item {
+    padding: 0;
+  }
+  .ant-list-vertical {
+    .ant-list-item-meta-title {
+      font-family: AvertaStd-Semibold;
+      font-size: 20px;
+      line-height: 130%;
+      color: #000000;
+      span{
+        font-family: inherit;
+      }
+    }
+  }
+  .noti-action{
+    max-width: 300px;
+    margin: 0;
+    .des{
+      font-family: AvertaStd-Semibold;
+      font-size: 16px;
+      line-height: 130%;
+      color: #909090;
+      font-weight: 500;
+      span{
+        font-weight: 500;
+        font-family: AvertaStd-Semibold;
+      }
+    }
+  }
+}
+
 .notifications-container {
-  .ant-list-item-meta-content, .ant-list-vertical .ant-list-item-meta-title, .ant-list-item-meta-description {
-    color: white !important;
+  .ant-list-item-meta-content, .ant-list-vertical , .ant-list-item-meta-description {
+    color: #000 !important;
+  }
+  .ant-list {
+    font-size: 18px;
   }
 }
 

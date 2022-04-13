@@ -19,7 +19,7 @@ export const ArtistCard = ({ artist }: { artist: Artist }) => {
       bordered={false}
     >
       <>
-        <MetaAvatar creators={[artist]} size={64} />
+        {/* <MetaAvatar creators={[artist]} size={64} /> */}
         <div className="artist-card-name">
           {artist.name || shortenAddress(artist.address || '')}
         </div>

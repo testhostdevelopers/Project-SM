@@ -2,14 +2,17 @@ import { Col, Divider, Row } from 'antd';
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArtCard } from '../../components/ArtCard';
+import { MetaAvatar } from '../../components/MetaAvatar';
 import { CardLoader } from '../../components/MyLoader';
 import { useCreator, useCreatorArts } from '../../hooks';
 
-export const ArtistView = () => {
+export const ArtistView = (props) => {
   const { id } = useParams<{ id: string }>();
   const creator = useCreator(id);
   const artwork = useCreatorArts(id);
 
+  const { prismicContent } = props || [];
+  const creatorDeatil = (prismicContent && prismicContent.length > 0 && prismicContent[0].data.creator.length > 0) && prismicContent[0].data.creator.filter((x) => x.creator_id[0].text == id);
   const artworkGrid = (
     <div className="artwork-grid">
       {artwork.length > 0
@@ -32,21 +35,41 @@ export const ArtistView = () => {
 
   return (
     <>
+      <div className='cover-img'>
+          <div className='cover-img-box'>
+                <img src={creatorDeatil[0].cover_pic.url} />
+          </div>
+          <div className='profile-img-box'>
+                <img src={creatorDeatil[0].profile_pic.url} />
+          </div>
+      </div>
+
       <Col>
-        <Divider />
+        {/* <Divider /> */}
         <Row
           style={{ margin: '0 30px', textAlign: 'left', fontSize: '1.4rem' }}
         >
-          <Col span={24}>
-            <h2>
+          <Col className='center-all' span={24}>
+            
+            <h2 className='p-address'>
+            {creatorDeatil[0].creator_name[0].text}
               {/* <MetaAvatar creators={creator ? [creator] : []} size={100} /> */}
-              {creator?.info.name || creator?.info.address}
+              <span className='profile-address'>
+               {creator?.info.name || creator?.info.address}
+              </span>
             </h2>
-            <br />
-            <div className="info-header">ABOUT THE CREATOR</div>
-            <div className="info-content">{creator?.info.description}</div>
-            <br />
-            <div className="info-header">Art Created</div>
+            {/* <div className="info-header">ABOUT THE CREATOR</div> */}
+            <div className="info-content">
+            {creatorDeatil[0].creator_description[0].text}
+              {creator?.info.description}
+            </div>
+            <div className='profile-siteinfo'>
+              <span>
+                <img src='/world.svg'/>
+              </span>
+              <span>{creatorDeatil[0].creator_webite_url[0].text}</span>
+            </div>
+            {/* <div className="info-header">Art Created</div> */}
             {artworkGrid}
           </Col>
         </Row>

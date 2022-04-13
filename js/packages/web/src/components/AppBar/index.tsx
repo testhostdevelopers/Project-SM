@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';;
 import { Link } from 'react-router-dom';
 import { Button, Menu, Modal } from 'antd';
 import { useWallet } from '@solana/wallet-adapter-react';
@@ -13,25 +13,35 @@ import {
 } from '../CurrentUserBadge';
 import { ConnectButton } from '@oyster/common';
 import { MobileNavbar } from '../MobileNavbar';
+import { useMeta, useSolPrice } from '../../contexts';
 
-const getDefaultLinkActions = (connected: boolean) => {
+const getDefaultLinkActions = (connected: boolean, props) => {
   return [
-    <Link to={`/`} key={'explore'}>
-      <Button className="app-btn">Explore</Button>
+    <Link to={props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.header_link_explore[0].text} key={'explore'}>
+      <Button className="app-btn">
+      {props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.explore[0].text}
+       </Button>
     </Link>,
-    <Link to={`/collections`} key={'collections'}>
-      <Button className="app-btn">Collections</Button>
+    <Link to={props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.header_link_creators[0].text} key={'artists'}>
+      <Button className="app-btn">{props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.creators[0].text}</Button>
     </Link>,
-    <Link to={`/artworks`} key={'artwork'}>
-      <Button className="app-btn">{connected ? 'My Items' : 'Artwork'}</Button>
+    <Link to={props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.header_link_upcoming[0].text} key={'Upcoming'}>
+      <Button className="app-btn">{props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.upcoming[0].text}</Button>
     </Link>,
-    <Link to={`/artists`} key={'artists'}>
-      <Button className="app-btn">Creators</Button>
+    <Link to={props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.header_link_how_to_buy[0].text} key={'/'}>
+      <HowToBuyModal buttonClassName="modal-button-default no-border" modalProps={props}/>
     </Link>,
+
+
+
+    // <Link to={`/artworks`} key={'artwork'}>
+    //   <Button className="app-btn">{connected ? 'My Items' : 'Artwork'}</Button>
+    // </Link>,
+    
   ];
 };
 
-const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
+const DefaultActions = (props, { vertical = false }: { vertical?: boolean }) => {
   const { connected } = useWallet();
   return (
     <div
@@ -40,12 +50,12 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
         flexDirection: vertical ? 'column' : 'row',
       }}
     >
-      {getDefaultLinkActions(connected)}
+      {getDefaultLinkActions(connected, props)}
     </div>
   );
 };
 
-export const MetaplexMenu = () => {
+export const MetaplexMenu = (props) => {
   const { width } = useWindowDimensions();
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const { connected } = useWallet();
@@ -67,7 +77,7 @@ export const MetaplexMenu = () => {
         >
           <div className="site-card-wrapper mobile-menu-modal">
             <Menu onClick={() => setIsModalVisible(false)}>
-              {getDefaultLinkActions(connected).map((item, idx) => (
+              {getDefaultLinkActions(connected, props).map((item, idx) => (
                 <Menu.Item key={idx}>{item}</Menu.Item>
               ))}
             </Menu>
@@ -81,6 +91,7 @@ export const MetaplexMenu = () => {
                   <HowToBuyModal
                     onClick={() => setIsModalVisible(false)}
                     buttonClassName="black-btn"
+                    modalProps={props}
                   />
                 </div>
               ) : (
@@ -107,7 +118,7 @@ export const MetaplexMenu = () => {
       </>
     );
 
-  return <DefaultActions />;
+  return <DefaultActions {...props}/>;
 };
 
 export const LogoLink = () => {
@@ -118,8 +129,20 @@ export const LogoLink = () => {
   );
 };
 
-export const AppBar = () => {
+export const AppBar = (props) => {
   const { connected } = useWallet();
+
+  const { publicKey } = useWallet();
+  const { whitelistedCreatorsByCreator, store } = useMeta();
+  const pubkey = publicKey?.toBase58() || '';
+
+  const canCreate = useMemo(() => {
+    return (
+      store?.info?.public ||
+      whitelistedCreatorsByCreator[pubkey]?.info?.activated
+    );
+  }, [pubkey, whitelistedCreatorsByCreator, store]);
+
   return (
     <>
       <MobileNavbar />
@@ -127,23 +150,39 @@ export const AppBar = () => {
         <div className="app-left">
           <LogoLink />
           &nbsp;&nbsp;&nbsp;
-          <MetaplexMenu />
+          <MetaplexMenu {...props}/>
         </div>
         <div className="app-right">
+          {/* {!connected && (
+            <HowToBuyModal buttonClassName="modal-button-default no-border" />
+          )} */}
+
           {!connected && (
-            <HowToBuyModal buttonClassName="modal-button-default" />
-          )}
-          {!connected && (
-            <ConnectButton style={{ height: 48 }} allowWalletChange />
+            <>
+            <ConnectButton allowWalletChange />
+            </>
           )}
           {connected && (
             <>
+            <div className='profile-action-button'>
+              {canCreate && (
+                <>
+                  <Link to={`/art/create`}>
+                    <Button className="metaplex-button-default">
+                      Create
+                    </Button>
+                  </Link>
+                  &nbsp;&nbsp;
+                </>
+              )}
+            </div>
+              <Notifications />
               <CurrentUserBadge
                 showBalance={false}
                 showAddress={true}
                 iconSize={24}
               />
-              <Notifications />
+              
               <Cog />
             </>
           )}

@@ -52,17 +52,8 @@ export const WalletModal: FC = () => {
 
   return (
     <MetaplexModal title="Connect Wallet" visible={visible} onCancel={close}>
-      <span
-        style={{
-          color: 'rgba(255, 255, 255, 0.75)',
-          fontSize: '14px',
-          lineHeight: '14px',
-          fontFamily: 'GraphikWeb',
-          letterSpacing: '0.02em',
-          marginBottom: 14,
-        }}
-      >
-        RECOMMENDED
+      <span className='recommended'>
+        Recommended
       </span>
 
       <Button
@@ -80,51 +71,19 @@ export const WalletModal: FC = () => {
         ghost
         expandIcon={panelProps =>
           panelProps.isActive ? (
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15 7.5L10 12.5L5 7.5"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1.10547L7 8.78505L13 1.10547" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           ) : (
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M7.5 5L12.5 10L7.5 15"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1.10547L7 8.78505L13 1.10547" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           )
         }
       >
         <Panel
           header={
-            <span
-              style={{
-                fontWeight: 600,
-                fontSize: '16px',
-                lineHeight: '16px',
-                letterSpacing: '-0.01em',
-                color: 'rgba(255, 255, 255, 255)',
-              }}
-            >
+            <span className='otherwallets'>
               Other Wallets
             </span>
           }

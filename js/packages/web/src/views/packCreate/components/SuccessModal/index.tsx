@@ -26,7 +26,7 @@ const SuccessModal = ({
       </h1>
       <p
         style={{
-          color: 'white',
+          color: 'black',
           textAlign: 'center',
           fontSize: '2rem',
         }}
