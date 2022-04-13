@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Alert from '@material-ui/lab/Alert';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { PublicKey } from '@solana/web3.js';
+import { PublicKey, Transaction } from '@solana/web3.js';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletDialogButton } from '@solana/wallet-adapter-material-ui';
 import {
@@ -21,6 +21,7 @@ import { AlertState, toDate, formatNumber, getAtaForMint } from './utils';
 import { MintCountdown } from './MintCountdown';
 import { MintButton } from './MintButton';
 import { GatewayProvider } from '@civic/solana-gateway-react';
+import { sendTransaction } from './connection';
 
 const ConnectButton = styled(WalletDialogButton)`
   width: 100%;
@@ -171,20 +172,58 @@ const Home = (props: HomeProps) => {
         setIsPresale((cndy.state.isPresale = presale));
         setCandyMachine(cndy);
       } catch (e) {
-        console.log('There was a problem fetching Candy Machine state');
+        if (e instanceof Error) {
+          if (e.message === `Account does not exist ${props.candyMachineId}`) {
+            setAlertState({
+              open: true,
+              message: `Couldn't fetch candy machine state from candy machine with address: ${props.candyMachineId}, using rpc: ${props.rpcHost}! You probably typed the REACT_APP_CANDY_MACHINE_ID value in wrong in your .env file, or you are using the wrong RPC!`,
+              severity: 'error',
+              noHide: true,
+            });
+          } else if (e.message.startsWith('failed to get info about account')) {
+            setAlertState({
+              open: true,
+              message: `Couldn't fetch candy machine state with rpc: ${props.rpcHost}! This probably means you have an issue with the REACT_APP_SOLANA_RPC_HOST value in your .env file, or you are not using a custom RPC!`,
+              severity: 'error',
+              noHide: true,
+            });
+          }
+        } else {
+          setAlertState({
+            open: true,
+            message: `${e}`,
+            severity: 'error',
+            noHide: true,
+          });
+        }
         console.log(e);
       }
+    } else {
+      setAlertState({
+        open: true,
+        message: `Your REACT_APP_CANDY_MACHINE_ID value in the .env file doesn't look right! Make sure you enter it in as plain base-58 address!`,
+        severity: 'error',
+        noHide: true,
+      });
     }
-  }, [anchorWallet, props.candyMachineId, props.connection]);
+  }, [anchorWallet, props.candyMachineId, props.connection, props.rpcHost]);
 
-  const onMint = async () => {
+  const onMint = async (
+    beforeTransactions: Transaction[] = [],
+    afterTransactions: Transaction[] = [],
+  ) => {
     try {
       setIsUserMinting(true);
       document.getElementById('#identity')?.click();
       if (wallet.connected && candyMachine?.program && wallet.publicKey) {
-        const mintTxId = (
-          await mintOneToken(candyMachine, wallet.publicKey)
-        )[0];
+        let mintOne = await mintOneToken(
+          candyMachine,
+          wallet.publicKey,
+          beforeTransactions,
+          afterTransactions,
+        );
+
+        const mintTxId = mintOne[0];
 
         let status: any = { err: true };
         if (mintTxId) {
@@ -222,12 +261,14 @@ const Home = (props: HomeProps) => {
         if (!error.message) {
           message = 'Transaction Timeout! Please try again.';
         } else if (error.message.indexOf('0x137')) {
+          console.log(error);
           message = `SOLD OUT!`;
         } else if (error.message.indexOf('0x135')) {
           message = `Insufficient funds to mint. Please fund your wallet.`;
         }
       } else {
         if (error.code === 311) {
+          console.log(error);
           message = `SOLD OUT!`;
           window.location.reload();
         } else if (error.code === 312) {
@@ -404,11 +445,73 @@ const Home = (props: HomeProps) => {
                       candyMachine?.state?.gatekeeper?.gatekeeperNetwork
                     }
                     clusterUrl={rpcUrl}
+                    handleTransaction={async (transaction: Transaction) => {
+                      setIsUserMinting(true);
+                      const userMustSign = transaction.signatures.find(sig =>
+                        sig.publicKey.equals(wallet.publicKey!),
+                      );
+                      if (userMustSign) {
+                        setAlertState({
+                          open: true,
+                          message: 'Please sign one-time Civic Pass issuance',
+                          severity: 'info',
+                        });
+                        try {
+                          transaction = await wallet.signTransaction!(
+                            transaction,
+                          );
+                        } catch (e) {
+                          setAlertState({
+                            open: true,
+                            message: 'User cancelled signing',
+                            severity: 'error',
+                          });
+                          // setTimeout(() => window.location.reload(), 2000);
+                          setIsUserMinting(false);
+                          throw e;
+                        }
+                      } else {
+                        setAlertState({
+                          open: true,
+                          message: 'Refreshing Civic Pass',
+                          severity: 'info',
+                        });
+                      }
+                      try {
+                        await sendTransaction(
+                          props.connection,
+                          wallet,
+                          transaction,
+                          [],
+                          true,
+                          'confirmed',
+                        );
+                        setAlertState({
+                          open: true,
+                          message: 'Please sign minting',
+                          severity: 'info',
+                        });
+                      } catch (e) {
+                        setAlertState({
+                          open: true,
+                          message:
+                            'Solana dropped the transaction, please try again',
+                          severity: 'warning',
+                        });
+                        console.error(e);
+                        // setTimeout(() => window.location.reload(), 2000);
+                        setIsUserMinting(false);
+                        throw e;
+                      }
+                      await onMint();
+                    }}
+                    broadcastTransaction={false}
                     options={{ autoShowModal: false }}
                   >
                     <MintButton
                       candyMachine={candyMachine}
                       isMinting={isUserMinting}
+                      setIsMinting={val => setIsUserMinting(val)}
                       onMint={onMint}
                       isActive={isActive || (isPresale && isWhitelistUser)}
                     />
@@ -417,6 +520,7 @@ const Home = (props: HomeProps) => {
                   <MintButton
                     candyMachine={candyMachine}
                     isMinting={isUserMinting}
+                    setIsMinting={val => setIsUserMinting(val)}
                     onMint={onMint}
                     isActive={isActive || (isPresale && isWhitelistUser)}
                   />
@@ -437,7 +541,7 @@ const Home = (props: HomeProps) => {
 
       <Snackbar
         open={alertState.open}
-        autoHideDuration={6000}
+        autoHideDuration={alertState.noHide ? null : 6000}
         onClose={() => setAlertState({ ...alertState, open: false })}
       >
         <Alert
