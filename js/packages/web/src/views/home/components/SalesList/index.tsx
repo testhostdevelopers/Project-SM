@@ -28,6 +28,27 @@ export const SalesListView = props => {
   const { connected } = useWallet();
   const { auctions, hasResaleAuctions } = useAuctionsList(activeKey);
   const { prismicContent } = props || [];
+  let rdo_checked = false;
+  const checkedBox = () => {
+    if( !rdo_checked ){
+      rdo_checked = true;
+      return true;
+    } else {
+      return false;
+    }
+  };
+// console.log(prismicContent[0]?.data?.home_collection);
+// let slider = document.getElementsByName(`slider`);
+//   setInterval(()=> {
+    
+//     if( slider.checked == true ){
+        
+//     }
+//     prismicContent[0]?.data?.home_collection.map((x, i) => {
+        
+//     })
+//   }, 5000);
+
   return (
     <>
       <div className="hero-slider">
@@ -35,7 +56,7 @@ export const SalesListView = props => {
           prismicContent[0]?.data?.home_collection && prismicContent[0]?.data?.home_collection.length > 0 &&
           prismicContent[0]?.data?.home_collection.map((x, i) =>
             <>
-              <input type="radio" id={`trigger${i+1}`} name="slider" checked />
+              <input type="radio" id={`trigger${i+1}`} name="slider" defaultChecked={checkedBox()} />
               <label htmlFor={`trigger${i+1}`}></label>
               <div className="slide">
                 <Banner
