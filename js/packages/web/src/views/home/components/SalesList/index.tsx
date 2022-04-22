@@ -34,7 +34,8 @@ export const SalesListView = props => {
         {prismicContent && prismicContent.length > 0 && (
           prismicContent[0]?.data?.home_collection && prismicContent[0]?.data?.home_collection.length > 0 &&
           prismicContent[0]?.data?.home_collection.map((x, i) =>
-            <><input type="radio" id={`trigger${i+1}`} name="slider" checked />
+            <>
+              <input type="radio" id={`trigger${i+1}`} name="slider" checked />
               <label htmlFor={`trigger${i+1}`}></label>
               <div className="slide">
                 <Banner
@@ -48,7 +49,8 @@ export const SalesListView = props => {
                   }
                   useBannerBg
                 />
-              </div></>
+              </div>
+            </>
           ))}
       </div>
 
