@@ -6,7 +6,7 @@ export const Banner = (props: {
   useBannerBg: boolean;
   headingText: string;
   subHeadingText: string;
-  byText: string;
+  byText?: string;
   actionComponent?: JSX.Element;
   children?: React.ReactNode;
 }) => {

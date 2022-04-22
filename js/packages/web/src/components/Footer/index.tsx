@@ -11,6 +11,7 @@ export const Footer = (props) => {
   const validateMessages = {
     types: {
       email: 'Input is not a valid email!',
+      
     },
   };
 

@@ -9,7 +9,7 @@ export interface ConnectButtonProps
     React.RefAttributes<HTMLElement> {
   allowWalletChange?: boolean;
   className?: string;
-  type?:string;
+  type?:any;
 }
 
 export const ConnectButton = (props: ConnectButtonProps) => {
