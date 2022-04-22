@@ -209,9 +209,9 @@ export const Footer = (props) => {
                 <a href="https://www.reddit.com/r/starlightmeta/" target="_blank">
                     <i className="fab fa-reddit" aria-hidden="true"></i>
                 </a>
-                <a href="#0">
+                {/* <a href="#0">
                     <i className="fab fa-youtube"></i>
-                </a>
+                </a> */}
             </div>
         </div>
       </div>
