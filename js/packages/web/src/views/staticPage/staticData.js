@@ -8,7 +8,7 @@ export const data = {
   midContent: {
     sections: [
       {
-        title: 'Metaplex is a protocol built on top of Solana that allows:',
+        title: 'Starlight is a protocol built on top of Solana that allows:',
         paragraphs: [
           '• Creating/Minting non-fungible tokens;',
           '• Starting a variety of auctions for primary/secondary sales;',
