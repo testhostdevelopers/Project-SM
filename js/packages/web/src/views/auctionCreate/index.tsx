@@ -2113,7 +2113,7 @@ const WaitingStep = (props: {
     >
       <Progress type="circle" percent={progress} />
       <div className="waiting-title">
-        Your creation is being listed with Starlight......
+        Your creation is being listed with Starlight...
       </div>
       <div className="waiting-subtitle">This can take up to 30 seconds.</div>
     </div>
@@ -2131,13 +2131,13 @@ const Congrats = (props: {
 
   const newTweetURL = () => {
     const params = {
-      text: "I've created a new NFT auction on Metaplex, check it out!",
+      text: "I've created a new NFT auction on Starlight, check it out!",
       url: `${
         window.location.origin
       }/#/auction/${props.auction?.auction.toString()}`,
-      hashtags: 'NFT,Crypto,Metaplex',
+      hashtags: 'NFT,Crypto,Starlight',
       // via: "Metaplex",
-      related: 'Metaplex,Solana',
+      related: 'Starlight,Solana',
     };
     const queryParams = new URLSearchParams(params).toString();
     return `https://twitter.com/intent/tweet?${queryParams}`;

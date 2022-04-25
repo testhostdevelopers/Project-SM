@@ -117,9 +117,15 @@
 .ant-row.ant-row-center.no-margin {
 	margin: 0 !important;
 }
+
+
+
 .auction-view {
   *{
     height: 100%;
+  }
+  .ant-image-mask-info {
+    height: auto;
   }
   .slick-track{
     background: #f4f4f4;
@@ -332,18 +338,54 @@ h6.info-title {
     background-color: transparent;
     .ant-card-head{
       color: #000;
+      padding: 2px 0 5px 0;
+      border: none;
+    }
+  }
+  .ant-spin-container{
+    display: flex;
+    flex-wrap: wrap;
+    .ant-col{
+      flex: unset !important;
+      .ant-list-item{
+        margin: 15px;
+      }
     }
   }
   .ant-card.ant-card-bordered {
-    width: 74px;
-    height: 54px;
+    width: auto;
+    height: auto;
     border: 1px solid #979797;
     border-radius: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    padding: 7px 20px;
+    .ant-card-head{
+      padding: 0;
+      border: none;
+      min-height: 1px;
+      .ant-card-head-title{
+        padding: 0;
+        line-height: 100%;
+        font-family: 'AvertaStd-Semibold';
+        font-size: 12px;
+        line-height: 14px;
+        display: flex;
+        align-items: center;
+        color: #6300FF;
+      }
+    }
     .ant-card-body{
       padding: 0;
+      font-family: 'AvertaStd-Semibold';
+      font-size: 12px;
+      line-height: 14px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: #979797;
     }
   }
 }

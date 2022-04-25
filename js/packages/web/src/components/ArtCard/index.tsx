@@ -84,10 +84,6 @@ export const ArtCard = (props: ArtCardProps) => {
           X
         </Button>
       )}
-      <div className="art-card__header">
-        <MetaAvatar creators={creators} size={32} />
-        <div className="edition-badge">{badge}</div>
-      </div>
       <div className="art-content__wrapper">
         <ArtContent
           pubkey={pubkey}
@@ -99,6 +95,10 @@ export const ArtCard = (props: ArtCardProps) => {
           width={width}
           artView={artView}
         />
+      </div>
+      <div className="art-card__header">
+        <MetaAvatar creators={creators} size={32} />
+        <div className="edition-badge">{badge}</div>
       </div>
       <Meta
         title={`${name}`}

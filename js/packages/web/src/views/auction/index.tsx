@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Button, Card, Carousel, Col, List, Row, Skeleton } from 'antd';
 import { AuctionCard } from '../../components/AuctionCard';
 import { Connection } from '@solana/web3.js';
@@ -326,7 +326,10 @@ export const AuctionView = () => {
                 <div className={'info-container'}>
                   <div className={'info-component'}>
                     <h6 className={'info-title'}>Created by</h6>
-                    <span>{<MetaAvatar creators={creators} />}</span>
+                    
+                    <Link to={`/artists/${creators}`} className='creators-profile'>
+                      <span>{<MetaAvatar creators={creators} />}</span>
+                    </Link>
                   </div>
                   <div className={'info-component'}>
                     <h6 className={'info-title'}>Edition</h6>

@@ -170,12 +170,14 @@
 
 .bid-container{
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   @media(max-width: 768px){
     flex-direction: column;
   }
-
   .bid-buttons{
     display: flex;
+    margin-top: 10px;
     @media(max-width: 768px){
       flex-direction: row;
       justify-content: space-between;

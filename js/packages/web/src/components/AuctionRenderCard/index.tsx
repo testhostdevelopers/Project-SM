@@ -53,7 +53,7 @@ export const AuctionRenderCard = (props: AuctionCard) => {
             <div className="auction-info-container">
               {/* <div className={'info-message'}>ENDING IN</div> */}
               <div className='clk'>
-                <img src="/timer.png"/>
+                <img src="/timer.svg"/>
               </div>
               <AuctionCountdown auctionView={auctionView} labels={false} />
             </div>
