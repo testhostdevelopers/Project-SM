@@ -10,7 +10,7 @@ import {
   List,
   Card,
 } from 'antd';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useArt, useExtendedArt } from '../../hooks';
 
 import { ArtContent } from '../../components/ArtContent';
@@ -115,7 +115,8 @@ export const ArtView = () => {
                                 alignItems: 'center',
                                 marginBottom: 5,
                               }}
-                            >
+                            > 
+                            <Link to={`/artists/${creator.address}`}>
                               <MetaAvatar creators={[creator]} size={32} />
                               <div>
                                 <span className="creator-name">
@@ -147,6 +148,7 @@ export const ArtView = () => {
                                     ))}
                                 </div>
                               </div>
+                            </Link>
                             </div>
                           );
                         })}
