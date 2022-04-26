@@ -8,6 +8,7 @@ import { useMeta } from '../../contexts';
 const { Content } = Layout;
 
 export const ArtistsView = (props: any) => {
+  
   const { whitelistedCreatorsByCreator } = useMeta();
 
   const breakpointColumnsObj = {

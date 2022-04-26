@@ -7,8 +7,10 @@ import { Link } from 'react-router-dom';
 
 export const Settings = (props: any, {
   additionalSettings,
+  userDetail,
 }: {
   additionalSettings?: JSX.Element;
+  userDetail?: any
 }) => {
   const { publicKey } = useWallet();
   const { prismicContent } = props.userDetail.children._owner.memoizedProps;
