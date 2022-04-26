@@ -178,6 +178,7 @@ export const AppBar = (props) => {
             </div>
               <Notifications />
               <CurrentUserBadge
+              {...props}
                 showBalance={false}
                 showAddress={true}
                 iconSize={24}

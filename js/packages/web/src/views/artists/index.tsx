@@ -7,7 +7,7 @@ import { useMeta } from '../../contexts';
 
 const { Content } = Layout;
 
-export const ArtistsView = () => {
+export const ArtistsView = (props: any) => {
   const { whitelistedCreatorsByCreator } = useMeta();
 
   const breakpointColumnsObj = {
@@ -34,7 +34,8 @@ export const ArtistsView = () => {
           return (
             <Link to={`/artists/${id}`} key={idx}>
               <ArtistCard
-                key={id}
+                key ={id}
+                artistDetail={props}
                 artist={{
                   address: m.info.address,
                   name: m.info.name || '',

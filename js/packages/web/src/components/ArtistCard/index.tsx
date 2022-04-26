@@ -6,14 +6,17 @@ import { Artist } from '../../types';
 import { shortenAddress } from '@oyster/common';
 import { MetaAvatar } from '../MetaAvatar';
 
-export const ArtistCard = ({ artist }: { artist: Artist }) => {
+export const ArtistCard = (props: any) => {
+  const { artistDetail , artist} = props
+  let creatorDeatil = (artistDetail.prismicContent && artistDetail.prismicContent.length > 0 && artistDetail.prismicContent[0].data.creator.length > 0) && artistDetail.prismicContent[0].data.creator.filter((x) => (x.creator_id[0].text === artist.address));
+
   return (
     <Card
       hoverable={true}
       className={`artist-card`}
       cover={
         <div className="header-container">
-          {artist.background ? <img src={artist.background} /> : null}
+          {(creatorDeatil && creatorDeatil.length > 0) ? <img src={creatorDeatil[0].profile_pic.url} /> : <img src="/profile-img.png" />}
         </div>
       }
       bordered={false}
@@ -21,9 +24,9 @@ export const ArtistCard = ({ artist }: { artist: Artist }) => {
       <>
         {/* <MetaAvatar creators={[artist]} size={64} /> */}
         <div className="artist-card-name">
-          {artist.name || shortenAddress(artist.address || '')}
+          {props.artist?.name || shortenAddress(props.artist?.address || '')}
         </div>
-        <div className="artist-card-description">{artist.about}</div>
+        <div className="artist-card-description">{props.artist?.about}</div>
       </>
     </Card>
   );

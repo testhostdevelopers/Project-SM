@@ -18,14 +18,16 @@ export const ArtistView = (props) => {
     <div className="artwork-grid">
       {artwork.length > 0
         ? artwork.map((m, idx) => {
-          const id = m.pubkey;
+          // const id = m.pubkey;
           return (
-            <Link to={`/art/${id}`} key={idx}>
+            <Link to={`/art/${m.pubkey}`} key={idx}>
               <ArtCard
-                key={id}
+                key={m.pubkey}
+                artkey={id}
                 pubkey={m.pubkey}
                 preview={false}
                 artView={true}
+                prismicContent={prismicContent}
               />
             </Link>
           );

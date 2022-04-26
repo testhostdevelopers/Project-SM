@@ -234,6 +234,7 @@ export const CurrentUserBadge = (props: {
         placement="bottomRight"
         content={
           <Settings
+          userDetail={props}
             additionalSettings={
               <div className='profile-detail'
                 style={{

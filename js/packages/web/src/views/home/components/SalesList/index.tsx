@@ -21,7 +21,8 @@ export enum LiveAuctionViewState {
   Own = '4',
 }
 
-export const SalesListView = props => {
+export const SalesListView = (props: any) => {
+  
   const [activeKey, setActiveKey] = useState(LiveAuctionViewState.All);
   const { isLoading } = useMeta();
   const { connected } = useWallet();
@@ -155,7 +156,7 @@ export const SalesListView = props => {
                         key={auction.auction.pubkey}
                         to={`/auction/${auction.auction.pubkey}`}
                       >
-                        <AuctionRenderCard auctionView={auction} />
+                        <AuctionRenderCard auctionView={auction} auctionDetail={props} />
                       </Link>
                     ))}
                 </div>
