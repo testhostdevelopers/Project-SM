@@ -106,13 +106,14 @@ export const ArtCard = (props: ArtCardProps) => {
         />
       </div>
       <div className="art-card__header">
-        {creatorDeatil && creatorDeatil.length > 0 ? (
-          <img src={creatorDeatil[0].profile_pic.url} />
-        ) : (
-          <img src="/profile-img.png" />
-        )}
-
-        <MetaAvatar creators={creators} size={32} />
+        <div className="custom-avatar-image">
+          {creatorDeatil && creatorDeatil.length > 0 ? (
+            <img src={creatorDeatil[0].profile_pic.url} />
+          ) : (
+            <img src="/profile-img.png" />
+          )}
+          <MetaAvatar creators={creators} size={32} />
+        </div>
         <div className="edition-badge">{badge}</div>
       </div>
       <Meta
