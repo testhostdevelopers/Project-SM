@@ -10,7 +10,7 @@ const { Meta } = Card;
 
 export interface ArtCardProps extends CardProps {
   pubkey?: StringPublicKey;
-  artkey:string
+  artkey: string;
   image?: string;
   animationURL?: string;
 
@@ -27,7 +27,7 @@ export interface ArtCardProps extends CardProps {
   height?: number;
   artView?: boolean;
   width?: number;
-  prismicContent: any,
+  prismicContent: any;
   count?: string;
 }
 
@@ -66,7 +66,13 @@ export const ArtCard = (props: ArtCardProps) => {
   } else if (art.type === ArtType.Print) {
     badge = `${art.edition} of ${art.supply}`;
   }
-let creatorDeatil = (prismicContent && prismicContent.length > 0 && prismicContent[0].data.creator.length > 0) && prismicContent[0].data.creator.filter((x: any) => (x.creator_id[0].text === artkey));
+  const creatorDeatil =
+    prismicContent &&
+    prismicContent.length > 0 &&
+    prismicContent[0].data.creator.length > 0 &&
+    prismicContent[0].data.creator.filter(
+      (x: any) => x.creator_id[0].text === artkey,
+    );
 
   const card = (
     <Card
@@ -100,9 +106,13 @@ let creatorDeatil = (prismicContent && prismicContent.length > 0 && prismicConte
         />
       </div>
       <div className="art-card__header">
-      {(creatorDeatil && creatorDeatil.length > 0) ? <img src={creatorDeatil[0].profile_pic.url} /> : <img src="/profile-img.png" />}
+        {creatorDeatil && creatorDeatil.length > 0 ? (
+          <img src={creatorDeatil[0].profile_pic.url} />
+        ) : (
+          <img src="/profile-img.png" />
+        )}
 
-        {/* <MetaAvatar creators={creators} size={32} /> */}
+        <MetaAvatar creators={creators} size={32} />
         <div className="edition-badge">{badge}</div>
       </div>
       <Meta

@@ -15,7 +15,7 @@ export const Settings = () => {
       <div style={{ display: 'grid' }}>
         Network:{' '}
         <Select
-          onSelect={network => {
+          onSelect={(network: string) => {
             // Reload the page, forward user selection to the URL querystring.
             // The app will be re-initialized with the correct network
             // (which will also be saved to local storage for future visits)
