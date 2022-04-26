@@ -80,8 +80,8 @@ export const ArtView = (props) => {
       <br />
     </>
   );
-  const rendercreatorProfile = (creator :any) => {
-    let creatorDeatil = (prismicContent && prismicContent.length > 0 && prismicContent[0].data.creator.length > 0) && prismicContent[0].data.creator.filter((x :any) => (x.creator_id[0].text === creator.address));
+  const rendercreatorProfile = (creator: any) => {
+    let creatorDeatil = (prismicContent && prismicContent.length > 0 && prismicContent[0].data.creator.length > 0) && prismicContent[0].data.creator.filter((x: any) => (x.creator_id[0].text === creator.address));
     return <>{(creatorDeatil && creatorDeatil.length > 0) ? <img src={creatorDeatil[0].profile_pic.url} /> : <img src="/profile-img.png" />}</>
   }
 
@@ -123,8 +123,9 @@ export const ArtView = (props) => {
                             }}
                           >
                             <Link to={`/artists/${creator.address}`}>
-                              {rendercreatorProfile(creator)}
-
+                              <div className='custom-avtar'>
+                                {rendercreatorProfile(creator)}
+                              </div>
 
                               {/* <MetaAvatar creators={[creator]} size={32} /> */}
                               <div>
