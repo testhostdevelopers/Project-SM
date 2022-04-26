@@ -24,11 +24,11 @@ import { ArtMinting } from '../../components/ArtMinting';
 
 const { Content } = Layout;
 
-export const ArtView = () => {
+export const ArtView = (props) => {
   const { id } = useParams<{ id: string }>();
   const wallet = useWallet();
   const [remountArtMinting, setRemountArtMinting] = useState(0);
-
+  let { prismicContent } = props;
   const connection = useConnection();
   const art = useArt(id);
   let badge = '';
@@ -45,6 +45,8 @@ export const ArtView = () => {
   } else if (art.type === ArtType.Print) {
     badge = `${art.edition} of ${art.supply}`;
   }
+
+
   const { ref, data } = useExtendedArt(id);
 
   // const { userAccounts } = useUserAccounts();
@@ -78,6 +80,10 @@ export const ArtView = () => {
       <br />
     </>
   );
+  const rendercreatorProfile = (creator) => {
+    let creatorDeatil = (prismicContent && prismicContent.length > 0 && prismicContent[0].data.creator.length > 0) && prismicContent[0].data.creator.filter((x) => (x.creator_id[0].text === creator.address));
+    return <>{(creatorDeatil && creatorDeatil.length > 0) ? <img src={creatorDeatil[0].profile_pic.url} /> : <img src="/profile-img.png" />}</>
+  }
 
   return (
     <Content>
@@ -97,27 +103,30 @@ export const ArtView = () => {
           </Col>
           {/* <Divider /> */}
           <Col span={33} md={12}>
-          <div className='border-div'>
+            <div className='border-div'>
               <h2 className="art-title">
                 {art.title || <Skeleton paragraph={{ rows: 0 }} />}
               </h2>
               <Row gutter={[44, 0]}>
                 <Col className='art-wrap' span={12} md={24}>
                   <div className='art-creater-details'>
-                      <h6 style={{ marginTop: 5 }}>Created By</h6>
-                      <div className="creators">
-                        {(art.creators || []).map((creator, idx) => {
-                          return (
-                            <div
-                              key={idx}
-                              style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                marginBottom: 5,
-                              }}
-                            > 
+                    <h6 style={{ marginTop: 5 }}>Created By</h6>
+                    <div className="creators">
+                      {(art.creators || []).map((creator, idx) => {
+                        return (
+                          <div
+                            key={idx}
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              marginBottom: 5,
+                            }}
+                          >
                             <Link to={`/artists/${creator.address}`}>
-                              <MetaAvatar creators={[creator]} size={32} />
+                              {rendercreatorProfile(creator)}
+
+
+                              {/* <MetaAvatar creators={[creator]} size={32} /> */}
                               <div>
                                 <span className="creator-name">
                                   {creator.name ||
@@ -149,10 +158,10 @@ export const ArtView = () => {
                                 </div>
                               </div>
                             </Link>
-                            </div>
-                          );
-                        })}
-                      </div>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
 
                   <div className='art-creater-details'>
@@ -168,14 +177,14 @@ export const ArtView = () => {
                   </div>
 
                   <div className='art-creater-details'>
-                  {art.type === ArtType.Master && (
-                    <Row>
-                      <Col>
-                        <h6 style={{ marginTop: 5 }}>Max Supply</h6>
-                        <div className="art-edition">{maxSupply}</div>
-                      </Col>
-                    </Row>
-                  )}
+                    {art.type === ArtType.Master && (
+                      <Row>
+                        <Col>
+                          <h6 style={{ marginTop: 5 }}>Max Supply</h6>
+                          <div className="art-edition">{maxSupply}</div>
+                        </Col>
+                      </Row>
+                    )}
                   </div>
 
                 </Col>
@@ -183,13 +192,13 @@ export const ArtView = () => {
                   <ViewOn id={id} />
                 </Col>
               </Row>
-            <Row>
-              
-            </Row>
-           
-            
-            
-            {/* <Button
+              <Row>
+
+              </Row>
+
+
+
+              {/* <Button
                   onClick={async () => {
                     if(!art.mint) {
                       return;
@@ -215,41 +224,41 @@ export const ArtView = () => {
                   Mark as Sold
                 </Button> */}
 
-            {/* TODO: Add conversion of MasterEditionV1 to MasterEditionV2 */}
-            <ArtMinting
-              id={id}
-              key={remountArtMinting}
-              onMint={async () => await setRemountArtMinting(prev => prev + 1)}
-            />
-          
-          <Col className='about-c' span="24">
-            <Divider />
-            {art.creators?.find(c => !c.verified) && unverified}
-            <div className="info-header">About The Creation</div>
-            <div className="info-content">{description}</div>
-            {/*
+              {/* TODO: Add conversion of MasterEditionV1 to MasterEditionV2 */}
+              <ArtMinting
+                id={id}
+                key={remountArtMinting}
+                onMint={async () => await setRemountArtMinting(prev => prev + 1)}
+              />
+
+              <Col className='about-c' span="24">
+                <Divider />
+                {art.creators?.find(c => !c.verified) && unverified}
+                <div className="info-header">About The Creation</div>
+                <div className="info-content">{description}</div>
+                {/*
               TODO: add info about artist
             <div className="info-header">ABOUT THE CREATOR</div>
             <div className="info-content">{art.about}</div> */}
-          </Col>
-          <Col span="24" className='about-c a-attributes'>
-            {attributes && (
-              <>
-                <Divider />
-                <div className="info-header">Attributes</div>
-                <List size="large" grid={{ column: 4 }}>
-                  {attributes.map(attribute => (
-                    <List.Item key={attribute.trait_type}>
-                      <Card title={attribute.trait_type}>
-                        {attribute.value}
-                      </Card>
-                    </List.Item>
-                  ))}
-                </List>
-              </>
-            )}
-          </Col>
-          </div>
+              </Col>
+              <Col span="24" className='about-c a-attributes'>
+                {attributes && (
+                  <>
+                    <Divider />
+                    <div className="info-header">Attributes</div>
+                    <List size="large" grid={{ column: 4 }}>
+                      {attributes.map(attribute => (
+                        <List.Item key={attribute.trait_type}>
+                          <Card title={attribute.trait_type}>
+                            {attribute.value}
+                          </Card>
+                        </List.Item>
+                      ))}
+                    </List>
+                  </>
+                )}
+              </Col>
+            </div>
           </Col>
         </Row>
       </Col>

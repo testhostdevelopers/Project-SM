@@ -56,7 +56,7 @@ export function Routes(props) {
               path="/artworks/:id?"
               component={() => <ArtworksView />}
             />
-            <Route exact path="/art/:id" component={() => <ArtView />} />
+            <Route exact path="/art/:id" component={() => <ArtView {...props}/>} />
             <Route exact path="/artists/:id" component={() => <ArtistView {...props}/>} />
             <Route exact path="/artists" component={() => <ArtistsView {...props}/>} />
 

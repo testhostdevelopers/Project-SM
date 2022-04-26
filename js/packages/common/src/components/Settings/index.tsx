@@ -2,17 +2,15 @@ import React from 'react';
 import { Tooltip } from 'antd';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { shortenAddress } from '../../utils';
-import { CopyOutlined } from '@ant-design/icons'; 
+import { CopyOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-
+import { Identicon } from '../Identicon';
 export const Settings = (props: any, {
   additionalSettings,
-  userDetail,
 }: {
   additionalSettings?: JSX.Element;
-  userDetail?: any
 }) => {
-  const { publicKey } = useWallet();
+  const { publicKey } = useWallet() || {}
   const { prismicContent } = props.userDetail.children._owner.memoizedProps;
   let creatorDeatil = (prismicContent && prismicContent.length > 0 && prismicContent[0].data.creator.length > 0) && prismicContent[0].data.creator.filter((x: any) => (x.creator_id[0].text === publicKey?.toBase58()));
 
@@ -27,11 +25,11 @@ export const Settings = (props: any, {
         }}
       >
         {/* <Identicon
-          address={publicKey?.toBase58()}
-          style={{
-            width: 48,
-          }}
-        /> */}
+            address={publicKey?.toBase58()}
+            style={{
+              width: 48,
+            }}
+          /> */}
         <div className='drop-profile-img'>
           {(creatorDeatil && creatorDeatil.length > 0) ? <img src={creatorDeatil[0].profile_pic.url} /> : <img src="/profile-img.png" />}
         </div>

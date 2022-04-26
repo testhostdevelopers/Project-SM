@@ -6,9 +6,8 @@ import { Artist } from '../../types';
 import { shortenAddress } from '@oyster/common';
 import { MetaAvatar } from '../MetaAvatar';
 
-export const ArtistCard = (props: any, { artist: Artist, artistDetail: any }) => {
+export const ArtistCard = (props: any) => {
   let { artistDetail , artist} = props
-  console.log(props);
   
   let creatorDeatil = (artistDetail.prismicContent && artistDetail.prismicContent.length > 0 && artistDetail.prismicContent[0].data.creator.length > 0) && artistDetail.prismicContent[0].data.creator.filter((x) => (x.creator_id[0].text === artist.address));
 
