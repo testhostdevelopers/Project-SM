@@ -23,10 +23,15 @@
     background: #C4C4C4;
     padding-top: 100%;
     border-radius: 10px;
-    > *{
+    position: relative;
+    overflow: hidden;
+    > img{
       position: absolute;
       top: 0;
       left: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
     }
   }
   .ant-card-cover{
