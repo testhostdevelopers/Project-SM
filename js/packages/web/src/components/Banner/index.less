@@ -40,9 +40,13 @@
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 60px;
+  @media (max-width: @screen-md-min){
+    height: 350px;
+  }
   @media (max-width: @screen-sm-min){
     display: none;
   }
+  
   #gradient-banner {
     position: absolute;
     height: 100%;
@@ -90,20 +94,44 @@
       font-size: 40px;
       line-height: 120%;
       color: #fff;
+      @media (max-width: @screen-md-min){
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
     }
     #by {
       font-family: AvertaStd-Semibold;
       font-size: 18px;
       line-height: 21px;
       color: #fff;
+      @media (max-width: @screen-md-min){
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
     }
     #sub-heading {
       margin-top: 20px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       font-family: AvertaStd-Semibold;
       font-size: 18px;
       line-height: 21px;
       color: #fff;
+      @media (max-width: @screen-md-min){
+        font-size: 14px;
+        margin-top: 12px;
+        margin-bottom:12px;
+      }
+    }
+    #evendate {
+      font-family: 'AvertaStd-Semibold';
+      font-size: 18px;
+      line-height: 21px;
+      color: #FFFFFF;
+      margin-bottom: 30px;
+      @media (max-width: @screen-md-min){
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
     }
     button{
       max-width: 222px;

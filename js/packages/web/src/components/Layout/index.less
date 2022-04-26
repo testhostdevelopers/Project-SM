@@ -12,6 +12,10 @@
 	margin-left: 0;
 	max-width: calc(100% - 230px);
 	width: 100%;
+  @media (max-width: @screen-md-min){
+    max-width: calc(100% - 130px);
+    justify-content: space-between;
+  }
 }
 .app-left > div{
   max-width: calc(100% - 230px);
@@ -32,6 +36,9 @@
   max-width: 310px;
   width: 100%;
   justify-content: flex-end;
+  @media (max-width: @screen-md-min){
+    max-width: 110px;
+  }
   > div,
   > span{
     padding: 0;
@@ -85,7 +92,22 @@
   }
 }
 .app-right .ant-dropdown-button .ant-dropdown-trigger {
-	display: none;
+	// display: none;
+  margin-left: 15px;
+  width: 48px;
+  height: 48px !important;
+  min-width: 1px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #6300FF !important;
+  background-image: url("/preLaunch/wallet.svg") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  > span{
+    display: none;
+  }
 }
 // .app-right .ant-badge img {
 // 	filter: invert(1);
@@ -96,7 +118,7 @@
 	border: 1px solid #6300FF;
 	border-radius: 50px;
 	min-width: 95px;
-	padding: 10px 20px;
+	padding: 15px 25px;
   &.no-border{
     border: none;
   }
@@ -117,6 +139,9 @@
   margin: 0 auto;
   padding: 0 48px;
   justify-content: space-between;
+  @media (max-width: @screen-md-min){
+    padding: 0 20px;
+  }
   @media (max-width: @screen-sm-min) {
     display: none;
   }
