@@ -11,15 +11,17 @@ import { useTokenList } from '../../contexts/tokenList';
 
 export interface AuctionCard extends CardProps {
   auctionView: AuctionView;
+  auctionDetail: any
 }
 
 export const AuctionRenderCard = (props: AuctionCard) => {
-  const { auctionView } = props;
+  const { auctionView, auctionDetail  } = props;  
   const id = auctionView.thumbnail.metadata.pubkey;
   const art = useArt(id);
   const creators = useCreators(auctionView);
   const name = art?.title || ' ';
-
+  let creatorDeatil = (auctionDetail.prismicContent && auctionDetail.prismicContent.length > 0 && auctionDetail.prismicContent[0].data.creator.length > 0) && auctionDetail.prismicContent[0].data.creator.filter((x)=>(x.creator_id[0].text === auctionView.auctionManager.authority));
+  
   const tokenInfo = useTokenList().subscribedTokens.filter(
     m => m.address == auctionView.auction.info.tokenMint,
   )[0];
@@ -40,9 +42,11 @@ export const AuctionRenderCard = (props: AuctionCard) => {
           </div>
           <div className='pic-timer'>
             <div className={'card-artist-info'}>
-              <MetaAvatar
+              {/* <MetaAvatar
                 creators={creators.length ? [creators[0]] : undefined}
-              />
+              /> */}
+          {(creatorDeatil && creatorDeatil.length > 0) ? <img src={creatorDeatil[0].profile_pic.url} />  :  <img src="/profile-img.png" /> }
+
               {/* <span className={'artist-name'}>
                 {creators[0]?.name ||
                   creators[0]?.address?.substr(0, 6) ||
@@ -53,7 +57,7 @@ export const AuctionRenderCard = (props: AuctionCard) => {
             <div className="auction-info-container">
               {/* <div className={'info-message'}>ENDING IN</div> */}
               <div className='clk'>
-                <img src="/timer.png"/>
+                <img src="/timer.svg"/>
               </div>
               <AuctionCountdown auctionView={auctionView} labels={false} />
             </div>

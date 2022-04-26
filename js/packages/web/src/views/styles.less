@@ -15,9 +15,9 @@
 }
 
 .action-btn:disabled {
-  color: rgba(255, 255, 255, 0.5);
+  color: #fff;
   &:hover, &:focus {
-    color: rgba(255, 255, 255, 0.5);
+    color: #fff;
   }
 }
 
@@ -461,7 +461,7 @@ h2 {
 }
 
 body .ant-card-hoverable:hover {
-	border-color: #6300ff;
+	border-color: #EDECEC;
 	-webkit-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
 	box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
 }
@@ -530,6 +530,7 @@ span.ant-input-group-addon {
       max-width: 100%;
       max-height: 100%;
       object-fit: cover;
+      background: #fff;
     }
   }
 }
@@ -583,14 +584,19 @@ span.ant-input-group-addon {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 50px;
-    > span{
-      margin: 0 5px;
-      font-family: 'AvertaStd-Bold';
-      font-size: 16px;
-      line-height: 140%;
-      text-align: center;
-      color: #000000;
-    }
+    > a{
+      span{
+        margin: 0 5px;
+        font-family: 'AvertaStd-Bold';
+        font-size: 16px;
+        line-height: 140%;
+        text-align: center;
+        color: #000000;
+      }
+      &:hover{
+        color: #6300FF;
+      }
+    }    
   }
 }
 

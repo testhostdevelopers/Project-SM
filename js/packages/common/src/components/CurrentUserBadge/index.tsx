@@ -52,7 +52,7 @@ export const CurrentUserBadge = (props: {
       <Popover
         placement="topRight"
         title="Settings"
-        content={<Settings />}
+        content={<Settings  userDetail={props} />}
         trigger="click"
       >
         <div className="wallet-key" style={walletKeyStyle}>

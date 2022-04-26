@@ -321,6 +321,18 @@ model-viewer {
   --poster-color: transparent;
 }
 
+.bid-buttons {
+  .ant-btn.secondary-btn {
+    background: #6300FF !important;
+    .ant-spin-dot{
+      margin-top: 5px;
+      > i{
+        background: #fff;
+      }
+    }
+  }
+}
+
 .creator-base-page {
   &.creat-new-nft{
     justify-content: center;
@@ -588,7 +600,6 @@ div.ant-upload-list-item{
   display: flex;
   flex-wrap: wrap;
   margin: 0 -15px 20px -15px;
-  width: calc(100% - 30px);
   &:last-child{
     margin-bottom: 0;
   }
@@ -597,6 +608,7 @@ div.ant-upload-list-item{
     padding: 0 15px;
     flex: unset;
     width: 25%;
+    margin-bottom: 30px;
   }
   > svg {
     filter: invert(1);

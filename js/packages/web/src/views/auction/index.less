@@ -24,9 +24,12 @@
   }
   .auction-container{
     margin: 0;
+    .bid-info{
+      padding-left: 0;
+      padding-right: 0;
+    }
     .time-info{
-      padding-top: 0;
-      padding-bottom: 0;
+      padding: 0;
       flex-direction: column;
       align-items: flex-start;
       > span{
@@ -117,9 +120,15 @@
 .ant-row.ant-row-center.no-margin {
 	margin: 0 !important;
 }
+
+
+
 .auction-view {
   *{
     height: 100%;
+  }
+  .ant-image-mask-info {
+    height: auto;
   }
   .slick-track{
     background: #f4f4f4;
@@ -274,15 +283,15 @@ h6.info-title {
 	text-transform: none;
 	margin-bottom: 15px;
 	font-family: 'AvertaStd-Bold';
-	font-size: 16px;
+	font-size: 15px;
 	line-height: 130%;
 	color: #979797;
 }
 
 .bids-lists{
   width: 100%;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-left: 0;
+  padding-right: 0;
   @media (max-width: @screen-sm-min) {
     padding-left: 0;
     padding-right: 0;
@@ -295,7 +304,7 @@ h6.info-title {
   line-height: 14px;
   font-weight: 400;
   letter-spacing: 0.02em;
-  margin-bottom: 16px;
+  margin-bottom: 0;
 }
 
 .a-description {
@@ -332,18 +341,55 @@ h6.info-title {
     background-color: transparent;
     .ant-card-head{
       color: #000;
+      padding: 2px 0 5px 0;
+      border: none;
+    }
+  }
+  .ant-spin-container{
+    display: flex;
+    flex-wrap: wrap;
+    .ant-col{
+      flex: unset !important;
+      .ant-list-item{
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
     }
   }
   .ant-card.ant-card-bordered {
-    width: 74px;
-    height: 54px;
+    width: auto;
+    height: auto;
     border: 1px solid #979797;
     border-radius: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    padding: 8px 20px;
+    .ant-card-head{
+      padding: 0 0 5px 0;
+      border: none;
+      min-height: 1px;
+      .ant-card-head-title{
+        padding: 0;
+        line-height: 100%;
+        font-family: 'AvertaStd-Semibold';
+        font-size: 12px;
+        line-height: 14px;
+        display: flex;
+        align-items: center;
+        color: #6300FF;
+      }
+    }
     .ant-card-body{
       padding: 0;
+      font-family: 'AvertaStd-Semibold';
+      font-size: 12px;
+      line-height: 14px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: #979797;
     }
   }
 }
@@ -410,11 +456,14 @@ h6.info-title {
   align-items: center;
   border-bottom: 1px solid  rgba(255, 255, 255, 0.1);
 
-  .create-statistic .ant-statistic-content {
-    line-height: 22px;
+  .create-statistic{
+    line-height: 0;
+    .ant-statistic-content {
+      line-height: 22px;
+    }
   }
   .ant-statistic-content-value {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 25px;
     margin: auto;
   }
@@ -423,10 +472,12 @@ h6.info-title {
   }
   .usd {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     padding: 0;
     min-height: 0;
     margin-left: 6px;
+    font-size: 12px;
+    line-height: 120%;
   }
 }
 

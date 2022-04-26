@@ -326,7 +326,8 @@ export const AuctionView = () => {
                 <div className={'info-container'}>
                   <div className={'info-component'}>
                     <h6 className={'info-title'}>Created by</h6>
-                    <span>{<MetaAvatar creators={creators} />}</span>
+                      
+                  <span>{<MetaAvatar creators={creators} />}</span>
                   </div>
                   <div className={'info-component'}>
                     <h6 className={'info-title'}>Edition</h6>

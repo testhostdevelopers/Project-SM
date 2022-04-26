@@ -4,13 +4,13 @@ import {
   WalletProvider as BaseWalletProvider,
 } from '@solana/wallet-adapter-react';
 import {
-  getLedgerWallet,
-  getMathWallet,
+  //getLedgerWallet,
+  //getMathWallet,
   getPhantomWallet,
   getSlopeWallet,
   getSolflareWallet,
-  getSolletWallet,
-  getSolongWallet,
+  //getSolletWallet,
+  //getSolongWallet,
 } from '@solana/wallet-adapter-wallets';
 import { Button, Collapse } from 'antd';
 import React, {
@@ -52,9 +52,7 @@ export const WalletModal: FC = () => {
 
   return (
     <MetaplexModal title="Connect Wallet" visible={visible} onCancel={close}>
-      <span className='recommended'>
-        Recommended
-      </span>
+      <span className="recommended">Recommended</span>
 
       <Button
         className="phantom-button metaplex-button"
@@ -71,22 +69,42 @@ export const WalletModal: FC = () => {
         ghost
         expandIcon={panelProps =>
           panelProps.isActive ? (
-            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 1.10547L7 8.78505L13 1.10547" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg
+              width="14"
+              height="10"
+              viewBox="0 0 14 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 1.10547L7 8.78505L13 1.10547"
+                stroke="black"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           ) : (
-            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 1.10547L7 8.78505L13 1.10547" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg
+              width="14"
+              height="10"
+              viewBox="0 0 14 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 1.10547L7 8.78505L13 1.10547"
+                stroke="black"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           )
         }
       >
         <Panel
-          header={
-            <span className='otherwallets'>
-              Other Wallets
-            </span>
-          }
+          header={<span className="otherwallets">Other Wallets</span>}
           key="1"
         >
           {wallets.map((wallet, idx) => {
@@ -175,10 +193,10 @@ export const WalletProvider: FC<{ children: ReactNode }> = ({ children }) => {
       //       'BOM5Cl7PXgE9Ylq1Z1tqzhpydY0RVr8k90QQ85N7AKI5QGSrr9iDC-3rvmy0K_hF0JfpLMiXoDhta68JwcxS1LQ',
       //   },
       // }),
-      getLedgerWallet(),
-      getSolongWallet(),
-      getMathWallet(),
-      getSolletWallet(),
+      // getLedgerWallet(),
+      // getSolongWallet(),
+      //getMathWallet(),
+      //getSolletWallet(),
     ],
     [],
   );

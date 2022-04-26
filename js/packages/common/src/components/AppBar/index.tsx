@@ -31,7 +31,7 @@ export const AppBar = (props: {
       <Popover
         placement="topRight"
         title={LABELS.SETTINGS_TOOLTIP}
-        content={<Settings additionalSettings={props.additionalSettings} />}
+        content={<Settings  userDetail={props} additionalSettings={props.additionalSettings} />}
         trigger="click"
       >
         <Button

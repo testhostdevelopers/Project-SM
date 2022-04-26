@@ -6,7 +6,6 @@ import React, { useState } from 'react';
 import { useMeta } from '../../../../contexts';
 import { CardLoader } from '../../../../components/MyLoader';
 import { Banner } from '../../../../components/Banner';
-import { HowToBuyModal } from '../../../../components/HowToBuyModal';
 
 import { useAuctionsList } from './hooks/useAuctionsList';
 import { AuctionRenderCard } from '../../../../components/AuctionRenderCard';
@@ -22,7 +21,8 @@ export enum LiveAuctionViewState {
   Own = '4',
 }
 
-export const SalesListView = props => {
+export const SalesListView = (props: any) => {
+  
   const [activeKey, setActiveKey] = useState(LiveAuctionViewState.All);
   const { isLoading } = useMeta();
   const { connected } = useWallet();
@@ -84,7 +84,7 @@ export const SalesListView = props => {
                 <ul>
                   {(prismicContent[0]?.data?.home_featured_creator && prismicContent[0]?.data?.home_featured_creator.length > 0) &&
                     prismicContent[0]?.data?.home_featured_creator.map((x) => (<li>
-                      <Link to={x.creator_link[0]?.text} target="_blank">
+                      <Link to={x.creator_link[0]?.text}>
                         <div className="featuere-img">
                           <img src={x.creator_image.url} />
                         </div>
@@ -156,7 +156,7 @@ export const SalesListView = props => {
                         key={auction.auction.pubkey}
                         to={`/auction/${auction.auction.pubkey}`}
                       >
-                        <AuctionRenderCard auctionView={auction} />
+                        <AuctionRenderCard auctionView={auction} auctionDetail={props} />
                       </Link>
                     ))}
                 </div>

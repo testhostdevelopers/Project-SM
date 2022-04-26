@@ -10,7 +10,7 @@ const { Meta } = Card;
 
 export interface ArtCardProps extends CardProps {
   pubkey?: StringPublicKey;
-
+  artkey: string;
   image?: string;
   animationURL?: string;
 
@@ -27,7 +27,7 @@ export interface ArtCardProps extends CardProps {
   height?: number;
   artView?: boolean;
   width?: number;
-
+  prismicContent: any;
   count?: string;
 }
 
@@ -49,6 +49,8 @@ export const ArtCard = (props: ArtCardProps) => {
     name: _name,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     creators: _creators,
+    prismicContent,
+    artkey,
     ...rest
   } = props;
   const art = useArt(pubkey);
@@ -64,6 +66,13 @@ export const ArtCard = (props: ArtCardProps) => {
   } else if (art.type === ArtType.Print) {
     badge = `${art.edition} of ${art.supply}`;
   }
+  const creatorDeatil =
+    prismicContent &&
+    prismicContent.length > 0 &&
+    prismicContent[0].data.creator.length > 0 &&
+    prismicContent[0].data.creator.filter(
+      (x: any) => x.creator_id[0].text === artkey,
+    );
 
   const card = (
     <Card
@@ -84,10 +93,6 @@ export const ArtCard = (props: ArtCardProps) => {
           X
         </Button>
       )}
-      <div className="art-card__header">
-        <MetaAvatar creators={creators} size={32} />
-        <div className="edition-badge">{badge}</div>
-      </div>
       <div className="art-content__wrapper">
         <ArtContent
           pubkey={pubkey}
@@ -99,6 +104,17 @@ export const ArtCard = (props: ArtCardProps) => {
           width={width}
           artView={artView}
         />
+      </div>
+      <div className="art-card__header">
+        <div className="custom-avatar-image">
+          {creatorDeatil && creatorDeatil.length > 0 ? (
+            <img src={creatorDeatil[0].profile_pic.url} />
+          ) : (
+            <img src="/profile-img.png" />
+          )}
+          <MetaAvatar creators={creators} size={32} />
+        </div>
+        <div className="edition-badge">{badge}</div>
       </div>
       <Meta
         title={`${name}`}
