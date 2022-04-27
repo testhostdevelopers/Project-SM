@@ -6,7 +6,8 @@ export const footerConf = (props) => {
     emailSubscriberText:'Join our mailing list for updates about our artists and more.',
     components: [
       {
-        title: props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.site_map[0].text,
+        // title: props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.site_map[0].text,
+        title: 'Site map',
         links: [
           {
             label: 'Explore',
@@ -27,7 +28,8 @@ export const footerConf = (props) => {
         ],
       },
       {
-        title: props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.community[0].text,
+        // title: props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.community[0].text,
+        title: 'Community',
         links: [
           {
             label: 'NEUM Token',
