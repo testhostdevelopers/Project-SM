@@ -1,7 +1,7 @@
 import { useWallet } from '@solana/wallet-adapter-react';
 import { Col, Layout, Row, Tabs, Button } from 'antd';
 import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useMeta } from '../../../../contexts';
 import { CardLoader } from '../../../../components/MyLoader';
@@ -9,6 +9,7 @@ import { Banner } from '../../../../components/Banner';
 
 import { useAuctionsList } from './hooks/useAuctionsList';
 import { AuctionRenderCard } from '../../../../components/AuctionRenderCard';
+// import { set } from 'lodash';
 
 const { TabPane } = Tabs;
 const { Content } = Layout;
@@ -22,32 +23,37 @@ export enum LiveAuctionViewState {
 }
 
 export const SalesListView = (props: any) => {
-  
+
   const [activeKey, setActiveKey] = useState(LiveAuctionViewState.All);
+  const [slidercheck, setSlidercheck] = useState(1);
   const { isLoading } = useMeta();
   const { connected } = useWallet();
   const { auctions, hasResaleAuctions } = useAuctionsList(activeKey);
   const { prismicContent } = props || [];
-  let rdo_checked = false;
-  const checkedBox = () => {
-    if( !rdo_checked ){
-      rdo_checked = true;
-      return true;
-    } else {
-      return false;
-    }
-  };
-// console.log(prismicContent[0]?.data?.home_collection);
-// let slider = document.getElementsByName(`slider`);
-//   setInterval(()=> {
-    
-//     if( slider.checked == true ){
-        
-//     }
-//     prismicContent[0]?.data?.home_collection.map((x, i) => {
-        
-//     })
-//   }, 5000);
+  // let rdo_checked = false;
+  // const checkedBox = () => {
+  //   if (!rdo_checked) {
+  //     // setSlidercheck(true);
+  //     rdo_checked = true;
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // };
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (prismicContent && prismicContent.length > 0) {
+        if (slidercheck === prismicContent[0]?.data?.home_collection.length) {
+          setSlidercheck(1)
+        } else {
+          setSlidercheck(slidercheck + 1)
+        }
+      }
+    }, 5000);
+  }, [slidercheck])
+
+
 
   return (
     <>
@@ -56,8 +62,8 @@ export const SalesListView = (props: any) => {
           prismicContent[0]?.data?.home_collection && prismicContent[0]?.data?.home_collection.length > 0 &&
           prismicContent[0]?.data?.home_collection.map((x, i) =>
             <>
-              <input type="radio" id={`trigger${i+1}`} name="slider" defaultChecked={checkedBox()} />
-              <label htmlFor={`trigger${i+1}`}></label>
+              <input type="radio" id={`trigger-${i + 1}`} name="slider" onChange={() => setSlidercheck(i + 1)} checked={slidercheck === i + 1 ? true : false} />
+              <label htmlFor={`trigger-${i + 1}`}></label>
               <div className="slide">
                 <Banner
                   src={x.home_collection_image?.url}
@@ -66,7 +72,7 @@ export const SalesListView = (props: any) => {
                   subHeadingText={x.home_collection_description[0]?.text}
                   actionComponent={
                     <Link to={x.home_collection_btn_url[0].text} target="_blank">
-                    <Button type="primary">{x.home_collection_btn_text[0]?.text}</Button></Link>
+                      <Button type="primary">{x.home_collection_btn_text[0]?.text}</Button></Link>
                   }
                   useBannerBg
                 />
@@ -83,8 +89,8 @@ export const SalesListView = (props: any) => {
                 <h2>Featured Creators</h2>
                 <ul>
                   {(prismicContent[0]?.data?.home_featured_creator && prismicContent[0]?.data?.home_featured_creator.length > 0) &&
-                    prismicContent[0]?.data?.home_featured_creator.map((x) => (<li>
-                      <Link to={x.creator_link[0]?.text}>
+                    prismicContent[0]?.data?.home_featured_creator.map((x: any, key: string) => (<li>
+                      <Link to={x.creator_link[0]?.text} key={key}>
                         <div className="featuere-img">
                           <img src={x.creator_image.url} />
                         </div>
