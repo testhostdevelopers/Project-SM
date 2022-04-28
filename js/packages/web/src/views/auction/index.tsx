@@ -336,7 +336,7 @@ export const AuctionView = (props) => {
                     </div>
 
                     <span className="creator-name">
-                      {shortenAddress(creatorDeatil[0].creator_id[0].text)}
+                      {(creatorDeatil && creatorDeatil.length > 0) && shortenAddress(creatorDeatil[0].creator_id[0].text)}
                     </span>
                   </span>
                   </div>
