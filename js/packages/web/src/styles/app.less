@@ -295,7 +295,7 @@ h1 {
 
     &:disabled,
     &:disabled &:hover {
-      color: rgba(255, 255, 255, 0.5) !important;
+      color: rgba(255, 255, 255,1) !important;
       background: #1e1e1e !important;
       border: none;
     }
@@ -380,6 +380,17 @@ model-viewer {
     }
     .ant-card-body {
       background: #ECECEC;
+      .card-close-button{
+        min-width: 1px;
+        border: none;
+        width: 25px;
+        height: 25px;
+        padding: 0;
+        font-size: 11px;
+        color: #fff;
+        top: 0;
+        left: 0;
+      }
       .art-content__wrapper{
         background: #ECECEC;  
       }
@@ -610,6 +621,18 @@ div.ant-upload-list-item{
     width: 25%;
     margin-bottom: 30px;
   }
+  & > div{
+    padding: 0 0;
+    box-shadow: 0 0 31px 0 rgba(0,0,0,0.05);
+    &.ant-card{
+      div.ant-card-body{
+        background-color: #fff;
+        .art-content__wrapper{
+          background-color: #fff;
+        }
+      }
+    }
+  }
   > svg {
     filter: invert(1);
   }
@@ -646,7 +669,8 @@ div.ant-upload-list-item{
       font-family: AvertaStd-Bold;
       font-size: 16px;
       color: #9D9D9D;
-      padding-bottom: 0;
+      padding-bottom: 6px;
+      margin-left: 5px;
     }
     .ant-statistic-content{
       align-items: center;
@@ -797,8 +821,11 @@ div.waiting-title {
 	font-family: AvertaStd-Bold;
 	font-size: 32px;
 	line-height: 120%;
-	color: #000000;
+	color: #fff;
 	margin-top: 40px;
+}
+div.waiting-title.congo{
+  color: #fff;
 }
 
 div.waiting-subtitle {

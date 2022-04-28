@@ -68,12 +68,12 @@ export const ArtistView = (props) => {
               {creator?.info.description}
             </div>
             <div className='profile-siteinfo'>
-              <Link target="_blank" to={"#0"}>
+              <a href={`//${(creatorDeatil && creatorDeatil[0]) ? creatorDeatil[0].creator_webite_url[0].text : ''}`} target="_blank" rel="noopener noreferrer">
                 <span>
                   <img src='/world.svg' />
                 </span>
                 <span>{(creatorDeatil && creatorDeatil[0]) ? creatorDeatil[0].creator_webite_url[0].text : ''}</span>
-              </Link>
+              </a>
             </div>
             {/* <div className="info-header">Art Created</div> */}
             {artworkGrid}

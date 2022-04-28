@@ -252,9 +252,9 @@ export const ArtMinting = ({ id, onMint }: ArtMintingProps) => {
             </h1>
             <p
               style={{
-                color: 'black',
+                color: '#fff',
                 textAlign: 'center',
-                fontSize: '2rem',
+                fontSize: '24px',
               }}
             >
               New editions have been minted please view your NFTs in{' '}

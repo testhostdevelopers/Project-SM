@@ -147,9 +147,8 @@ export const ArtCreateView = () => {
 
   return (
     <>
-      
       <Row className={'creator-base-page creat-new-nft'}>
-        <div className='main-title'>
+        <div className="main-title">
           <h1>Create a new item</h1>
         </div>
         {stepsVisible && (
@@ -232,9 +231,20 @@ export const ArtCreateView = () => {
             />
           )}
           {0 < step && step < 5 && (
-            <div className='back-btn'>
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.33366H2.55333L6.28 1.60699L5.33333 0.666992L0 6.00033L5.33333 11.3337L6.27333 10.3937L2.55333 6.66699H12V5.33366Z" fill="#141414"/>
+            <div className="back-btn">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M12 5.33366H2.55333L6.28 1.60699L5.33333 0.666992L0 6.00033L5.33333 11.3337L6.27333 10.3937L2.55333 6.66699H12V5.33366Z"
+                  fill="#141414"
+                />
               </svg>
               <Button onClick={() => gotoStep(step - 1)}>Back</Button>
             </div>
@@ -680,7 +690,7 @@ const InfoStep = (props: {
         </p>
       </Row>
       <Row className="content-action">
-        <Col className='art-prev'>
+        <Col className="art-prev">
           {props.attributes.image && (
             <ArtCard
               image={image}
@@ -817,7 +827,8 @@ const InfoStep = (props: {
                     </Space>
                   ))}
                   <Form.Item>
-                    <Button className='attribute'
+                    <Button
+                      className="attribute"
                       type="dashed"
                       onClick={() => add()}
                       block
@@ -903,7 +914,11 @@ const RoyaltiesSplitter = (props: {
                 gutter={[0, 16]}
                 style={{ margin: '5px auto' }}
               >
-                <Col className='wallet-add-label' span={5} style={{ padding: 10 }}>
+                <Col
+                  className="wallet-add-label"
+                  span={5}
+                  style={{ padding: 10 }}
+                >
                   {creator.label}
                 </Col>
                 <Col span={3}>
@@ -991,7 +1006,10 @@ const RoyaltiesStep = (props: {
         </p>
       </Row>
       <Row className="content-action" style={{ marginBottom: 0 }}>
-        <label className="action-field" style={{ maxWidth: 557, width: '100%' }}>
+        <label
+          className="action-field"
+          style={{ maxWidth: 557, width: '100%' }}
+        >
           <span className="field-title">Royalty Percentage</span>
           <p>
             This is how much of each secondary sale will be paid out to the
@@ -1030,17 +1048,19 @@ const RoyaltiesStep = (props: {
         </Row>
       )}
       <Row>
-
-      <Form.Item style={{ maxWidth: "100%", width: '100%', marginTop: '35px' }}>
-        <Button className='attribute'
-          type="dashed"
-          onClick={() => setShowCreatorsModal(true)}
-          block
-          icon={<PlusOutlined />}
+        <Form.Item
+          style={{ maxWidth: '100%', width: '100%', marginTop: '35px' }}
         >
-          Add another creator
-        </Button>
-      </Form.Item>
+          <Button
+            className="attribute"
+            type="dashed"
+            onClick={() => setShowCreatorsModal(true)}
+            block
+            icon={<PlusOutlined />}
+          >
+            Add another creator
+          </Button>
+        </Form.Item>
         {/* <span
           onClick={() => setShowCreatorsModal(true)}
           style={{ padding: 10, marginBottom: 10 }}
@@ -1072,7 +1092,10 @@ const RoyaltiesStep = (props: {
           visible={showCreatorsModal}
           onCancel={() => setShowCreatorsModal(false)}
         >
-          <label className="action-field" style={{ width: '100%', marginBottom: '0', marginTop: '20px' }}>
+          <label
+            className="action-field"
+            style={{ width: '100%', marginBottom: '0', marginTop: '20px' }}
+          >
             <span className="field-title">Creators</span>
             <UserSearch setCreators={setCreators} />
           </label>
@@ -1197,6 +1220,8 @@ const LaunchStep = (props: {
               small={true}
               artView={props.files[1]?.type === 'unknown'}
               className="art-create-card"
+              artkey={''}
+              prismicContent={undefined}
             />
           )}
         </Col>
@@ -1368,14 +1393,16 @@ const Congrats = (props: {
 
   return (
     <>
-      <div className="waiting-title">Congratulations, you created an NFT!</div>
+      <div className="waiting-title congo">
+        Congratulations, you created an NFT!
+      </div>
       <div className="congrats-button-container">
         <Button
           className="metaplex-button"
           onClick={() => window.open(newTweetURL(), '_blank')}
         >
           <span>Share it on Twitter</span>
-          <span>&gt;</span>
+          {/* <span>&gt;</span> */}
         </Button>
         <Button
           className="metaplex-button"
@@ -1384,14 +1411,14 @@ const Congrats = (props: {
           }
         >
           <span>See it in your collection</span>
-          <span>&gt;</span>
+          {/* <span>&gt;</span> */}
         </Button>
         <Button
           className="metaplex-button"
           onClick={() => history.push('/auction/create')}
         >
           <span>Sell it via auction</span>
-          <span>&gt;</span>
+          {/* <span>&gt;</span> */}
         </Button>
       </div>
       <Confetti />

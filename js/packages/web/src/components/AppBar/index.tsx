@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';;
+import React, { useMemo, useState } from 'react';;
 import { Link } from 'react-router-dom';
 import { Button, Menu, Modal } from 'antd';
 import { useWallet } from '@solana/wallet-adapter-react';
@@ -13,23 +13,36 @@ import {
 } from '../CurrentUserBadge';
 import { ConnectButton } from '@oyster/common';
 import { MobileNavbar } from '../MobileNavbar';
-import { useMeta, useSolPrice } from '../../contexts';
+import { useMeta } from '../../contexts';
 
 const getDefaultLinkActions = (connected: boolean, props) => {
   return [
-    <Link to={props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.header_link_explore[0].text} key={'explore'}>
-      <Button className="app-btn">
-      {props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.explore[0].text}
-       </Button>
+    // <Link to={props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.header_link_explore[0].text} key={'explore'}>
+    //   <Button className="app-btn">
+    //   {props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.explore[0].text}
+    //    </Button>
+    // </Link>,
+    // <Link to={props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.header_link_creators[0].text} key={'artists'}>
+    //   <Button className="app-btn">{props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.creators[0].text}</Button>
+    // </Link>,
+    // <Link to={props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.header_link_upcoming[0].text} key={'Upcoming'}>
+    //   <Button className="app-btn">{props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.upcoming[0].text}</Button>
+    // </Link>,
+    // <Link to={props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.header_link_how_to_buy[0].text} key={'/'}>
+    //   <HowToBuyModal buttonClassName="modal-button-default no-border" modalProps={props}/>
+    // </Link>,
+
+    <Link to={`/`} key={'explore'}>
+      <Button className="app-btn">Explore</Button>
     </Link>,
-    <Link to={props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.header_link_creators[0].text} key={'artists'}>
-      <Button className="app-btn">{props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.creators[0].text}</Button>
+    <Link to={`/artists`} key={'artists'}>
+      <Button className="app-btn">Creators</Button>
     </Link>,
-    <Link to={props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.header_link_upcoming[0].text} key={'Upcoming'}>
-      <Button className="app-btn">{props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.upcoming[0].text}</Button>
+    <Link to={`/Upcoming`} key={'Upcoming'}>
+      <Button className="app-btn">Upcoming</Button>
     </Link>,
-    <Link to={props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.header_link_how_to_buy[0].text} key={'/'}>
-      <HowToBuyModal buttonClassName="modal-button-default no-border" modalProps={props}/>
+    <Link to={`/`} key={'/'}>
+      <HowToBuyModal buttonClassName="modal-button-default no-border" modalProps={props} s/>
     </Link>,
 
 
