@@ -10,7 +10,7 @@ const { Meta } = Card;
 
 export interface ArtCardProps extends CardProps {
   pubkey?: StringPublicKey;
-  artkey: string;
+  artkey?: string;
   image?: string;
   animationURL?: string;
 
@@ -27,7 +27,7 @@ export interface ArtCardProps extends CardProps {
   height?: number;
   artView?: boolean;
   width?: number;
-  prismicContent: any;
+  prismicContent?: any;
   count?: string;
 }
 
