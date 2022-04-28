@@ -36,10 +36,10 @@ import { getHandleAndRegistryKey } from '@solana/spl-name-service';
 import useWindowDimensions from '../../utils/layout';
 import { CheckOutlined } from '@ant-design/icons';
 import { ArtType } from '../../types';
-import { MetaAvatar, MetaAvatarDetailed } from '../../components/MetaAvatar';
+import { MetaAvatarDetailed } from '../../components/MetaAvatar';
 import { AmountLabel } from '../../components/AmountLabel';
 import { ClickToCopy } from '../../components/ClickToCopy';
-import { useTokenList } from '../../contexts/tokenList';
+// import { useTokenList } from '../../contexts/tokenList';
 
 export const AuctionItem = ({
   item,
@@ -80,7 +80,7 @@ export const AuctionItem = ({
   );
 };
 
-export const AuctionView = (props) => {
+export const AuctionView = props => {
   const { prismicContent } = props || [];
   const { id } = useParams<{ id: string }>();
   const { width } = useWindowDimensions();
@@ -90,7 +90,14 @@ export const AuctionView = (props) => {
   const art = useArt(auction?.thumbnail.metadata.pubkey);
   const { ref, data } = useExtendedArt(auction?.thumbnail.metadata.pubkey);
   const creators = useCreators(auction);
-  const creatorDeatil = (prismicContent && prismicContent.length > 0 && prismicContent[0].data.creator.length > 0) && prismicContent[0].data.creator.filter((x) => x.creator_id[0].text === (creators.length > 0 && creators[0].address));
+  const creatorDeatil =
+    prismicContent &&
+    prismicContent.length > 0 &&
+    prismicContent[0].data.creator.length > 0 &&
+    prismicContent[0].data.creator.filter(
+      x =>
+        x.creator_id[0].text === (creators.length > 0 && creators[0].address),
+    );
   console.log('creatorDeatil', creatorDeatil);
   const { pullAuctionPage } = useMeta();
   useEffect(() => {
@@ -113,9 +120,9 @@ export const AuctionView = (props) => {
   const description = data?.description;
   const attributes = data?.attributes;
 
-  const tokenInfo = useTokenList()?.subscribedTokens.filter(
-    m => m.address == auction?.auction.info.tokenMint,
-  )[0];
+  // const tokenInfo = useTokenList()?.subscribedTokens.filter(
+  //   m => m.address == auction?.auction.info.tokenMint,
+  // )[0];
 
   const items = [
     ...(auction?.items
@@ -150,7 +157,10 @@ export const AuctionView = (props) => {
         className="auction-mobile-container"
       >
         <Col span={24} className={'img-cont-500'}>
-          <div className="auction-view" style={{ height: 430, width:345, margin:'auto', }}>
+          <div
+            className="auction-view"
+            style={{ height: 430, width: 345, margin: 'auto' }}
+          >
             <Carousel
               autoplay={false}
               afterChange={index => setCurrentIndex(index)}
@@ -277,7 +287,13 @@ export const AuctionView = (props) => {
     );
   } else {
     return (
-      <Row className="no-margin" align='top' justify="center" ref={ref} gutter={[66, 0]}>
+      <Row
+        className="no-margin"
+        align="top"
+        justify="center"
+        ref={ref}
+        gutter={[66, 0]}
+      >
         <Col span={33} md={10} className={'img-cont-500'}>
           <div className="auction-view" style={{ height: 735.87 }}>
             <Carousel
@@ -320,25 +336,43 @@ export const AuctionView = (props) => {
         </Col>
 
         <Col span={33} md={12}>
-          <div className='border-div'>
+          <div className="border-div">
             <h2 className="art-title">
               {art.title || <Skeleton paragraph={{ rows: 0 }} />}
             </h2>
             <Row gutter={[44, 0]}>
-              <Col span={12} md={16}>
+              <Col span={12} md={24}>
                 <div className={'info-container'}>
                   <div className={'info-component'}>
                     <h6 className={'info-title'}>Created by</h6>
-                  <span className="info-profile">
-                    {/*{<MetaAvatar creators={creators} />}*/}
-                    <div className="custom-avtar" style={{width: '32px', height: '32px', overflow: 'hidden', borderRadius: '50px',}}>
-                      {(creatorDeatil && creatorDeatil.length > 0) ? <img height={32} width={32} src={creatorDeatil[0].profile_pic.url} />  :  <img height={32} width={32} src="/profile-img.png" /> }
-                    </div>
+                    <span className="info-profile">
+                      {/*{<MetaAvatar creators={creators} />}*/}
+                      <div
+                        className="custom-avtar"
+                        style={{
+                          width: '32px',
+                          height: '32px',
+                          overflow: 'hidden',
+                          borderRadius: '50px',
+                        }}
+                      >
+                        {creatorDeatil && creatorDeatil.length > 0 ? (
+                          <img
+                            height={32}
+                            width={32}
+                            src={creatorDeatil[0].profile_pic.url}
+                          />
+                        ) : (
+                          <img height={32} width={32} src="/profile-img.png" />
+                        )}
+                      </div>
 
-                    <span className="creator-name">
-                      {(creatorDeatil && creatorDeatil.length > 0) && shortenAddress(creatorDeatil[0].creator_id[0].text)}
+                      <span className="creator-name">
+                        {creatorDeatil &&
+                          creatorDeatil.length > 0 &&
+                          shortenAddress(creatorDeatil[0].creator_id[0].text)}
+                      </span>
                     </span>
-                  </span>
                   </div>
                   <div className={'info-component'}>
                     <h6 className={'info-title'}>Edition</h6>
@@ -392,8 +426,11 @@ export const AuctionView = (props) => {
                   </div> */}
                 </div>
               </Col>
-              <Col span={12} md={8} className="view-on-container">
-                <div className="info-view-container">
+              <Col span={12} md={24} className="view-on-container">
+                <div
+                  className="info-view-container"
+                  style={{ justifyContent: 'flex-start', marginTop: '15px' }}
+                >
                   <div className="info-view">
                     <h6 className="info-title">View on</h6>
                     <div style={{ display: 'flex' }}>
@@ -425,8 +462,7 @@ export const AuctionView = (props) => {
               </Col>
             </Row>
 
-
-            <Row className='aboutngt-content'>
+            <Row className="aboutngt-content">
               <Col>
                 {/* <h6 className={'about-nft-collection'}>
                   ABOUT THIS {nftCount === 1 ? 'NFT' : 'COLLECTION'}
@@ -446,7 +482,9 @@ export const AuctionView = (props) => {
                     <List grid={{ column: 4 }}>
                       {attributes.map((attribute, index) => (
                         <List.Item key={`${attribute.value}-${index}`}>
-                          <Card title={attribute.trait_type}>{attribute.value}</Card>
+                          <Card title={attribute.trait_type}>
+                            {attribute.value}
+                          </Card>
                         </List.Item>
                       ))}
                     </List>
@@ -454,7 +492,6 @@ export const AuctionView = (props) => {
                 )}
               </Col>
             </Row>
-
 
             {!auction && <Skeleton paragraph={{ rows: 6 }} />}
             {auction && (
@@ -476,13 +513,13 @@ const BidLine = (props: {
   isActive?: boolean;
   mintKey: string;
 }) => {
-  const { bid, mint, isCancelled, mintKey } = props;
+  const { bid, mint, isCancelled } = props;
   const { publicKey } = useWallet();
   const bidder = bid.info.bidderPubkey;
   const isme = publicKey?.toBase58() === bidder;
-  const tokenInfo = useTokenList().subscribedTokens.filter(
-    m => m.address == mintKey,
-  )[0];
+  // const tokenInfo = useTokenList().subscribedTokens.filter(
+  //   m => m.address == mintKey,
+  // )[0];
 
   // Get Twitter Handle from address
   const connection = useConnection();
