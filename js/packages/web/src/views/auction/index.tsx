@@ -80,15 +80,18 @@ export const AuctionItem = ({
   );
 };
 
-export const AuctionView = () => {
-  const { width } = useWindowDimensions();
+export const AuctionView = (props) => {
+  const { prismicContent } = props || [];
   const { id } = useParams<{ id: string }>();
+  const { width } = useWindowDimensions();
   const { endpoint } = useConnectionConfig();
   const auction = useAuction(id);
   const [currentIndex, setCurrentIndex] = useState(0);
   const art = useArt(auction?.thumbnail.metadata.pubkey);
   const { ref, data } = useExtendedArt(auction?.thumbnail.metadata.pubkey);
   const creators = useCreators(auction);
+  const creatorDeatil = (prismicContent && prismicContent.length > 0 && prismicContent[0].data.creator.length > 0) && prismicContent[0].data.creator.filter((x) => x.creator_id[0].text === (creators.length > 0 && creators[0].address));
+  console.log('creatorDeatil', creatorDeatil);
   const { pullAuctionPage } = useMeta();
   useEffect(() => {
     pullAuctionPage(id);
@@ -326,8 +329,16 @@ export const AuctionView = () => {
                 <div className={'info-container'}>
                   <div className={'info-component'}>
                     <h6 className={'info-title'}>Created by</h6>
-                      
-                  <span>{<MetaAvatar creators={creators} />}</span>
+                  <span className="info-profile">
+                    {/*{<MetaAvatar creators={creators} />}*/}
+                    <div className="custom-avtar" style={{width: '32px', height: '32px', overflow: 'hidden', borderRadius: '50px',}}>
+                      {(creatorDeatil && creatorDeatil.length > 0) ? <img height={32} width={32} src={creatorDeatil[0].profile_pic.url} />  :  <img height={32} width={32} src="/profile-img.png" /> }
+                    </div>
+
+                    <span className="creator-name">
+                      {shortenAddress(creatorDeatil[0].creator_id[0].text)}
+                    </span>
+                  </span>
                   </div>
                   <div className={'info-component'}>
                     <h6 className={'info-title'}>Edition</h6>
@@ -443,7 +454,7 @@ export const AuctionView = () => {
                 )}
               </Col>
             </Row>
-          
+
 
             {!auction && <Skeleton paragraph={{ rows: 6 }} />}
             {auction && (

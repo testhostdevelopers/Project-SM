@@ -8,7 +8,7 @@ import { useMeta } from '../../contexts';
 const { Content } = Layout;
 
 export const ArtistsView = (props: any) => {
-  
+
   const { whitelistedCreatorsByCreator } = useMeta();
 
   const breakpointColumnsObj = {
@@ -20,7 +20,7 @@ export const ArtistsView = (props: any) => {
   const items = Object.values(whitelistedCreatorsByCreator);
   const artistGrid = (
     <>
-    
+
       <div className='title side-padding'>
         <h1>Creators</h1>
       </div>

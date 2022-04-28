@@ -70,7 +70,7 @@ export function Routes(props) {
             <Route
               exact
               path="/auction/:id"
-              component={() => <AuctionView />}
+              component={() => <AuctionView {...props} />}
             />
             <Route
               exact
