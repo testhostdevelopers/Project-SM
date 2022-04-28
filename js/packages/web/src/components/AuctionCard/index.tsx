@@ -695,7 +695,7 @@ export const AuctionCard = ({
                   fontSize: '14px',
                 }}
               >
-                your bid
+                Your bid
               </div>
               <div className={'bid-container'}>
                 <div
