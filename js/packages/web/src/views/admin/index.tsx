@@ -327,7 +327,7 @@ function InnerAdminView({
                 shortenAddress(uniqueCreatorsWithUpdates[key].address),
               image: uniqueCreatorsWithUpdates[key].image,
             }))}
-          ></Table>
+          />
         </Row>
       </Col>
 

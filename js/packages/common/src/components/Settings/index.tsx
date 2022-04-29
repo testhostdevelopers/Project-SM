@@ -5,9 +5,11 @@ import { shortenAddress } from '../../utils';
 import { CopyOutlined } from '@ant-design/icons';
 // import { Identicon } from '../Identicon';
 import { Link } from 'react-router-dom';
+import { useMeta } from '@oyster/common';
 
 export const Settings = (props: any) => {
   const { publicKey } = useWallet();
+  const { whitelistedCreatorsByCreator } = useMeta();
   const { prismicContent } = props.userDetail.children._owner.memoizedProps;
   const creatorDeatil =
     prismicContent &&
@@ -58,10 +60,15 @@ export const Settings = (props: any) => {
           </>
         )}
         <br />
-        <Link to={`/artists/${publicKey}`} className="profile">
-          View profile{' '}
-        </Link>
 
+        {Object.prototype.hasOwnProperty.call(
+          whitelistedCreatorsByCreator,
+          publicKey + '',
+        ) && (
+          <Link to={`/artists/${publicKey}`} className="profile">
+            View profile 1441{' '}
+          </Link>
+        )}
         {props.additionalSettings}
       </div>
     </>

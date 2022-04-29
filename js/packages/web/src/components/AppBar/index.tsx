@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';;
+import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Menu, Modal } from 'antd';
 import { useWallet } from '@solana/wallet-adapter-react';
@@ -42,19 +42,22 @@ const getDefaultLinkActions = (connected: boolean, props) => {
       <Button className="app-btn">Upcoming</Button>
     </Link>,
     <Link to={`/`} key={'/'}>
-      <HowToBuyModal buttonClassName="modal-button-default no-border" modalProps={props} s/>
+      <HowToBuyModal
+        buttonClassName="modal-button-default no-border"
+        modalProps={props}
+      />
     </Link>,
-
-
 
     // <Link to={`/artworks`} key={'artwork'}>
     //   <Button className="app-btn">{connected ? 'My Items' : 'Artwork'}</Button>
     // </Link>,
-    
   ];
 };
 
-const DefaultActions = (props, { vertical = false }: { vertical?: boolean }) => {
+const DefaultActions = (
+  props,
+  { vertical = false }: { vertical?: boolean },
+) => {
   const { connected } = useWallet();
   return (
     <div
@@ -68,7 +71,7 @@ const DefaultActions = (props, { vertical = false }: { vertical?: boolean }) => 
   );
 };
 
-export const MetaplexMenu = (props) => {
+export const MetaplexMenu = props => {
   const { width } = useWindowDimensions();
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const { connected } = useWallet();
@@ -131,7 +134,7 @@ export const MetaplexMenu = (props) => {
       </>
     );
 
-  return <DefaultActions {...props}/>;
+  return <DefaultActions {...props} />;
 };
 
 export const LogoLink = () => {
@@ -142,7 +145,7 @@ export const LogoLink = () => {
   );
 };
 
-export const AppBar = (props) => {
+export const AppBar = props => {
   const { connected } = useWallet();
 
   const { publicKey } = useWallet();
@@ -163,7 +166,7 @@ export const AppBar = (props) => {
         <div className="app-left">
           <LogoLink />
           &nbsp;&nbsp;&nbsp;
-          <MetaplexMenu {...props}/>
+          <MetaplexMenu {...props} />
         </div>
         <div className="app-right">
           {/* {!connected && (
@@ -172,31 +175,31 @@ export const AppBar = (props) => {
 
           {!connected && (
             <>
-            <ConnectButton allowWalletChange />
+              <ConnectButton allowWalletChange />
             </>
           )}
           {connected && (
             <>
-            <div className='profile-action-button'>
-              {canCreate && (
-                <>
-                  <Link to={`/art/create`}>
-                    <Button className="metaplex-button-default">
-                      Create
-                    </Button>
-                  </Link>
-                  &nbsp;&nbsp;
-                </>
-              )}
-            </div>
+              <div className="profile-action-button">
+                {canCreate && (
+                  <>
+                    <Link to={`/art/create`}>
+                      <Button className="metaplex-button-default">
+                        Create
+                      </Button>
+                    </Link>
+                    &nbsp;&nbsp;
+                  </>
+                )}
+              </div>
               <Notifications />
               <CurrentUserBadge
-              {...props}
+                {...props}
                 showBalance={false}
                 showAddress={true}
                 iconSize={24}
               />
-              
+
               <Cog />
             </>
           )}
