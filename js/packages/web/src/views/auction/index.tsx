@@ -39,7 +39,7 @@ import { ArtType } from '../../types';
 import { MetaAvatarDetailed } from '../../components/MetaAvatar';
 import { AmountLabel } from '../../components/AmountLabel';
 import { ClickToCopy } from '../../components/ClickToCopy';
-// import { useTokenList } from '../../contexts/tokenList';
+import { useTokenList } from '../../contexts/tokenList';
 
 export const AuctionItem = ({
   item,
@@ -513,13 +513,13 @@ const BidLine = (props: {
   isActive?: boolean;
   mintKey: string;
 }) => {
-  const { bid, mint, isCancelled } = props;
+  const { bid, mint, isCancelled, mintKey } = props;
   const { publicKey } = useWallet();
   const bidder = bid.info.bidderPubkey;
   const isme = publicKey?.toBase58() === bidder;
-  // const tokenInfo = useTokenList().subscribedTokens.filter(
-  //   m => m.address == mintKey,
-  // )[0];
+  const tokenInfo = useTokenList().subscribedTokens.filter(
+    m => m.address == mintKey,
+  )[0];
 
   // Get Twitter Handle from address
   const connection = useConnection();
