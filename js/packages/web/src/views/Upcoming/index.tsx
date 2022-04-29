@@ -96,14 +96,15 @@ export const UpcomingView = props => {
                   subHeadingText={x.upcoming_collection_description[0]?.text}
                   evendate={x.date[0]?.text}
                   actionComponent={
-                    <Link
-                      to={x?.upcoming_collection_btn_url[0]?.text}
+                    <a
+                      href={`${x.ics_file_link?.url}`}
                       target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <Button type="primary">
                         {x.upcoming_collection_btn_text[0]?.text}
                       </Button>
-                    </Link>
+                    </a>
                   }
                   useBannerBg
                 />
