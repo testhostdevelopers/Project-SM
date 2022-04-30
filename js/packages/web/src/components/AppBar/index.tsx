@@ -41,16 +41,18 @@ const getDefaultLinkActions = (connected: boolean, props) => {
     <Link to={`/Upcoming`} key={'Upcoming'}>
       <Button className="app-btn">Upcoming</Button>
     </Link>,
+    // <Link to={`/artworks`} key={'artworks'}>
+    //   <Button className="app-btn">My Item</Button>
+    // </Link>,
+    <Link to={`/artworks`} key={'artwork'}>
+      <Button className="app-btn">{connected ? 'My Items' : 'Artwork'}</Button>
+    </Link>,
     <Link to={`/`} key={'/'}>
       <HowToBuyModal
         buttonClassName="modal-button-default no-border"
         modalProps={props}
       />
     </Link>,
-
-    // <Link to={`/artworks`} key={'artwork'}>
-    //   <Button className="app-btn">{connected ? 'My Items' : 'Artwork'}</Button>
-    // </Link>,
   ];
 };
 
@@ -71,7 +73,7 @@ const DefaultActions = (
   );
 };
 
-export const MetaplexMenu = props => {
+export const MetaplexMenu = (props: any) => {
   const { width } = useWindowDimensions();
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const { connected } = useWallet();

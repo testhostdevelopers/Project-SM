@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import {
-  Divider,
   Steps,
   Row,
   Button,
@@ -665,11 +664,11 @@ export const AuctionCreateView = () => {
   return (
     <>
       <Row className="creator-base-page creat-new-nft sell">
-        <div className='main-title'>
+        <div className="main-title">
           <h1>List an item</h1>
         </div>
         {stepsVisible && (
-          <Col className='pt-5' span={24} md={4}>
+          <Col className="pt-5" span={24} md={4}>
             <Steps
               progressDot
               direction={width < 768 ? 'horizontal' : 'vertical'}
@@ -689,12 +688,27 @@ export const AuctionCreateView = () => {
             </Steps>
           </Col>
         )}
-        <Col className='pt-5' span={24} {...(stepsVisible ? { md: 20 } : { md: 24 })}>
+        <Col
+          className="pt-5"
+          span={24}
+          {...(stepsVisible ? { md: 20 } : { md: 24 })}
+        >
           {stepsByCategory[attributes.category][step][1]}
           {0 < step && stepsVisible && (
-            <div className='back-btn'>
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.33366H2.55333L6.28 1.60699L5.33333 0.666992L0 6.00033L5.33333 11.3337L6.27333 10.3937L2.55333 6.66699H12V5.33366Z" fill="#141414"/>
+            <div className="back-btn">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M12 5.33366H2.55333L6.28 1.60699L5.33333 0.666992L0 6.00033L5.33333 11.3337L6.27333 10.3937L2.55333 6.66699H12V5.33366Z"
+                  fill="#141414"
+                />
               </svg>
               <Button onClick={() => gotoNextStep(step - 1)}>Back</Button>
             </div>
@@ -1614,7 +1628,8 @@ const TierTableStep = (props: {
       <Row className="call-to-action">
         <h2>Add Winning Tiers and Their Prizes</h2>
         <p>
-          Each row represents a tier. You can choose which winning spots get which tiers.
+          Each row represents a tier. You can choose which winning spots get
+          which tiers.
         </p>
       </Row>
       {props.attributes.tiers.map((wcg, configIndex) => (
@@ -2162,7 +2177,7 @@ const Congrats = (props: {
             onClick={() => window.open(newTweetURL(), '_blank')}
           >
             <span>Share it on Twitter</span>
-            <span>&gt;</span>
+            {/* <span>&gt;</span> */}
           </Button>
           <Button
             className="metaplex-button"
@@ -2172,7 +2187,7 @@ const Congrats = (props: {
             }}
           >
             <span>See it in your auctions</span>
-            <span>&gt;</span>
+            {/* <span>&gt;</span> */}
           </Button>
         </div>
       </div>
