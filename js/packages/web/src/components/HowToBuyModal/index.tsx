@@ -12,12 +12,16 @@ interface HowToBuyModalProps {
 export const HowToBuyModal: React.FC<HowToBuyModalProps> = ({
   buttonClassName,
   onClick,
-  modalProps
-}) => {  
+  modalProps,
+}) => {
   return (
     <InstructionsModal
       buttonClassName={buttonClassName}
-      buttonText={modalProps?.children?._owner?.memoizedProps.prismicContent && modalProps?.children?._owner?.memoizedProps.prismicContent[0].data.how_to_buy[0].text}
+      buttonText={
+        modalProps?.children?._owner?.memoizedProps?.prismicContent &&
+        modalProps?.children?._owner?.memoizedProps?.prismicContent[0]?.data
+          .how_to_buy[0].text
+      }
       modalTitle={`Buying NFTs on ${LABELS.STORE_NAME}`}
       cardProps={[
         {
@@ -34,7 +38,9 @@ export const HowToBuyModal: React.FC<HowToBuyModalProps> = ({
           title: `Connect your wallet to ${LABELS.STORE_NAME}`,
           imgSrc: '/modals/how-to-buy-3.png',
           description: `To connect your wallet, tap “Connect Wallet” here on the site. Select the Phantom option, and your wallet will connect. After that, you can start bidding on NFTs.`,
-          endElement: <ConnectButton className={'secondary-btn'} type="Connect wallet" />,
+          endElement: (
+            <ConnectButton className={'secondary-btn'} type="Connect wallet" />
+          ),
         },
       ]}
       onClick={onClick}

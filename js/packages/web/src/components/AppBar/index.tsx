@@ -15,7 +15,7 @@ import { ConnectButton } from '@oyster/common';
 import { MobileNavbar } from '../MobileNavbar';
 import { useMeta } from '../../contexts';
 
-const getDefaultLinkActions = (connected: boolean, props) => {
+const getDefaultLinkActions = (connected: boolean, props: any) => {
   return [
     // <Link to={props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.header_link_explore[0].text} key={'explore'}>
     //   <Button className="app-btn">

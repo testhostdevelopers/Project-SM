@@ -9,6 +9,7 @@
     "@magic-ext/solana": "^0.2.0",
     "@metaplex-foundation/mpl-token-metadata": "1.1.0",
     "@metaplex/arweave-cost": "^1.0.4",
+    "@mui/icons-material": "^5.6.2",
     "@oyster/common": "0.0.2",
     "@project-serum/serum": "^0.13.52",
     "@solana/spl-name-service": "0.1.3",
