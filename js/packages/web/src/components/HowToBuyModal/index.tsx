@@ -6,22 +6,16 @@ import { ConnectButton } from '@oyster/common';
 interface HowToBuyModalProps {
   buttonClassName: string;
   onClick?: any;
-  modalProps: any;
 }
 
 export const HowToBuyModal: React.FC<HowToBuyModalProps> = ({
   buttonClassName,
   onClick,
-  modalProps,
 }) => {
   return (
     <InstructionsModal
       buttonClassName={buttonClassName}
-      buttonText={
-        modalProps?.children?._owner?.memoizedProps?.prismicContent &&
-        modalProps?.children?._owner?.memoizedProps?.prismicContent[0]?.data
-          .how_to_buy[0].text
-      }
+      buttonText="How to Buy"
       modalTitle={`Buying NFTs on ${LABELS.STORE_NAME}`}
       cardProps={[
         {
@@ -35,8 +29,8 @@ export const HowToBuyModal: React.FC<HowToBuyModalProps> = ({
           description: `To fund your wallet, you’ll need to purchase SOL tokens. The easiest way is with a credit card on FTX Pay—a service that’s already part of your new Phantom wallet. Open your wallet, tap “Deposit SOL”, and select “Deposit from FTX”. A new window will open where you can create an FTX account and purchase SOL.`,
         },
         {
-          title: `Connect your wallet to ${LABELS.STORE_NAME}`,
-          imgSrc: '/modals/how-to-buy-3.png',
+          title: `Connect your wallet to ${LABELS.STORE_NAME}.`,
+          imgSrc: '/modals/how-to-buy-3.jpg',
           description: `To connect your wallet, tap “Connect Wallet” here on the site. Select the Phantom option, and your wallet will connect. After that, you can start bidding on NFTs.`,
           endElement: (
             <ConnectButton className={'secondary-btn'} type="Connect wallet" />

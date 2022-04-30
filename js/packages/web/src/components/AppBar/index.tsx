@@ -16,6 +16,7 @@ import { MobileNavbar } from '../MobileNavbar';
 import { useMeta } from '../../contexts';
 
 const getDefaultLinkActions = (connected: boolean, props: any) => {
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   return [
     // <Link to={props?.children?._owner?.memoizedProps.prismicContent && props?.children?._owner?.memoizedProps.prismicContent[0].data.header_link_explore[0].text} key={'explore'}>
     //   <Button className="app-btn">
@@ -48,7 +49,20 @@ const getDefaultLinkActions = (connected: boolean, props: any) => {
       <Button className="app-btn">{connected ? 'My Items' : 'Artwork'}</Button>
     </Link>,
     <Link to={`/`} key={'/'}>
+      <Modal
+        title={<img src={'/metaplex-logo.svg'} />}
+        visible={isModalVisible}
+        footer={null}
+        className={'modal-box'}
+        closeIcon={
+          <img
+            onClick={() => setIsModalVisible(false)}
+            src={'/modals/close.svg'}
+          />
+        }
+      ></Modal>
       <HowToBuyModal
+        onClick={() => setIsModalVisible(false)}
         buttonClassName="modal-button-default no-border"
         modalProps={props}
       />
@@ -57,7 +71,7 @@ const getDefaultLinkActions = (connected: boolean, props: any) => {
 };
 
 const DefaultActions = (
-  props,
+  props: any,
   { vertical = false }: { vertical?: boolean },
 ) => {
   const { connected } = useWallet();
