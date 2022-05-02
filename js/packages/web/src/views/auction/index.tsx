@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Button, Card, Carousel, Col, List, Row, Skeleton } from 'antd';
 import { AuctionCard } from '../../components/AuctionCard';
 import { Connection } from '@solana/web3.js';
@@ -347,31 +347,44 @@ export const AuctionView = props => {
                     <h6 className={'info-title'}>Created by</h6>
                     <span className="info-profile">
                       {/*{<MetaAvatar creators={creators} />}*/}
-                      <div
-                        className="custom-avtar"
-                        style={{
-                          width: '32px',
-                          height: '32px',
-                          overflow: 'hidden',
-                          borderRadius: '50px',
-                        }}
-                      >
-                        {creatorDeatil && creatorDeatil.length > 0 ? (
-                          <img
-                            height={32}
-                            width={32}
-                            src={creatorDeatil[0].profile_pic.url}
-                          />
-                        ) : (
-                          <img height={32} width={32} src="/profile-img.png" />
-                        )}
-                      </div>
-
-                      <span className="creator-name">
-                        {creatorDeatil &&
+                      {/* {} */}
+                      <Link
+                        to={`/artists/${
+                          creatorDeatil &&
                           creatorDeatil.length > 0 &&
-                          shortenAddress(creatorDeatil[0].creator_id[0].text)}
-                      </span>
+                          creatorDeatil[0].creator_id[0].text
+                        }`}
+                      >
+                        <div
+                          className="custom-avtar"
+                          style={{
+                            width: '32px',
+                            height: '32px',
+                            overflow: 'hidden',
+                            borderRadius: '50px',
+                          }}
+                        >
+                          {creatorDeatil && creatorDeatil.length > 0 ? (
+                            <img
+                              height={32}
+                              width={32}
+                              src={creatorDeatil[0].profile_pic.url}
+                            />
+                          ) : (
+                            <img
+                              height={32}
+                              width={32}
+                              src="/profile-img.png"
+                            />
+                          )}
+                        </div>
+
+                        <span className="creator-name">
+                          {creatorDeatil &&
+                            creatorDeatil.length > 0 &&
+                            shortenAddress(creatorDeatil[0].creator_id[0].text)}
+                        </span>
+                      </Link>
                     </span>
                   </div>
                   <div className={'info-component'}>
