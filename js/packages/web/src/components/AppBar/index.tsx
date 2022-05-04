@@ -46,7 +46,9 @@ const getDefaultLinkActions = (connected: boolean, props: any) => {
     //   <Button className="app-btn">My Item</Button>
     // </Link>,
     <Link to={`/artworks`} key={'artwork'}>
-      <Button className="app-btn">{connected ? 'My Items' : 'Artwork'}</Button>
+      {connected && (
+        <Button className="app-btn">{connected ? 'My Items' : ''}</Button>
+      )}
     </Link>,
     <Link to={`/`} key={'/'}>
       <Modal
