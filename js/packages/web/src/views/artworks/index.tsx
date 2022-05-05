@@ -1,6 +1,6 @@
 import { useWallet } from '@solana/wallet-adapter-react';
 import React, { useEffect, useState } from 'react';
-import { Layout, Row, Col, Tabs, Dropdown, Menu } from 'antd';
+import { Layout, Row, Col, Tabs } from 'antd';
 import { useMeta } from '../../contexts';
 import { CardLoader } from '../../components/MyLoader';
 
@@ -8,18 +8,18 @@ import { ArtworkViewState } from './types';
 import { useItems } from './hooks/useItems';
 import ItemCard from './components/ItemCard';
 import { useUserAccounts } from '@oyster/common';
-import { DownOutlined } from '@ant-design/icons';
+// import { DownOutlined } from '@ant-design/icons';
 import { isMetadata, isPack } from './utils';
 
 const { TabPane } = Tabs;
 const { Content } = Layout;
 
-export const ArtworksView = () => {
+export const ArtworksView = (props: any) => {
   const { connected } = useWallet();
   const {
     isLoading,
-    pullAllMetadata,
-    storeIndexer,
+    // pullAllMetadata,
+    // storeIndexer,
     pullItemsPage,
     isFetching,
   } = useMeta();
@@ -57,7 +57,13 @@ export const ArtworksView = () => {
             ? item.provingProcessKey
             : item.edition?.pubkey || item.metadata.pubkey;
 
-          return <ItemCard item={item} key={pubkey} />;
+          return (
+            <ItemCard
+              item={item}
+              key={pubkey}
+              prismicContent={props?.prismicContent}
+            />
+          );
         })}
     </div>
   );
@@ -84,8 +90,8 @@ export const ArtworksView = () => {
     <Layout style={{ margin: 0, marginTop: 30 }}>
       <Content style={{ display: 'flex', flexWrap: 'wrap' }}>
         <Col style={{ width: '100%', marginTop: 10 }}>
-          <Row className='artwork'>
-            <div className='title'>
+          <Row className="artwork">
+            <div className="title">
               <h1>My items</h1>
             </div>
             <Tabs

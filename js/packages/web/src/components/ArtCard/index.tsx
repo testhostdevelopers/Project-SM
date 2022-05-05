@@ -4,13 +4,12 @@ import { MetadataCategory, StringPublicKey } from '@oyster/common';
 import { ArtContent } from '../ArtContent';
 import { useArt } from '../../hooks';
 import { Artist, ArtType } from '../../types';
-import { MetaAvatar } from '../MetaAvatar';
+// import { MetaAvatar } from '../MetaAvatar';
 
 const { Meta } = Card;
 
 export interface ArtCardProps extends CardProps {
   pubkey?: StringPublicKey;
-  artkey?: string;
   image?: string;
   animationURL?: string;
 
@@ -50,11 +49,10 @@ export const ArtCard = (props: ArtCardProps) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     creators: _creators,
     prismicContent,
-    artkey,
     ...rest
   } = props;
   const art = useArt(pubkey);
-  let { name, creators } = props;
+  let { name, creators } = props || [];
   creators = art?.creators || creators || [];
   name = art?.title || name || ' ';
 
@@ -66,12 +64,13 @@ export const ArtCard = (props: ArtCardProps) => {
   } else if (art.type === ArtType.Print) {
     badge = `${art.edition} of ${art.supply}`;
   }
+  const artAddress = creators[0].address;
   const creatorDeatil =
     prismicContent &&
     prismicContent.length > 0 &&
     prismicContent[0].data.creator.length > 0 &&
     prismicContent[0].data.creator.filter(
-      (x: any) => x.creator_id[0].text === artkey,
+      (x: any) => x.creator_id[0].text === artAddress,
     );
 
   const card = (
@@ -112,7 +111,7 @@ export const ArtCard = (props: ArtCardProps) => {
           ) : (
             <img src="/profile-img.png" />
           )}
-          <MetaAvatar creators={creators} size={32} />
+          {/* <MetaAvatar creators={creators} size={32} /> */}
         </div>
         <div className="edition-badge">{badge}</div>
       </div>

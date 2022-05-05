@@ -54,13 +54,29 @@ export function Routes(props) {
             <Route
               exact
               path="/artworks/:id?"
-              component={() => <ArtworksView />}
+              component={() => <ArtworksView {...props} />}
             />
-            <Route exact path="/art/:id" component={() => <ArtView {...props}/>} />
-            <Route exact path="/artists/:id" component={() => <ArtistView {...props}/>} />
-            <Route exact path="/artists" component={() => <ArtistsView {...props}/>} />
+            <Route
+              exact
+              path="/art/:id"
+              component={() => <ArtView {...props} />}
+            />
+            <Route
+              exact
+              path="/artists/:id"
+              component={() => <ArtistView {...props} />}
+            />
+            <Route
+              exact
+              path="/artists"
+              component={() => <ArtistsView {...props} />}
+            />
 
-            <Route exact path="/Upcoming" component={() => <UpcomingView {...props}/>} />
+            <Route
+              exact
+              path="/Upcoming"
+              component={() => <UpcomingView {...props} />}
+            />
 
             <Route
               exact
