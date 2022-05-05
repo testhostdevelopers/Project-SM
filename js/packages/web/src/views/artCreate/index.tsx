@@ -1220,8 +1220,6 @@ const LaunchStep = (props: {
               small={true}
               artView={props.files[1]?.type === 'unknown'}
               className="art-create-card"
-              artkey={''}
-              prismicContent={undefined}
             />
           )}
         </Col>
