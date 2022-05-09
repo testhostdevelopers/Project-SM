@@ -10,7 +10,11 @@ import { CopyOutlined } from '@ant-design/icons';
 export const Settings = (props: any) => {
   const { publicKey } = useWallet();
   // const { whitelistedCreatorsByCreator } = useMeta();
-  const { prismicContent } = props.userDetail.children._owner.memoizedProps;
+  // const { prismicContent } = props.userDetail.children._owner.memoizedProps;
+  const { prismicContent } =
+    null !== props.userDetail.children._owner
+      ? props.userDetail.children._owner.memoizedProps
+      : '';
   const creatorDeatil =
     prismicContent &&
     prismicContent.length > 0 &&
